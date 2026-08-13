@@ -82,24 +82,41 @@ leg, which sits at the top of that order. Do the same in any local run;
 
 ### The CLI
 
-`--split` landed in `@testdino/playwright` 2.3.0. This repo pins it as a
-file dependency on the vendored tarball:
+`--split` landed in `@testdino/playwright` 2.3.0 and is published on npm, so the
+repo takes it straight from the registry:
 
 ```json
-"@testdino/playwright": "file:testdino-playwright-2.3.0.tgz"
+"@testdino/playwright": "^2.3.1"
 ```
 
-so `npm ci` + `npx tdpw` in CI resolves the local build, not the published
-package. Verify with:
+An earlier revision of this branch vendored a `testdino-playwright-2.3.0.tgz`
+tarball as a `file:` dependency, because the flags predated the release. That is
+no longer necessary — the tarball is gone and `npm ci` + `npx tdpw` resolve the
+published build. Verify with:
 
 ```bash
 npx tdpw test --help   # must list --split / --split-id
 ```
 
-To move to a newer tarball, drop it next to `package.json` and re-run
-`npm i -D file:./testdino-playwright-<version>.tgz`.
-
 ## Running it locally
+
+`npm run test:split` runs the same four legs as the workflow, in order, under
+one generated split id — the local equivalent of one workflow run:
+
+```bash
+npm run test:split              # all four legs
+npm run test:split:dry          # print the commands without running them
+node scripts/run-split-local.cjs --leg 1 --leg 3   # a subset
+```
+
+`scripts/run-split-local.cjs` holds the leg table; keep it in sync with the
+workflow matrix. It leaves `serverUrl` to `playwright.config.ts` (staging)
+unless `TESTDINO_SERVER_URL` is set, in which case it forwards `--server-url`
+exactly as CI does. `TESTDINO_SPLIT_ID` overrides the generated group id when
+you want to attach a run to an existing group. Selecting a subset of legs leaves
+the group short a split — expect it to stay open until the reaper fires.
+
+The equivalent by hand:
 
 ```bash
 export TD=https://stg-analytics.testdino.com
