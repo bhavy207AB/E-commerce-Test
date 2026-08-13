@@ -8,6 +8,51 @@ on:
   pull_request:
 
 jobs:
+  # Feeds TestDino's Interrupted / Incomplete filter, on STAGING.
+  #
+  # This has to be its own job: the spec relies on --max-failures=1 to stop the
+  # runner while its long cases are in flight, and that flag would take the
+  # other specs down with it if they shared an invocation.
+  interrupted-staging:
+    if: github.event_name != 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    env:
+      # Staging, not prod: playwright.config.ts falls back to the prod reporter
+      # when TESTDINO_SERVER_URL is unset, so this must be explicit.
+      TESTDINO_SERVER_URL: https://stg-analytics.testdino.com/
+      TESTDINO_TOKEN: ${{ secrets.TESTDINO_STAGING_TOKEN }}
+      TESTDINO_CI_RUN_ID: ci-interrupted-${{ github.run_id }}-${{ github.run_attempt }}
+      TESTDINO_TAGS: staging,interrupted,filter-verification
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify Staging Token
+        run: |
+          if [ -z "$TESTDINO_TOKEN" ]; then
+            echo "::error::TESTDINO_STAGING_TOKEN GitHub secret is required for the staging project."
+            exit 1
+          fi
+
+      # A non-zero exit is the point here: one case fails on purpose to stop the
+      # run, so the job must not go red for doing its job. The reporter has
+      # already streamed the interrupted results by then.
+      - name: Run Interrupted Filter Spec
+        run: npm run test:interrupted || echo "Expected non-zero exit: the trigger case fails by design."
+
   playwright:
     if: github.event_name != 'workflow_dispatch'
     runs-on: ubuntu-latest
