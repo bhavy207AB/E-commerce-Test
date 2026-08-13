@@ -9,15 +9,19 @@
     "globalTimeout": 0,
     "grep": {},
     "grepInvert": null,
-    "maxFailures": 0,
-    "metadata": {},
+    "maxFailures": 1,
+    "metadata": {
+      "actualWorkers": 4
+    },
     "preserveOutput": "always",
     "projects": [
       {
         "outputDir": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results",
         "repeatEach": 1,
-        "retries": 2,
-        "metadata": {},
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
         "id": "chromium",
         "name": "chromium",
         "testDir": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests",
@@ -33,9 +37,9 @@
       [
         "/Users/jay/Downloads/Plawright/E-commerce-Test/node_modules/@testdino/playwright/dist/index.js",
         {
-          "serverUrl": "https://reporter.testdino.com/",
+          "serverUrl": "https://stg-analytics.testdino.com/",
           "token": "td_api_18c986fd8e2bd954a650c02ed01fb540456a39dd670ca924b5004241832445a2",
-          "ciRunId": "local-run-2026-08-13",
+          "ciRunId": "local-merge-test-1786625665",
           "debug": false,
           "artifacts": true,
           "tags": [],
@@ -72,66 +76,280 @@
     "updateSnapshots": "missing",
     "updateSourceMethod": "patch",
     "version": "1.60.0",
-    "workers": 5,
+    "workers": 4,
     "webServer": null
   },
   "suites": [
     {
-      "title": "addToCart.spec.ts",
-      "file": "addToCart.spec.ts",
+      "title": "interrupted-filter-verification.spec.ts",
+      "file": "interrupted-filter-verification.spec.ts",
       "column": 0,
       "line": 0,
-      "specs": [
+      "specs": [],
+      "suites": [
         {
-          "title": "Add Product To Cart",
-          "ok": true,
-          "tags": [],
-          "tests": [
+          "title": "TestDino interrupted filter verification @testdino-interrupted",
+          "file": "interrupted-filter-verification.spec.ts",
+          "line": 19,
+          "column": 6,
+          "specs": [
             {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "chromium",
-              "projectName": "chromium",
-              "results": [],
-              "status": "skipped"
-            }
-          ],
-          "id": "a1b2df80ffd2e8e27332-d8bdc841f636868a8279",
-          "file": "addToCart.spec.ts",
-          "line": 6,
-          "column": 5
-        },
-        {
-          "title": "Adding the same product twice bumps its quantity to 2",
-          "ok": true,
-          "tags": [],
-          "tests": [
+              "title": "FAILED - stops the run so siblings are interrupted @testdino-interrupted",
+              "ok": false,
+              "tags": [
+                "testdino-interrupted",
+                "testdino-interrupted"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 5434,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"max failures reached\"\u001b[39m\nReceived: \u001b[31m\"run stopper\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"max failures reached\"\u001b[39m\nReceived: \u001b[31m\"run stopper\"\u001b[39m\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/interrupted-filter-verification.spec.ts:26:27",
+                        "location": {
+                          "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/interrupted-filter-verification.spec.ts",
+                          "column": 27,
+                          "line": 26
+                        },
+                        "snippet": "  24 |     await new Promise(resolve => setTimeout(resolve, 4_000));\n  25 |\n> 26 |     expect('run stopper').toBe('max failures reached');\n     |                           ^\n  27 |   });\n  28 |\n  29 |   // These never finish: the run is torn down while they are mid-flight, and"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/interrupted-filter-verification.spec.ts",
+                            "column": 27,
+                            "line": 26
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"max failures reached\"\u001b[39m\nReceived: \u001b[31m\"run stopper\"\u001b[39m\n\n  24 |     await new Promise(resolve => setTimeout(resolve, 4_000));\n  25 |\n> 26 |     expect('run stopper').toBe('max failures reached');\n     |                           ^\n  27 |   });\n  28 |\n  29 |   // These never finish: the run is torn down while they are mid-flight, and\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/interrupted-filter-verification.spec.ts:26:27"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-13T12:56:26.835Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/interrupted-filter-verific-85860-rupted-testdino-interrupted-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/interrupted-filter-verific-85860-rupted-testdino-interrupted-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/interrupted-filter-verific-85860-rupted-testdino-interrupted-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/interrupted-filter-verific-85860-rupted-testdino-interrupted-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/interrupted-filter-verification.spec.ts",
+                        "column": 27,
+                        "line": 26
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "f4b6c0da92bed2099dc5-bbd8e7b9e1c2200693ad",
+              "file": "interrupted-filter-verification.spec.ts",
+              "line": 23,
+              "column": 7
+            },
             {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "chromium",
-              "projectName": "chromium",
-              "results": [],
-              "status": "skipped"
+              "title": "INTERRUPTED - long running case 1 @testdino-interrupted",
+              "ok": true,
+              "tags": [
+                "testdino-interrupted",
+                "testdino-interrupted"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "interrupted",
+                      "duration": 6554,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-13T12:56:26.817Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/interrupted-filter-verific-ad452-case-1-testdino-interrupted-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/interrupted-filter-verific-ad452-case-1-testdino-interrupted-chromium/video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/interrupted-filter-verific-ad452-case-1-testdino-interrupted-chromium/trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "f4b6c0da92bed2099dc5-8ed72ef1748fb33ba6b0",
+              "file": "interrupted-filter-verification.spec.ts",
+              "line": 32,
+              "column": 9
+            },
+            {
+              "title": "INTERRUPTED - long running case 2 @testdino-interrupted",
+              "ok": true,
+              "tags": [
+                "testdino-interrupted",
+                "testdino-interrupted"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "interrupted",
+                      "duration": 6535,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-13T12:56:26.824Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/interrupted-filter-verific-1e4ae-case-2-testdino-interrupted-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/interrupted-filter-verific-1e4ae-case-2-testdino-interrupted-chromium/video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/interrupted-filter-verific-1e4ae-case-2-testdino-interrupted-chromium/trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "f4b6c0da92bed2099dc5-27220342a8445a970322",
+              "file": "interrupted-filter-verification.spec.ts",
+              "line": 32,
+              "column": 9
+            },
+            {
+              "title": "INTERRUPTED - long running case 3 @testdino-interrupted",
+              "ok": true,
+              "tags": [
+                "testdino-interrupted",
+                "testdino-interrupted"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "interrupted",
+                      "duration": 6553,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-13T12:56:26.815Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/interrupted-filter-verific-204f5-case-3-testdino-interrupted-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/interrupted-filter-verific-204f5-case-3-testdino-interrupted-chromium/video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/interrupted-filter-verific-204f5-case-3-testdino-interrupted-chromium/trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "f4b6c0da92bed2099dc5-efc8fcd2e79689ab6307",
+              "file": "interrupted-filter-verification.spec.ts",
+              "line": 32,
+              "column": 9
             }
-          ],
-          "id": "a1b2df80ffd2e8e27332-8fb0c1279e7ca1d72b2d",
-          "file": "addToCart.spec.ts",
-          "line": 27,
-          "column": 5
+          ]
         }
       ]
     }
   ],
-  "errors": [],
+  "errors": [
+    {
+      "message": "\u001b[31mTesting stopped early after 1 maximum allowed failures.\u001b[39m"
+    }
+  ],
   "stats": {
-    "startTime": "2026-08-13T09:39:20.168Z",
-    "duration": 92.09899999999993,
+    "startTime": "2026-08-13T12:56:25.756Z",
+    "duration": 8132.952000000001,
     "expected": 0,
-    "skipped": 2,
-    "unexpected": 0,
+    "skipped": 3,
+    "unexpected": 1,
     "flaky": 0
   }
 }
