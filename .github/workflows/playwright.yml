@@ -8,15 +8,10 @@ on:
   pull_request:
 
 jobs:
-  # Everything reported to STAGING: the regular suite plus the Interrupted /
-  # Incomplete filter coverage.
-  #
-  # Two invocations, deliberately. The interrupted spec needs --max-failures=1
-  # to stop the runner while its long cases are in flight, and that flag would
-  # take the suite specs down with it if they shared one invocation. They also
-  # each get their own TESTDINO_CI_RUN_ID: a shared id does NOT merge separate
-  # invocations into one TestDino run (verified — it yields two runs anyway), so
-  # distinct ids keep the dashboard honest about which run is which.
+  # One spec file, one invocation, one STAGING run carrying all three buckets:
+  # 40 passed, 7 failed, 3 interrupted of 50. See the header of
+  # tests/status-mix-verification.spec.ts for why --max-failures=7 and
+  # --workers=4 are load-bearing rather than incidental.
   staging-tests:
     if: github.event_name != 'workflow_dispatch'
     runs-on: ubuntu-latest
@@ -50,27 +45,14 @@ jobs:
             exit 1
           fi
 
-      - name: Run Staging Suite
+      # A non-zero exit is the point here: 7 of the 50 cases fail on purpose, so
+      # the step must not go red for doing its job. The reporter has already
+      # streamed every result by then.
+      - name: Run Status Mix Spec
         env:
-          TESTDINO_CI_RUN_ID: ci-staging-${{ github.run_id }}-${{ github.run_attempt }}
+          TESTDINO_CI_RUN_ID: ci-status-mix-${{ github.run_id }}-${{ github.run_attempt }}
         run: |
-          npx playwright test \
-            tests/addToCart.spec.ts \
-            tests/api-mocking.spec.ts \
-            tests/CheckoutPage.spec.ts
-
-      # always(), so a genuine failure in the suite above still leaves the
-      # Interrupted / Incomplete bucket populated on the dashboard.
-      #
-      # A non-zero exit is the point here: one case fails on purpose to stop the
-      # run, so the step must not go red for doing its job. The reporter has
-      # already streamed the interrupted results by then.
-      - name: Run Interrupted Filter Spec
-        if: always()
-        env:
-          TESTDINO_CI_RUN_ID: ci-interrupted-${{ github.run_id }}-${{ github.run_attempt }}
-        run: |
-          npm run test:interrupted || echo "Expected non-zero exit - the trigger case fails by design."
+          npm run test:status-mix || echo "Expected non-zero exit - 7 cases fail by design."
 
   playwright:
     if: github.event_name != 'workflow_dispatch'
