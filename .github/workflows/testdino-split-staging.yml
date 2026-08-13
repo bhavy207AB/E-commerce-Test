@@ -15,7 +15,10 @@ concurrency:
 
 env:
   TESTDINO_SERVER_URL: ${{ secrets.TESTDINO_STAGING_URL }}
-  TESTDINO_TOKEN: ${{ secrets.TESTDINO_STAGING_TOKEN }}
+  # Prefer a dedicated staging key, but fall back to TESTDINO_TOKEN, which this
+  # repo already points at staging (see playwright.yml). Without the fallback
+  # preflight fails on repos that only ever configured the one token.
+  TESTDINO_TOKEN: ${{ secrets.TESTDINO_STAGING_TOKEN || secrets.TESTDINO_TOKEN }}
   # The suite drives the public demo storefront; override per-environment.
   BASE_URL: https://storedemo.testdino.com/products
 
@@ -30,7 +33,7 @@ jobs:
         run: |
           set -uo pipefail
           [ -n "${TESTDINO_SERVER_URL:-}" ] || { echo "::error::TESTDINO_STAGING_URL secret is not set"; exit 1; }
-          [ -n "${TESTDINO_TOKEN:-}" ] || { echo "::error::TESTDINO_STAGING_TOKEN secret is not set"; exit 1; }
+          [ -n "${TESTDINO_TOKEN:-}" ] || { echo "::error::neither TESTDINO_STAGING_TOKEN nor TESTDINO_TOKEN is set"; exit 1; }
           code=$(curl -sS -o /dev/null -w '%{http_code}' \
             -X POST "${TESTDINO_SERVER_URL%/}/api/v1/reporter/auth" \
             -H "Authorization: Bearer $TESTDINO_TOKEN" \
