@@ -10,18 +10,14 @@
     "grep": {},
     "grepInvert": null,
     "maxFailures": 0,
-    "metadata": {
-      "actualWorkers": 5
-    },
+    "metadata": {},
     "preserveOutput": "always",
     "projects": [
       {
         "outputDir": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results",
         "repeatEach": 1,
         "retries": 2,
-        "metadata": {
-          "actualWorkers": 5
-        },
+        "metadata": {},
         "id": "chromium",
         "name": "chromium",
         "testDir": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests",
@@ -37,9 +33,9 @@
       [
         "/Users/jay/Downloads/Plawright/E-commerce-Test/node_modules/@testdino/playwright/dist/index.js",
         {
-          "serverUrl": "https://reporter.testdino.com",
-          "token": "td_api_8b57a499bbc707994dff3319f69745eb10f0bca203b6f85704553df7fd93f51a",
-          "ciRunId": "local-run-2026-07-21",
+          "serverUrl": "https://reporter.testdino.com/",
+          "token": "td_api_18c986fd8e2bd954a650c02ed01fb540456a39dd670ca924b5004241832445a2",
+          "ciRunId": "local-run-2026-08-13",
           "debug": false,
           "artifacts": true,
           "tags": [],
@@ -81,466 +77,61 @@
   },
   "suites": [
     {
-      "title": "testdino-trace-showcase.spec.ts",
-      "file": "testdino-trace-showcase.spec.ts",
+      "title": "addToCart.spec.ts",
+      "file": "addToCart.spec.ts",
       "column": 0,
       "line": 0,
-      "specs": [],
-      "suites": [
+      "specs": [
         {
-          "title": "TestDino trace showcase",
-          "file": "testdino-trace-showcase.spec.ts",
-          "line": 125,
-          "column": 6,
-          "specs": [
+          "title": "Add Product To Cart",
+          "ok": true,
+          "tags": [],
+          "tests": [
             {
-              "title": "search and add a product to cart @trace",
-              "ok": true,
-              "tags": [
-                "trace"
-              ],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 5023,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "steps": [
-                        {
-                          "title": "Open the demo storefront",
-                          "duration": 807
-                        },
-                        {
-                          "title": "Search for wireless headphones",
-                          "duration": 719
-                        },
-                        {
-                          "title": "Add the matching product to the cart",
-                          "duration": 301
-                        }
-                      ],
-                      "startTime": "2026-07-21T10:24:18.936Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "cart-state.json",
-                          "contentType": "application/json",
-                          "body": "ewogICJwcm9kdWN0IjogIldpcmVsZXNzIEhlYWRwaG9uZXMiLAogICJxdWFudGl0eSI6IDEsCiAgInRvdGFsIjogNzkKfQ=="
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/testdino-trace-showcase-Te-a611d-add-a-product-to-cart-trace-chromium/trace.zip"
-                        }
-                      ]
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "956c3da174990c5a97be-f8a4995a4199a14eebb3",
-              "file": "testdino-trace-showcase.spec.ts",
-              "line": 126,
-              "column": 7
-            },
-            {
-              "title": "validate checkout and complete an order @trace",
-              "ok": true,
-              "tags": [
-                "trace"
-              ],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 5623,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "steps": [
-                        {
-                          "title": "Prepare a cart and open checkout",
-                          "duration": 1367
-                        },
-                        {
-                          "title": "Show validation feedback for invalid payment details",
-                          "duration": 692
-                        },
-                        {
-                          "title": "Correct the details and confirm the order",
-                          "duration": 258
-                        }
-                      ],
-                      "startTime": "2026-07-21T10:24:18.955Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "order-summary.json",
-                          "contentType": "application/json",
-                          "body": "ewogICJvcmRlcklkIjogIlRELTEwNDIiLAogICJzdGF0dXMiOiAiY29uZmlybWVkIiwKICAidG90YWwiOiA5OQp9"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/testdino-trace-showcase-Te-73790-and-complete-an-order-trace-chromium/trace.zip"
-                        }
-                      ]
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "956c3da174990c5a97be-d54a268659eafe471fc3",
-              "file": "testdino-trace-showcase.spec.ts",
-              "line": 153,
-              "column": 7
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
             }
-          ]
+          ],
+          "id": "a1b2df80ffd2e8e27332-d8bdc841f636868a8279",
+          "file": "addToCart.spec.ts",
+          "line": 6,
+          "column": 5
         },
         {
-          "title": "TestDino failed test trace showcase",
-          "file": "testdino-trace-showcase.spec.ts",
-          "line": 183,
-          "column": 6,
-          "specs": [
+          "title": "Adding the same product twice bumps its quantity to 2",
+          "ok": true,
+          "tags": [],
+          "tests": [
             {
-              "title": "failed product search captures a trace @trace @intentional-failure",
-              "ok": false,
-              "tags": [
-                "trace",
-                "intentional-failure"
-              ],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
-                      "status": "failed",
-                      "duration": 16207,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('status')\nExpected: \u001b[32m\"\u001b[7m2\u001b[27m product\u001b[7ms\u001b[27m found\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7m1\u001b[27m product found\"\u001b[39m\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('status')\u001b[22m\n\u001b[2m    23 × locator resolved to <p role=\"status\" id=\"search-result\">1 product found</p>\u001b[22m\n\u001b[2m       - unexpected value \"1 product found\"\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('status')\nExpected: \u001b[32m\"\u001b[7m2\u001b[27m product\u001b[7ms\u001b[27m found\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7m1\u001b[27m product found\"\u001b[39m\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('status')\u001b[22m\n\u001b[2m    23 × locator resolved to <p role=\"status\" id=\"search-result\">1 product found</p>\u001b[22m\n\u001b[2m       - unexpected value \"1 product found\"\u001b[22m\n\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts:194:46\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts:193:5",
-                        "location": {
-                          "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts",
-                          "column": 46,
-                          "line": 194
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 192 |\u001b[39m\n \u001b[90m 193 |\u001b[39m     \u001b[36mawait\u001b[39m test\u001b[33m.\u001b[39mstep(\u001b[32m'Verify an intentionally incorrect search result'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 194 |\u001b[39m       \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'status'\u001b[39m))\u001b[33m.\u001b[39mtoHaveText(\u001b[32m'2 products found'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 195 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 196 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 197 |\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts",
-                            "column": 46,
-                            "line": 194
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('status')\nExpected: \u001b[32m\"\u001b[7m2\u001b[27m product\u001b[7ms\u001b[27m found\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7m1\u001b[27m product found\"\u001b[39m\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('status')\u001b[22m\n\u001b[2m    23 × locator resolved to <p role=\"status\" id=\"search-result\">1 product found</p>\u001b[22m\n\u001b[2m       - unexpected value \"1 product found\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 192 |\u001b[39m\n \u001b[90m 193 |\u001b[39m     \u001b[36mawait\u001b[39m test\u001b[33m.\u001b[39mstep(\u001b[32m'Verify an intentionally incorrect search result'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 194 |\u001b[39m       \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'status'\u001b[39m))\u001b[33m.\u001b[39mtoHaveText(\u001b[32m'2 products found'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 195 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 196 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 197 |\u001b[39m\u001b[0m\n\u001b[2m    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts:194:46\u001b[22m\n\u001b[2m    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts:193:5\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "steps": [
-                        {
-                          "title": "Open the demo storefront and search for headphones",
-                          "duration": 1214
-                        },
-                        {
-                          "title": "Verify an intentionally incorrect search result",
-                          "duration": 10024,
-                          "error": {
-                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('status')\nExpected: \u001b[32m\"\u001b[7m2\u001b[27m product\u001b[7ms\u001b[27m found\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7m1\u001b[27m product found\"\u001b[39m\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('status')\u001b[22m\n\u001b[2m    23 × locator resolved to <p role=\"status\" id=\"search-result\">1 product found</p>\u001b[22m\n\u001b[2m       - unexpected value \"1 product found\"\u001b[22m\n",
-                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('status')\nExpected: \u001b[32m\"\u001b[7m2\u001b[27m product\u001b[7ms\u001b[27m found\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7m1\u001b[27m product found\"\u001b[39m\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('status')\u001b[22m\n\u001b[2m    23 × locator resolved to <p role=\"status\" id=\"search-result\">1 product found</p>\u001b[22m\n\u001b[2m       - unexpected value \"1 product found\"\u001b[22m\n\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts:194:46\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts:193:5",
-                            "location": {
-                              "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts",
-                              "column": 46,
-                              "line": 194
-                            },
-                            "snippet": "\u001b[0m \u001b[90m 192 |\u001b[39m\n \u001b[90m 193 |\u001b[39m     \u001b[36mawait\u001b[39m test\u001b[33m.\u001b[39mstep(\u001b[32m'Verify an intentionally incorrect search result'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 194 |\u001b[39m       \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'status'\u001b[39m))\u001b[33m.\u001b[39mtoHaveText(\u001b[32m'2 products found'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 195 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 196 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 197 |\u001b[39m\u001b[0m"
-                          }
-                        }
-                      ],
-                      "startTime": "2026-07-21T10:24:18.968Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/testdino-trace-showcase-Te-591dc-e-trace-intentional-failure-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/testdino-trace-showcase-Te-591dc-e-trace-intentional-failure-chromium/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/testdino-trace-showcase-Te-591dc-e-trace-intentional-failure-chromium/error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/testdino-trace-showcase-Te-591dc-e-trace-intentional-failure-chromium/trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts",
-                        "column": 46,
-                        "line": 194
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "956c3da174990c5a97be-ed411ed8998e08ede0b0",
-              "file": "testdino-trace-showcase.spec.ts",
-              "line": 186,
-              "column": 7
-            },
-            {
-              "title": "failed cart total captures a trace @trace @intentional-failure",
-              "ok": false,
-              "tags": [
-                "trace",
-                "intentional-failure"
-              ],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
-                      "status": "failed",
-                      "duration": 16220,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('cart-total')\nExpected: \u001b[32m\"$\u001b[7m4\u001b[27m9.00\"\u001b[39m\nReceived: \u001b[31m\"$\u001b[7m7\u001b[27m9.00\"\u001b[39m\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cart-total')\u001b[22m\n\u001b[2m    23 × locator resolved to <span data-testid=\"cart-total\">$79.00</span>\u001b[22m\n\u001b[2m       - unexpected value \"$79.00\"\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('cart-total')\nExpected: \u001b[32m\"$\u001b[7m4\u001b[27m9.00\"\u001b[39m\nReceived: \u001b[31m\"$\u001b[7m7\u001b[27m9.00\"\u001b[39m\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cart-total')\u001b[22m\n\u001b[2m    23 × locator resolved to <span data-testid=\"cart-total\">$79.00</span>\u001b[22m\n\u001b[2m       - unexpected value \"$79.00\"\u001b[22m\n\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts:207:52\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts:206:5",
-                        "location": {
-                          "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts",
-                          "column": 52,
-                          "line": 207
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 205 |\u001b[39m\n \u001b[90m 206 |\u001b[39m     \u001b[36mawait\u001b[39m test\u001b[33m.\u001b[39mstep(\u001b[32m'Verify an intentionally incorrect cart total'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 207 |\u001b[39m       \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByTestId(\u001b[32m'cart-total'\u001b[39m))\u001b[33m.\u001b[39mtoHaveText(\u001b[32m'$49.00'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 208 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 209 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 210 |\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts",
-                            "column": 52,
-                            "line": 207
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('cart-total')\nExpected: \u001b[32m\"$\u001b[7m4\u001b[27m9.00\"\u001b[39m\nReceived: \u001b[31m\"$\u001b[7m7\u001b[27m9.00\"\u001b[39m\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cart-total')\u001b[22m\n\u001b[2m    23 × locator resolved to <span data-testid=\"cart-total\">$79.00</span>\u001b[22m\n\u001b[2m       - unexpected value \"$79.00\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 205 |\u001b[39m\n \u001b[90m 206 |\u001b[39m     \u001b[36mawait\u001b[39m test\u001b[33m.\u001b[39mstep(\u001b[32m'Verify an intentionally incorrect cart total'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 207 |\u001b[39m       \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByTestId(\u001b[32m'cart-total'\u001b[39m))\u001b[33m.\u001b[39mtoHaveText(\u001b[32m'$49.00'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 208 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 209 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 210 |\u001b[39m\u001b[0m\n\u001b[2m    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts:207:52\u001b[22m\n\u001b[2m    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts:206:5\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "steps": [
-                        {
-                          "title": "Add wireless headphones to the cart",
-                          "duration": 1108
-                        },
-                        {
-                          "title": "Verify an intentionally incorrect cart total",
-                          "duration": 10096,
-                          "error": {
-                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('cart-total')\nExpected: \u001b[32m\"$\u001b[7m4\u001b[27m9.00\"\u001b[39m\nReceived: \u001b[31m\"$\u001b[7m7\u001b[27m9.00\"\u001b[39m\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cart-total')\u001b[22m\n\u001b[2m    23 × locator resolved to <span data-testid=\"cart-total\">$79.00</span>\u001b[22m\n\u001b[2m       - unexpected value \"$79.00\"\u001b[22m\n",
-                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('cart-total')\nExpected: \u001b[32m\"$\u001b[7m4\u001b[27m9.00\"\u001b[39m\nReceived: \u001b[31m\"$\u001b[7m7\u001b[27m9.00\"\u001b[39m\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cart-total')\u001b[22m\n\u001b[2m    23 × locator resolved to <span data-testid=\"cart-total\">$79.00</span>\u001b[22m\n\u001b[2m       - unexpected value \"$79.00\"\u001b[22m\n\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts:207:52\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts:206:5",
-                            "location": {
-                              "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts",
-                              "column": 52,
-                              "line": 207
-                            },
-                            "snippet": "\u001b[0m \u001b[90m 205 |\u001b[39m\n \u001b[90m 206 |\u001b[39m     \u001b[36mawait\u001b[39m test\u001b[33m.\u001b[39mstep(\u001b[32m'Verify an intentionally incorrect cart total'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 207 |\u001b[39m       \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByTestId(\u001b[32m'cart-total'\u001b[39m))\u001b[33m.\u001b[39mtoHaveText(\u001b[32m'$49.00'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 208 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 209 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 210 |\u001b[39m\u001b[0m"
-                          }
-                        }
-                      ],
-                      "startTime": "2026-07-21T10:24:18.955Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/testdino-trace-showcase-Te-7d08c-e-trace-intentional-failure-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/testdino-trace-showcase-Te-7d08c-e-trace-intentional-failure-chromium/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/testdino-trace-showcase-Te-7d08c-e-trace-intentional-failure-chromium/error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/testdino-trace-showcase-Te-7d08c-e-trace-intentional-failure-chromium/trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts",
-                        "column": 52,
-                        "line": 207
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "956c3da174990c5a97be-57554d3bc8d0ae19b222",
-              "file": "testdino-trace-showcase.spec.ts",
-              "line": 198,
-              "column": 7
-            },
-            {
-              "title": "failed order confirmation captures a trace @trace @intentional-failure",
-              "ok": false,
-              "tags": [
-                "trace",
-                "intentional-failure"
-              ],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 4,
-                      "status": "failed",
-                      "duration": 16177,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#confirmation')\nExpected: \u001b[32m\"Order TD-\u001b[7m9999\u001b[27m confirmed for Mechanical Keyboard\"\u001b[39m\nReceived: \u001b[31m\"Order TD-\u001b[7m1042\u001b[27m confirmed for Mechanical Keyboard\"\u001b[39m\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('#confirmation')\u001b[22m\n\u001b[2m    23 × locator resolved to <p role=\"status\" class=\"success\" id=\"confirmation\">Order TD-1042 confirmed for Mechanical Keyboard</p>\u001b[22m\n\u001b[2m       - unexpected value \"Order TD-1042 confirmed for Mechanical Keyboard\"\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#confirmation')\nExpected: \u001b[32m\"Order TD-\u001b[7m9999\u001b[27m confirmed for Mechanical Keyboard\"\u001b[39m\nReceived: \u001b[31m\"Order TD-\u001b[7m1042\u001b[27m confirmed for Mechanical Keyboard\"\u001b[39m\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('#confirmation')\u001b[22m\n\u001b[2m    23 × locator resolved to <p role=\"status\" class=\"success\" id=\"confirmation\">Order TD-1042 confirmed for Mechanical Keyboard</p>\u001b[22m\n\u001b[2m       - unexpected value \"Order TD-1042 confirmed for Mechanical Keyboard\"\u001b[22m\n\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts:223:51\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts:222:5",
-                        "location": {
-                          "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts",
-                          "column": 51,
-                          "line": 223
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 221 |\u001b[39m\n \u001b[90m 222 |\u001b[39m     \u001b[36mawait\u001b[39m test\u001b[33m.\u001b[39mstep(\u001b[32m'Verify an intentionally incorrect order number'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 223 |\u001b[39m       \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'#confirmation'\u001b[39m))\u001b[33m.\u001b[39mtoHaveText(\n \u001b[90m     |\u001b[39m                                                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 224 |\u001b[39m         \u001b[32m'Order TD-9999 confirmed for Mechanical Keyboard'\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 225 |\u001b[39m       )\u001b[33m;\u001b[39m\n \u001b[90m 226 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts",
-                            "column": 51,
-                            "line": 223
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#confirmation')\nExpected: \u001b[32m\"Order TD-\u001b[7m9999\u001b[27m confirmed for Mechanical Keyboard\"\u001b[39m\nReceived: \u001b[31m\"Order TD-\u001b[7m1042\u001b[27m confirmed for Mechanical Keyboard\"\u001b[39m\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('#confirmation')\u001b[22m\n\u001b[2m    23 × locator resolved to <p role=\"status\" class=\"success\" id=\"confirmation\">Order TD-1042 confirmed for Mechanical Keyboard</p>\u001b[22m\n\u001b[2m       - unexpected value \"Order TD-1042 confirmed for Mechanical Keyboard\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 221 |\u001b[39m\n \u001b[90m 222 |\u001b[39m     \u001b[36mawait\u001b[39m test\u001b[33m.\u001b[39mstep(\u001b[32m'Verify an intentionally incorrect order number'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 223 |\u001b[39m       \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'#confirmation'\u001b[39m))\u001b[33m.\u001b[39mtoHaveText(\n \u001b[90m     |\u001b[39m                                                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 224 |\u001b[39m         \u001b[32m'Order TD-9999 confirmed for Mechanical Keyboard'\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 225 |\u001b[39m       )\u001b[33m;\u001b[39m\n \u001b[90m 226 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts:223:51\u001b[22m\n\u001b[2m    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts:222:5\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "steps": [
-                        {
-                          "title": "Complete checkout with valid details",
-                          "duration": 2252
-                        },
-                        {
-                          "title": "Verify an intentionally incorrect order number",
-                          "duration": 10146,
-                          "error": {
-                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#confirmation')\nExpected: \u001b[32m\"Order TD-\u001b[7m9999\u001b[27m confirmed for Mechanical Keyboard\"\u001b[39m\nReceived: \u001b[31m\"Order TD-\u001b[7m1042\u001b[27m confirmed for Mechanical Keyboard\"\u001b[39m\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('#confirmation')\u001b[22m\n\u001b[2m    23 × locator resolved to <p role=\"status\" class=\"success\" id=\"confirmation\">Order TD-1042 confirmed for Mechanical Keyboard</p>\u001b[22m\n\u001b[2m       - unexpected value \"Order TD-1042 confirmed for Mechanical Keyboard\"\u001b[22m\n",
-                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#confirmation')\nExpected: \u001b[32m\"Order TD-\u001b[7m9999\u001b[27m confirmed for Mechanical Keyboard\"\u001b[39m\nReceived: \u001b[31m\"Order TD-\u001b[7m1042\u001b[27m confirmed for Mechanical Keyboard\"\u001b[39m\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('#confirmation')\u001b[22m\n\u001b[2m    23 × locator resolved to <p role=\"status\" class=\"success\" id=\"confirmation\">Order TD-1042 confirmed for Mechanical Keyboard</p>\u001b[22m\n\u001b[2m       - unexpected value \"Order TD-1042 confirmed for Mechanical Keyboard\"\u001b[22m\n\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts:223:51\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts:222:5",
-                            "location": {
-                              "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts",
-                              "column": 51,
-                              "line": 223
-                            },
-                            "snippet": "\u001b[0m \u001b[90m 221 |\u001b[39m\n \u001b[90m 222 |\u001b[39m     \u001b[36mawait\u001b[39m test\u001b[33m.\u001b[39mstep(\u001b[32m'Verify an intentionally incorrect order number'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 223 |\u001b[39m       \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'#confirmation'\u001b[39m))\u001b[33m.\u001b[39mtoHaveText(\n \u001b[90m     |\u001b[39m                                                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 224 |\u001b[39m         \u001b[32m'Order TD-9999 confirmed for Mechanical Keyboard'\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 225 |\u001b[39m       )\u001b[33m;\u001b[39m\n \u001b[90m 226 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m"
-                          }
-                        }
-                      ],
-                      "startTime": "2026-07-21T10:24:19.002Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/testdino-trace-showcase-Te-33bc1-e-trace-intentional-failure-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/testdino-trace-showcase-Te-33bc1-e-trace-intentional-failure-chromium/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/testdino-trace-showcase-Te-33bc1-e-trace-intentional-failure-chromium/error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/testdino-trace-showcase-Te-33bc1-e-trace-intentional-failure-chromium/trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/testdino-trace-showcase.spec.ts",
-                        "column": 51,
-                        "line": 223
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "956c3da174990c5a97be-0fc87f2cd928453ee5e5",
-              "file": "testdino-trace-showcase.spec.ts",
-              "line": 211,
-              "column": 7
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
             }
-          ]
+          ],
+          "id": "a1b2df80ffd2e8e27332-8fb0c1279e7ca1d72b2d",
+          "file": "addToCart.spec.ts",
+          "line": 27,
+          "column": 5
         }
       ]
     }
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-07-21T10:24:15.540Z",
-    "duration": 20600.803,
-    "expected": 2,
-    "skipped": 0,
-    "unexpected": 3,
+    "startTime": "2026-08-13T09:39:20.168Z",
+    "duration": 92.09899999999993,
+    "expected": 0,
+    "skipped": 2,
+    "unexpected": 0,
     "flaky": 0
   }
 }
