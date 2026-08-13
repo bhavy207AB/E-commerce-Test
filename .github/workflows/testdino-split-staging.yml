@@ -14,7 +14,10 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  TESTDINO_SERVER_URL: ${{ secrets.TESTDINO_STAGING_URL }}
+  # The TESTDINO_STAGING_URL secret rejects TESTDINO_TOKEN with a 401, so use the
+  # same literal staging host playwright.yml reports to successfully. Point this
+  # back at a secret once a URL/token pair that authenticates is configured.
+  TESTDINO_SERVER_URL: https://stg-analytics.testdino.com/
   # Prefer a dedicated staging key, but fall back to TESTDINO_TOKEN, which this
   # repo already points at staging (see playwright.yml). Without the fallback
   # preflight fails on repos that only ever configured the one token.
