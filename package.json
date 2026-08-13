@@ -8,9 +8,7 @@
     "test:headed": "playwright test --headed",
     "test:coverage": "node --env-file=utils/.env node_modules/@testdino/playwright/bin/tdpw.js test --coverage",
     "test:coverage:report": "node --env-file=utils/.env node_modules/@testdino/playwright/bin/tdpw.js test --coverage && node scripts/prepare-coverage-report.cjs",
-    "verify:coverage": "VERIFY_COVERAGE=true playwright test tests/coverage-verification.spec.ts --project=chromium",
-    "test:split": "node scripts/run-split-local.cjs",
-    "test:split:dry": "node scripts/run-split-local.cjs --dry-run"
+    "verify:coverage": "VERIFY_COVERAGE=true playwright test tests/coverage-verification.spec.ts --project=chromium"
   },
   "keywords": [],
   "author": "",
