@@ -51,7 +51,8 @@ jobs:
       # run, so the job must not go red for doing its job. The reporter has
       # already streamed the interrupted results by then.
       - name: Run Interrupted Filter Spec
-        run: npm run test:interrupted || echo "Expected non-zero exit: the trigger case fails by design."
+        run: |
+          npm run test:interrupted || echo "Expected non-zero exit - the trigger case fails by design."
 
   playwright:
     if: github.event_name != 'workflow_dispatch'
