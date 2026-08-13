@@ -140,4 +140,107 @@ test.describe('Network Response Validation', () => {
 
     await page.goto('https://automationexercise.com/products');
   });
+
+  test('Live productsList API returns a usable catalogue', async ({ page }) => {
+
+    const response = await page.request.get(
+      'https://automationexercise.com/api/productsList'
+    );
+
+    expect(response.status()).toBe(200);
+
+    const json = JSON.parse(await response.text());
+
+    expect(Array.isArray(json.products)).toBe(true);
+    expect(json.products.length).toBeGreaterThan(0);
+
+    expect(json.products[0]).toHaveProperty('id');
+    expect(json.products[0]).toHaveProperty('name');
+    expect(json.products[0]).toHaveProperty('price');
+  });
+
+  test('Blocking images still renders the products page', async ({ page }) => {
+    const blocked: string[] = [];
+
+    await page.route('**/*', route => {
+      if (route.request().resourceType() === 'image') {
+        blocked.push(route.request().url());
+        return route.abort();
+      }
+
+      return route.continue();
+    });
+
+    await page.goto('https://automationexercise.com/products');
+
+    // Content must not depend on images having loaded.
+    await expect(
+      page.locator('.product-image-wrapper').first()
+    ).toBeVisible({ timeout: 20000 });
+
+    expect(blocked.length).toBeGreaterThan(0);
+  });
+
+  test('Injected response headers reach the browser', async ({ page }) => {
+    let seen: Record<string, string> = {};
+
+    await page.route('https://automationexercise.com/products', async route => {
+      const response = await route.fetch();
+
+      await route.fulfill({
+        response,
+        headers: {
+          ...response.headers(),
+          'x-testdino-mock': 'injected',
+        },
+      });
+    });
+
+    page.on('response', response => {
+      if (response.url().endsWith('/products')) {
+        seen = response.headers();
+      }
+    });
+
+    await page.goto('https://automationexercise.com/products');
+
+    expect(seen['x-testdino-mock']).toBe('injected');
+  });
+
+  // Reported to TestDino under Skipped > Skipped.
+  test.skip('SKIPPED - Replay the products page from a HAR archive', async ({ page }) => {
+
+    await page.routeFromHAR('./fixtures/products.har', {
+      url: '**/products',
+      update: false,
+    });
+
+    await page.goto('https://automationexercise.com/products');
+
+    await expect(
+      page.locator('.product-image-wrapper').first()
+    ).toBeVisible();
+  });
+
+  // Reported to TestDino under Skipped > Fixme.
+  test.fixme('SKIPPED - Mocked catalogue renders in the product grid', async ({ page }) => {
+
+    await page.route('**/api/productsList', async route => {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          products: [
+            { id: 1, name: 'Mocked Product', price: 'Rs. 99' },
+          ],
+        }),
+      });
+    });
+
+    await page.goto('https://automationexercise.com/products');
+
+    await expect(
+      page.locator('.product-image-wrapper')
+    ).toHaveCount(1);
+  });
 });

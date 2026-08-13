@@ -12,7 +12,7 @@ jobs:
     if: github.event_name != 'workflow_dispatch'
     runs-on: ubuntu-latest
     env:
-      TESTDINO_SERVER_URL: https://stg-analytics.testdino.com/
+      TESTDINO_SERVER_URL: https://reporter.testdino.com/
       TESTDINO_CI_RUN_ID: ci-run-${{ github.run_id }}-${{ github.run_attempt }}
       TESTDINO_TAGS: smoke,regression,filter-verification
 
@@ -48,7 +48,14 @@ jobs:
       - name: Run TestDino Shard ${{ matrix.shard }} of 5
         env:
           TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
-        run: npx playwright test tests/login.spec.ts tests/slack-annotation-verification.spec.ts tests/run-tag-filter-verification.spec.ts tests/additional-500-suites.spec.ts --shard=${{ matrix.shard }}/5
+        run: |
+          npx playwright test \
+            tests/CheckoutPage.spec.ts \
+            tests/addToCart.spec.ts \
+            tests/api-mocking.spec.ts \
+            tests/login.spec.ts \
+            tests/browser-interactions.spec.ts \
+            --shard=${{ matrix.shard }}/5
 
       - name: Verify Blob Report
         if: always()

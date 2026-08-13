@@ -31,9 +31,7 @@ export default defineConfig({
 
   reporter: [
     ['@testdino/playwright', {
-      // Resolution is CLI > testdino.config > playwright.config > env, so this
-      // value masks TESTDINO_SERVER_URL. CI overrides it with `--server-url`.
-      serverUrl: 'https://stg-analytics.testdino.com/',
+      serverUrl: process.env.TESTDINO_SERVER_URL || 'https://reporter.testdino.com/',
       token: process.env.TESTDINO_TOKEN,
       ciRunId,
       debug: process.env.TESTDINO_DEBUG === 'true',
