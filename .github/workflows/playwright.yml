@@ -8,17 +8,14 @@ on:
   pull_request:
 
 jobs:
-  # Two STAGING runs, one per step, deliberately kept apart.
+  # One STAGING run of the genuine product tests only. The specs that exist to
+  # manufacture TestDino statuses or verify the reporter — all-status-types,
+  # additional-500-suites, status-mix, coverage-verification, the *-verification
+  # specs and testdino-trace-showcase — are deliberately not run here; their
+  # results describe the reporter, not the application.
   #
-  # The status-bucket run is one file, one invocation, carrying every status
-  # bucket: 40 passed, 7 failed, 3 flaky, 3 skipped and 3 interrupted of 56.
-  # The feature specs run under their own TESTDINO_CI_RUN_ID so their results
-  # never land in that run and shift its counts.
-  #
-  # See the header of tests/all-status-types.spec.ts for
-  # why --max-failures=7, --workers=4 and --retries=1 are load-bearing rather
-  # than incidental — which is also why this cannot be sharded: each shard
-  # would get its own failure budget and Interrupted would come out empty.
+  # Whatever these tests do is the result: pass, fail or flaky, the step does
+  # not gate the job. The reporter has streamed every outcome by then.
   staging-tests:
     if: github.event_name != 'workflow_dispatch'
     runs-on: ubuntu-latest
@@ -27,7 +24,7 @@ jobs:
       # when TESTDINO_SERVER_URL is unset, so this must be explicit.
       TESTDINO_SERVER_URL: https://stg-analytics.testdino.com/
       TESTDINO_TOKEN: ${{ secrets.TESTDINO_STAGING_TOKEN }}
-      TESTDINO_TAGS: staging,regression,interrupted,filter-verification
+      TESTDINO_TAGS: staging,regression
 
     steps:
       - name: Checkout Repository
@@ -52,29 +49,22 @@ jobs:
             exit 1
           fi
 
-      # A non-zero exit is the point here: 7 of the 50 cases fail on purpose, so
-      # the step must not go red for doing its job. The reporter has already
-      # streamed every result by then.
-      - name: Run All Status Types Spec
+      - name: Run Product Tests
         env:
-          TESTDINO_CI_RUN_ID: ci-all-status-${{ github.run_id }}-${{ github.run_attempt }}
-        run: |
-          npm run test:all-status || echo "Expected non-zero exit - 7 cases fail by design."
-
-      # The five feature specs, in their own run. addToCart is the reason this
-      # step exists: its fix has to be exercised in CI to be verifiable.
-      # coverage-verification stays skipped unless VERIFY_COVERAGE=true.
-      - name: Run Feature Specs
-        env:
-          TESTDINO_CI_RUN_ID: ci-feature-specs-${{ github.run_id }}-${{ github.run_attempt }}
+          TESTDINO_CI_RUN_ID: ci-product-${{ github.run_id }}-${{ github.run_attempt }}
         run: |
           npx playwright test \
             tests/addToCart.spec.ts \
-            tests/api-mocking.spec.ts \
             tests/CheckoutPage.spec.ts \
-            tests/coverage-verification.spec.ts \
             tests/login.spec.ts \
-            --project=chromium || echo "Non-zero exit - results already streamed to TestDino."
+            tests/api-mocking.spec.ts \
+            tests/browser-interactions.spec.ts \
+            tests/API \
+            tests/a11y \
+            tests/Performance \
+            tests/Security \
+            "tests/Visual Regression" \
+            --project=chromium || echo "Non-zero exit - every result is already in TestDino."
 
       - name: Upload HTML Report
         if: always()
