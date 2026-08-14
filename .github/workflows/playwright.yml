@@ -8,10 +8,12 @@ on:
   pull_request:
 
 jobs:
-  # One spec file, one invocation, one STAGING run carrying all three buckets:
-  # 40 passed, 7 failed, 3 interrupted of 50. See the header of
-  # tests/status-mix-verification.spec.ts for why --max-failures=7 and
-  # --workers=4 are load-bearing rather than incidental.
+  # The only spec this workflow runs. One file, one invocation, one STAGING run
+  # carrying every status bucket: 40 passed, 7 failed, 3 flaky, 3 skipped and
+  # 3 interrupted of 56. See the header of tests/all-status-types.spec.ts for
+  # why --max-failures=7, --workers=4 and --retries=1 are load-bearing rather
+  # than incidental — which is also why this cannot be sharded: each shard
+  # would get its own failure budget and Interrupted would come out empty.
   staging-tests:
     if: github.event_name != 'workflow_dispatch'
     runs-on: ubuntu-latest
@@ -48,113 +50,14 @@ jobs:
       # A non-zero exit is the point here: 7 of the 50 cases fail on purpose, so
       # the step must not go red for doing its job. The reporter has already
       # streamed every result by then.
-      - name: Run Status Mix Spec
+      - name: Run All Status Types Spec
         env:
-          TESTDINO_CI_RUN_ID: ci-status-mix-${{ github.run_id }}-${{ github.run_attempt }}
+          TESTDINO_CI_RUN_ID: ci-all-status-${{ github.run_id }}-${{ github.run_attempt }}
         run: |
-          npm run test:status-mix || echo "Expected non-zero exit - 7 cases fail by design."
+          npm run test:all-status || echo "Expected non-zero exit - 7 cases fail by design."
 
-  playwright:
-    if: github.event_name != 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    env:
-      TESTDINO_SERVER_URL: https://stg-analytics.testdino.com/
-      TESTDINO_CI_RUN_ID: ci-run-${{ github.run_id }}-${{ github.run_attempt }}
-      TESTDINO_TAGS: smoke,regression,filter-verification
-
-    strategy:
-      fail-fast: false
-      matrix:
-        shard: [1, 2, 3, 4, 5]
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Install Dependencies
-        run: npm ci
-
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-
-      - name: Verify TestDino Token
-        env:
-          TESTDINO_TOKEN: ${{ secrets.TESTDINO_STAGING_TOKEN }}
-        run: |
-          if [ -z "$TESTDINO_TOKEN" ]; then
-            echo "TESTDINO_STAGING_TOKEN GitHub secret is required for the staging project."
-            exit 1
-          fi
-
-      - name: Run TestDino Shard ${{ matrix.shard }} of 5
-        env:
-          TESTDINO_TOKEN: ${{ secrets.TESTDINO_STAGING_TOKEN }}
-        run: |
-          npx playwright test \
-            tests/addToCart.spec.ts \
-            tests/api-mocking.spec.ts \
-            tests/CheckoutPage.spec.ts \
-            tests/coverage-verification.spec.ts \
-            tests/login.spec.ts \
-            --shard=${{ matrix.shard }}/5
-
-      - name: Verify Blob Report
+      - name: Upload HTML Report
         if: always()
-        run: |
-          echo "===== ROOT ====="
-          ls -la
-          echo "===== BLOB REPORT ====="
-          ls -R blob-report || true
-
-      - name: Upload Blob Report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: blob-report-${{ matrix.shard }}
-          path: blob-report
-          retention-days: 1
-
-  merge-reports:
-    needs: playwright
-    if: always() && github.event_name != 'workflow_dispatch'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Install Dependencies
-        run: npm ci
-
-      - name: Download Blob Reports
-        uses: actions/download-artifact@v4
-        with:
-          pattern: blob-report-*
-          path: all-blob-reports
-          merge-multiple: true
-
-      - name: Verify Downloaded Reports
-        run: |
-          echo "===== DOWNLOADED REPORTS ====="
-          ls -R all-blob-reports || true
-
-      - name: Merge Reports
-        run: |
-          npx playwright merge-reports \
-            --reporter html \
-            all-blob-reports
-
-      - name: Upload Final HTML Report
         uses: actions/upload-artifact@v4
         with:
           name: playwright-html-report
