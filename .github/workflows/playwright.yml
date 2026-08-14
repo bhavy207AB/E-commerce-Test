@@ -58,7 +58,7 @@ jobs:
     if: github.event_name != 'workflow_dispatch'
     runs-on: ubuntu-latest
     env:
-      TESTDINO_SERVER_URL: https://reporter.testdino.com/
+      TESTDINO_SERVER_URL: https://stg-analytics.testdino.com/
       TESTDINO_CI_RUN_ID: ci-run-${{ github.run_id }}-${{ github.run_attempt }}
       TESTDINO_TAGS: smoke,regression,filter-verification
 
@@ -84,16 +84,16 @@ jobs:
 
       - name: Verify TestDino Token
         env:
-          TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
+          TESTDINO_TOKEN: ${{ secrets.TESTDINO_STAGING_TOKEN }}
         run: |
           if [ -z "$TESTDINO_TOKEN" ]; then
-            echo "TESTDINO_TOKEN GitHub secret is required."
+            echo "TESTDINO_STAGING_TOKEN GitHub secret is required for the staging project."
             exit 1
           fi
 
       - name: Run TestDino Shard ${{ matrix.shard }} of 5
         env:
-          TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
+          TESTDINO_TOKEN: ${{ secrets.TESTDINO_STAGING_TOKEN }}
         run: |
           npx playwright test \
             tests/CheckoutPage.spec.ts \
