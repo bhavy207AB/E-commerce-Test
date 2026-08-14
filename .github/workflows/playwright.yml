@@ -96,11 +96,11 @@ jobs:
           TESTDINO_TOKEN: ${{ secrets.TESTDINO_STAGING_TOKEN }}
         run: |
           npx playwright test \
-            tests/CheckoutPage.spec.ts \
             tests/addToCart.spec.ts \
             tests/api-mocking.spec.ts \
+            tests/CheckoutPage.spec.ts \
+            tests/coverage-verification.spec.ts \
             tests/login.spec.ts \
-            tests/browser-interactions.spec.ts \
             --shard=${{ matrix.shard }}/5
 
       - name: Verify Blob Report
