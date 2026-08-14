@@ -9,15 +9,19 @@
     "globalTimeout": 0,
     "grep": {},
     "grepInvert": null,
-    "maxFailures": 0,
-    "metadata": {},
+    "maxFailures": 7,
+    "metadata": {
+      "actualWorkers": 4
+    },
     "preserveOutput": "always",
     "projects": [
       {
         "outputDir": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results",
         "repeatEach": 1,
-        "retries": 2,
-        "metadata": {},
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 4
+        },
         "id": "chromium",
         "name": "chromium",
         "testDir": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests",
@@ -33,9 +37,9 @@
       [
         "/Users/jay/Downloads/Plawright/E-commerce-Test/node_modules/@testdino/playwright/dist/index.js",
         {
-          "serverUrl": "https://reporter.testdino.com/",
-          "token": "td_api_18c986fd8e2bd954a650c02ed01fb540456a39dd670ca924b5004241832445a2",
-          "ciRunId": "local-run-2026-08-13",
+          "serverUrl": "https://stg-analytics.testdino.com/",
+          "token": "td_api_adbe17899cfcf7d2eb9e39377ece57707e3395af27ad5cd847dbe1f89a87edd0",
+          "ciRunId": "local-run-2026-08-14",
           "debug": false,
           "artifacts": true,
           "tags": [],
@@ -72,66 +76,3114 @@
     "updateSnapshots": "missing",
     "updateSourceMethod": "patch",
     "version": "1.60.0",
-    "workers": 5,
+    "workers": 4,
     "webServer": null
   },
   "suites": [
     {
-      "title": "addToCart.spec.ts",
-      "file": "addToCart.spec.ts",
+      "title": "all-status-types.spec.ts",
+      "file": "all-status-types.spec.ts",
       "column": 0,
       "line": 0,
-      "specs": [
+      "specs": [],
+      "suites": [
         {
-          "title": "Add Product To Cart",
-          "ok": true,
-          "tags": [],
-          "tests": [
+          "title": "E-commerce full status breakdown @all-status-types",
+          "file": "all-status-types.spec.ts",
+          "line": 108,
+          "column": 6,
+          "specs": [
             {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "chromium",
-              "projectName": "chromium",
-              "results": [],
-              "status": "skipped"
-            }
-          ],
-          "id": "a1b2df80ffd2e8e27332-d8bdc841f636868a8279",
-          "file": "addToCart.spec.ts",
-          "line": 6,
-          "column": 5
-        },
-        {
-          "title": "Adding the same product twice bumps its quantity to 2",
-          "ok": true,
-          "tags": [],
-          "tests": [
+              "title": "PASSED - product grid renders every catalogue item @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2212,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:44.404Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-f6ab0201153aa8c3e6ef",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
             {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "chromium",
-              "projectName": "chromium",
-              "results": [],
-              "status": "skipped"
+              "title": "PASSED - product card shows title, price and thumbnail @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2214,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:44.405Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-141955a6bd9e4e915c24",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - price formatting keeps two decimal places @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2212,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:44.395Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-d0e13f331425b91a7906",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - currency symbol matches the store locale @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 2212,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:44.404Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-f3e80ec7eea469418f5c",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - sort by price ascending orders the grid @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1100,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:47.258Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-d8a5882066890351f94a",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - sort by price descending orders the grid @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 724,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:47.259Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-41d23f0c5d1e81c8b1ee",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - sort by newest puts recent arrivals first @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 1913,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:47.259Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-5c03e29978fd0e7ea1a4",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - category filter narrows the result set @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 1174,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:47.259Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-e89554111eafedfa81d1",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - brand filter narrows the result set @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1625,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:48.050Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-1db3758e5e7b8d791142",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - price-range filter respects both bounds @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1476,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:48.373Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-c5e9e91992b3398d9013",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - clearing all filters restores the full grid @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 2014,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:48.480Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-e15c78eac1b2c731976d",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - search matches on partial product titles @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 1316,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:49.234Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-b2e81630367eb9946fbb",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - search is case insensitive @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1007,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:49.700Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-07b63fb4a38ce1d8e57f",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - search with no matches shows the empty state @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1285,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:49.869Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-3df0e98603eafc9151df",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - pagination advances to the next page @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 1608,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:50.524Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-152e3338969ecfc2b6bf",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - pagination returns to the previous page @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 629,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:50.576Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-84ad9045feef9acfd070",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - page size selector changes the row count @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1240,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:50.718Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-10a682bab3537688652b",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - product detail page loads from the grid @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1168,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:51.193Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-93c5455e791be090fdcc",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - product detail shows the full description @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 1575,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:51.219Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-b9af48a53e4302bc3c01",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - product detail image gallery cycles images @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 983,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:51.973Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-95fd73d88492650c8b63",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - size selector marks the chosen option @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 1121,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:52.205Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-3eeca36854da1042e4e2",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - colour selector marks the chosen option @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1294,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:52.391Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-ae2f2d9d1a34b65057e5",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - out-of-stock variants disable add to cart @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 1083,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:52.811Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-c6710eb1d2c46ac98324",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - add to cart increments the badge count @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1158,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:52.975Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-ba5f383ac866a62dc7ec",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - adding the same item twice bumps quantity @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 1223,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:53.342Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-de408f72f7cbbea54c86",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - cart drawer lists every added line item @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1308,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:53.697Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-e58685ad51f8270c40bd",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - cart line total equals price times quantity @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 1207,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:53.908Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-5f9f161df3b09af164a4",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - cart subtotal sums all line totals @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1230,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:54.211Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-2c5955595ad94e4f887e",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - increasing quantity updates the subtotal @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 1200,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:54.578Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-0e710d419c25dea3d80d",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - decreasing quantity updates the subtotal @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1778,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:55.016Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-1ab1f41d6b55f81242b3",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - removing a line item drops it from the cart @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 909,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:55.128Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-b0d1e23dbc9200bfcce0",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - emptying the cart shows the empty message @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 858,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:55.469Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-e0aa28c877a1d3b6157e",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - valid promo code applies its discount @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 1292,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:55.792Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-50bafb5e63528791bcd1",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - invalid promo code is rejected @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 902,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:56.088Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-d68f3149ab9c40d723d5",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - shipping estimate is added to the total @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1656,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:56.345Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-db24e75c4cf42f526ff1",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - tax is calculated on the discounted subtotal @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 886,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:56.811Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-6b99683cb33d4d8a137e",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - checkout requires a shipping address @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 1254,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:57.006Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-d5c42671748cba28b7e8",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - checkout validates the email format @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 1347,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:57.096Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-3b5c0d97e155b51546af",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - order summary matches the cart contents @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1587,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:57.714Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-975807a404a8cba3888f",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "PASSED - order confirmation exposes an order number @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1299,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:58.081Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-9264d64bce13241c5219",
+              "file": "all-status-types.spec.ts",
+              "line": 111,
+              "column": 9
+            },
+            {
+              "title": "FAILED - wishlist badge count is stale after removal @all-status-types",
+              "ok": false,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 1212,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"badge: \u001b[7m2\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"badge: \u001b[7m3\u001b[27m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"badge: \u001b[7m2\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"badge: \u001b[7m3\u001b[27m\"\u001b[39m\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:120:22",
+                        "location": {
+                          "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                          "column": 22,
+                          "line": 120
+                        },
+                        "snippet": "  118 |   FAILING_SCENARIOS.forEach(({ title, actual, expected }) => {\n  119 |     test(`FAILED - ${title} @all-status-types`, async () => {\n> 120 |       expect(actual).toBe(expected);\n      |                      ^\n  121 |     });\n  122 |   });\n  123 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                            "column": 22,
+                            "line": 120
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"badge: \u001b[7m2\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"badge: \u001b[7m3\u001b[27m\"\u001b[39m\n\n  118 |   FAILING_SCENARIOS.forEach(({ title, actual, expected }) => {\n  119 |     test(`FAILED - ${title} @all-status-types`, async () => {\n> 120 |       expect(actual).toBe(expected);\n      |                      ^\n  121 |     });\n  122 |   });\n  123 |\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:120:22"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:58.270Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-ee6ef-er-removal-all-status-types-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-ee6ef-er-removal-all-status-types-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-ee6ef-er-removal-all-status-types-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-ee6ef-er-removal-all-status-types-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                        "column": 22,
+                        "line": 120
+                      }
+                    },
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 2326,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"badge: \u001b[7m2\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"badge: \u001b[7m3\u001b[27m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"badge: \u001b[7m2\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"badge: \u001b[7m3\u001b[27m\"\u001b[39m\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:120:22",
+                        "location": {
+                          "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                          "column": 22,
+                          "line": 120
+                        },
+                        "snippet": "  118 |   FAILING_SCENARIOS.forEach(({ title, actual, expected }) => {\n  119 |     test(`FAILED - ${title} @all-status-types`, async () => {\n> 120 |       expect(actual).toBe(expected);\n      |                      ^\n  121 |     });\n  122 |   });\n  123 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                            "column": 22,
+                            "line": 120
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"badge: \u001b[7m2\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"badge: \u001b[7m3\u001b[27m\"\u001b[39m\n\n  118 |   FAILING_SCENARIOS.forEach(({ title, actual, expected }) => {\n  119 |     test(`FAILED - ${title} @all-status-types`, async () => {\n> 120 |       expect(actual).toBe(expected);\n      |                      ^\n  121 |     });\n  122 |   });\n  123 |\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:120:22"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-08-14T07:20:01.484Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-ee6ef-er-removal-all-status-types-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-ee6ef-er-removal-all-status-types-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-ee6ef-er-removal-all-status-types-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-ee6ef-er-removal-all-status-types-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                        "column": 22,
+                        "line": 120
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-950c41c3177e4015adc0",
+              "file": "all-status-types.spec.ts",
+              "line": 119,
+              "column": 9
+            },
+            {
+              "title": "FAILED - guest checkout drops the applied promo code @all-status-types",
+              "ok": false,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 1319,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"discount: \u001b[7m1\u001b[27m0.00\"\u001b[39m\nReceived: \u001b[31m\"discount: 0.00\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"discount: \u001b[7m1\u001b[27m0.00\"\u001b[39m\nReceived: \u001b[31m\"discount: 0.00\"\u001b[39m\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:120:22",
+                        "location": {
+                          "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                          "column": 22,
+                          "line": 120
+                        },
+                        "snippet": "  118 |   FAILING_SCENARIOS.forEach(({ title, actual, expected }) => {\n  119 |     test(`FAILED - ${title} @all-status-types`, async () => {\n> 120 |       expect(actual).toBe(expected);\n      |                      ^\n  121 |     });\n  122 |   });\n  123 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                            "column": 22,
+                            "line": 120
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"discount: \u001b[7m1\u001b[27m0.00\"\u001b[39m\nReceived: \u001b[31m\"discount: 0.00\"\u001b[39m\n\n  118 |   FAILING_SCENARIOS.forEach(({ title, actual, expected }) => {\n  119 |     test(`FAILED - ${title} @all-status-types`, async () => {\n> 120 |       expect(actual).toBe(expected);\n      |                      ^\n  121 |     });\n  122 |   });\n  123 |\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:120:22"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:58.460Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-b60bd-promo-code-all-status-types-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-b60bd-promo-code-all-status-types-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-b60bd-promo-code-all-status-types-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-b60bd-promo-code-all-status-types-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                        "column": 22,
+                        "line": 120
+                      }
+                    },
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 2414,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"discount: \u001b[7m1\u001b[27m0.00\"\u001b[39m\nReceived: \u001b[31m\"discount: 0.00\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"discount: \u001b[7m1\u001b[27m0.00\"\u001b[39m\nReceived: \u001b[31m\"discount: 0.00\"\u001b[39m\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:120:22",
+                        "location": {
+                          "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                          "column": 22,
+                          "line": 120
+                        },
+                        "snippet": "  118 |   FAILING_SCENARIOS.forEach(({ title, actual, expected }) => {\n  119 |     test(`FAILED - ${title} @all-status-types`, async () => {\n> 120 |       expect(actual).toBe(expected);\n      |                      ^\n  121 |     });\n  122 |   });\n  123 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                            "column": 22,
+                            "line": 120
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"discount: \u001b[7m1\u001b[27m0.00\"\u001b[39m\nReceived: \u001b[31m\"discount: 0.00\"\u001b[39m\n\n  118 |   FAILING_SCENARIOS.forEach(({ title, actual, expected }) => {\n  119 |     test(`FAILED - ${title} @all-status-types`, async () => {\n> 120 |       expect(actual).toBe(expected);\n      |                      ^\n  121 |     });\n  122 |   });\n  123 |\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:120:22"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-08-14T07:20:01.481Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-b60bd-promo-code-all-status-types-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-b60bd-promo-code-all-status-types-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-b60bd-promo-code-all-status-types-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-b60bd-promo-code-all-status-types-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                        "column": 22,
+                        "line": 120
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-e1aed14beccbdb298930",
+              "file": "all-status-types.spec.ts",
+              "line": 119,
+              "column": 9
+            },
+            {
+              "title": "FAILED - stock label disagrees with the variant matrix @all-status-types",
+              "ok": false,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 880,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"\u001b[7mOut of\u001b[27m stock\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mIn\u001b[27m stock\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"\u001b[7mOut of\u001b[27m stock\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mIn\u001b[27m stock\"\u001b[39m\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:120:22",
+                        "location": {
+                          "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                          "column": 22,
+                          "line": 120
+                        },
+                        "snippet": "  118 |   FAILING_SCENARIOS.forEach(({ title, actual, expected }) => {\n  119 |     test(`FAILED - ${title} @all-status-types`, async () => {\n> 120 |       expect(actual).toBe(expected);\n      |                      ^\n  121 |     });\n  122 |   });\n  123 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                            "column": 22,
+                            "line": 120
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"\u001b[7mOut of\u001b[27m stock\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mIn\u001b[27m stock\"\u001b[39m\n\n  118 |   FAILING_SCENARIOS.forEach(({ title, actual, expected }) => {\n  119 |     test(`FAILED - ${title} @all-status-types`, async () => {\n> 120 |       expect(actual).toBe(expected);\n      |                      ^\n  121 |     });\n  122 |   });\n  123 |\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:120:22"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:59.355Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-4f134-ant-matrix-all-status-types-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-4f134-ant-matrix-all-status-types-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-4f134-ant-matrix-all-status-types-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-4f134-ant-matrix-all-status-types-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                        "column": 22,
+                        "line": 120
+                      }
+                    },
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 2364,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"\u001b[7mOut of\u001b[27m stock\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mIn\u001b[27m stock\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"\u001b[7mOut of\u001b[27m stock\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mIn\u001b[27m stock\"\u001b[39m\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:120:22",
+                        "location": {
+                          "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                          "column": 22,
+                          "line": 120
+                        },
+                        "snippet": "  118 |   FAILING_SCENARIOS.forEach(({ title, actual, expected }) => {\n  119 |     test(`FAILED - ${title} @all-status-types`, async () => {\n> 120 |       expect(actual).toBe(expected);\n      |                      ^\n  121 |     });\n  122 |   });\n  123 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                            "column": 22,
+                            "line": 120
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"\u001b[7mOut of\u001b[27m stock\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mIn\u001b[27m stock\"\u001b[39m\n\n  118 |   FAILING_SCENARIOS.forEach(({ title, actual, expected }) => {\n  119 |     test(`FAILED - ${title} @all-status-types`, async () => {\n> 120 |       expect(actual).toBe(expected);\n      |                      ^\n  121 |     });\n  122 |   });\n  123 |\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:120:22"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-08-14T07:20:01.506Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-4f134-ant-matrix-all-status-types-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-4f134-ant-matrix-all-status-types-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-4f134-ant-matrix-all-status-types-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-4f134-ant-matrix-all-status-types-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                        "column": 22,
+                        "line": 120
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-362aaefd12fad42e5306",
+              "file": "all-status-types.spec.ts",
+              "line": 119,
+              "column": 9
+            },
+            {
+              "title": "FAILED - recently-viewed list keeps duplicate entries @all-status-types",
+              "ok": false,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 880,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"items: \u001b[7m5\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"items: \u001b[7m6\u001b[27m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"items: \u001b[7m5\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"items: \u001b[7m6\u001b[27m\"\u001b[39m\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:120:22",
+                        "location": {
+                          "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                          "column": 22,
+                          "line": 120
+                        },
+                        "snippet": "  118 |   FAILING_SCENARIOS.forEach(({ title, actual, expected }) => {\n  119 |     test(`FAILED - ${title} @all-status-types`, async () => {\n> 120 |       expect(actual).toBe(expected);\n      |                      ^\n  121 |     });\n  122 |   });\n  123 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                            "column": 22,
+                            "line": 120
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"items: \u001b[7m5\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"items: \u001b[7m6\u001b[27m\"\u001b[39m\n\n  118 |   FAILING_SCENARIOS.forEach(({ title, actual, expected }) => {\n  119 |     test(`FAILED - ${title} @all-status-types`, async () => {\n> 120 |       expect(actual).toBe(expected);\n      |                      ^\n  121 |     });\n  122 |   });\n  123 |\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:120:22"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:19:59.394Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-1459c-te-entries-all-status-types-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-1459c-te-entries-all-status-types-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-1459c-te-entries-all-status-types-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-1459c-te-entries-all-status-types-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                        "column": 22,
+                        "line": 120
+                      }
+                    },
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 2321,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"items: \u001b[7m5\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"items: \u001b[7m6\u001b[27m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"items: \u001b[7m5\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"items: \u001b[7m6\u001b[27m\"\u001b[39m\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:120:22",
+                        "location": {
+                          "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                          "column": 22,
+                          "line": 120
+                        },
+                        "snippet": "  118 |   FAILING_SCENARIOS.forEach(({ title, actual, expected }) => {\n  119 |     test(`FAILED - ${title} @all-status-types`, async () => {\n> 120 |       expect(actual).toBe(expected);\n      |                      ^\n  121 |     });\n  122 |   });\n  123 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                            "column": 22,
+                            "line": 120
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"items: \u001b[7m5\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"items: \u001b[7m6\u001b[27m\"\u001b[39m\n\n  118 |   FAILING_SCENARIOS.forEach(({ title, actual, expected }) => {\n  119 |     test(`FAILED - ${title} @all-status-types`, async () => {\n> 120 |       expect(actual).toBe(expected);\n      |                      ^\n  121 |     });\n  122 |   });\n  123 |\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:120:22"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-08-14T07:20:01.505Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-1459c-te-entries-all-status-types-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-1459c-te-entries-all-status-types-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-1459c-te-entries-all-status-types-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-1459c-te-entries-all-status-types-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                        "column": 22,
+                        "line": 120
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-70d48cae79bf6b56dbc5",
+              "file": "all-status-types.spec.ts",
+              "line": 119,
+              "column": 9
+            },
+            {
+              "title": "FAILED - free-shipping threshold ignores the discount @all-status-types",
+              "ok": false,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1739,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"shipping: \u001b[7m0.00\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"shipping: \u001b[7m4.99\u001b[27m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"shipping: \u001b[7m0.00\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"shipping: \u001b[7m4.99\u001b[27m\"\u001b[39m\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:120:22",
+                        "location": {
+                          "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                          "column": 22,
+                          "line": 120
+                        },
+                        "snippet": "  118 |   FAILING_SCENARIOS.forEach(({ title, actual, expected }) => {\n  119 |     test(`FAILED - ${title} @all-status-types`, async () => {\n> 120 |       expect(actual).toBe(expected);\n      |                      ^\n  121 |     });\n  122 |   });\n  123 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                            "column": 22,
+                            "line": 120
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"shipping: \u001b[7m0.00\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"shipping: \u001b[7m4.99\u001b[27m\"\u001b[39m\n\n  118 |   FAILING_SCENARIOS.forEach(({ title, actual, expected }) => {\n  119 |     test(`FAILED - ${title} @all-status-types`, async () => {\n> 120 |       expect(actual).toBe(expected);\n      |                      ^\n  121 |     });\n  122 |   });\n  123 |\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:120:22"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:20:05.286Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-e8396-e-discount-all-status-types-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-e8396-e-discount-all-status-types-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-e8396-e-discount-all-status-types-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-e8396-e-discount-all-status-types-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                        "column": 22,
+                        "line": 120
+                      }
+                    },
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1494,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"shipping: \u001b[7m0.00\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"shipping: \u001b[7m4.99\u001b[27m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"shipping: \u001b[7m0.00\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"shipping: \u001b[7m4.99\u001b[27m\"\u001b[39m\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:120:22",
+                        "location": {
+                          "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                          "column": 22,
+                          "line": 120
+                        },
+                        "snippet": "  118 |   FAILING_SCENARIOS.forEach(({ title, actual, expected }) => {\n  119 |     test(`FAILED - ${title} @all-status-types`, async () => {\n> 120 |       expect(actual).toBe(expected);\n      |                      ^\n  121 |     });\n  122 |   });\n  123 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                            "column": 22,
+                            "line": 120
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"shipping: \u001b[7m0.00\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"shipping: \u001b[7m4.99\u001b[27m\"\u001b[39m\n\n  118 |   FAILING_SCENARIOS.forEach(({ title, actual, expected }) => {\n  119 |     test(`FAILED - ${title} @all-status-types`, async () => {\n> 120 |       expect(actual).toBe(expected);\n      |                      ^\n  121 |     });\n  122 |   });\n  123 |\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:120:22"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-08-14T07:20:08.502Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-e8396-e-discount-all-status-types-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-e8396-e-discount-all-status-types-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-e8396-e-discount-all-status-types-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-e8396-e-discount-all-status-types-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                        "column": 22,
+                        "line": 120
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-044f951adfc8c1b478b7",
+              "file": "all-status-types.spec.ts",
+              "line": 119,
+              "column": 9
+            },
+            {
+              "title": "FAILED - order total rounds the tax in the wrong direction @all-status-types",
+              "ok": false,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 1787,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"total: 128.9\u001b[7m5\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"total: 128.9\u001b[7m4\u001b[27m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"total: 128.9\u001b[7m5\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"total: 128.9\u001b[7m4\u001b[27m\"\u001b[39m\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:120:22",
+                        "location": {
+                          "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                          "column": 22,
+                          "line": 120
+                        },
+                        "snippet": "  118 |   FAILING_SCENARIOS.forEach(({ title, actual, expected }) => {\n  119 |     test(`FAILED - ${title} @all-status-types`, async () => {\n> 120 |       expect(actual).toBe(expected);\n      |                      ^\n  121 |     });\n  122 |   });\n  123 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                            "column": 22,
+                            "line": 120
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"total: 128.9\u001b[7m5\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"total: 128.9\u001b[7m4\u001b[27m\"\u001b[39m\n\n  118 |   FAILING_SCENARIOS.forEach(({ title, actual, expected }) => {\n  119 |     test(`FAILED - ${title} @all-status-types`, async () => {\n> 120 |       expect(actual).toBe(expected);\n      |                      ^\n  121 |     });\n  122 |   });\n  123 |\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:120:22"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:20:05.250Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-88a0a--direction-all-status-types-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-88a0a--direction-all-status-types-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-88a0a--direction-all-status-types-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-88a0a--direction-all-status-types-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                        "column": 22,
+                        "line": 120
+                      }
+                    },
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 1815,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"total: 128.9\u001b[7m5\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"total: 128.9\u001b[7m4\u001b[27m\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"total: 128.9\u001b[7m5\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"total: 128.9\u001b[7m4\u001b[27m\"\u001b[39m\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:120:22",
+                        "location": {
+                          "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                          "column": 22,
+                          "line": 120
+                        },
+                        "snippet": "  118 |   FAILING_SCENARIOS.forEach(({ title, actual, expected }) => {\n  119 |     test(`FAILED - ${title} @all-status-types`, async () => {\n> 120 |       expect(actual).toBe(expected);\n      |                      ^\n  121 |     });\n  122 |   });\n  123 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                            "column": 22,
+                            "line": 120
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"total: 128.9\u001b[7m5\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"total: 128.9\u001b[7m4\u001b[27m\"\u001b[39m\n\n  118 |   FAILING_SCENARIOS.forEach(({ title, actual, expected }) => {\n  119 |     test(`FAILED - ${title} @all-status-types`, async () => {\n> 120 |       expect(actual).toBe(expected);\n      |                      ^\n  121 |     });\n  122 |   });\n  123 |\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:120:22"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-08-14T07:20:08.533Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-88a0a--direction-all-status-types-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-88a0a--direction-all-status-types-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-88a0a--direction-all-status-types-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-88a0a--direction-all-status-types-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                        "column": 22,
+                        "line": 120
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-9c4443f2ff495e04fd9f",
+              "file": "all-status-types.spec.ts",
+              "line": 119,
+              "column": 9
+            },
+            {
+              "title": "FLAKY - cart badge settles after a rapid double click @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 1796,
+                      "error": {
+                        "message": "Error: unstable on attempt 0\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m",
+                        "stack": "Error: unstable on attempt 0\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:130:71",
+                        "location": {
+                          "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                          "column": 71,
+                          "line": 130
+                        },
+                        "snippet": "  128 |   FLAKY_SCENARIOS.forEach(scenario => {\n  129 |     test(`FLAKY - ${scenario} @all-status-types`, async ({}, testInfo) => {\n> 130 |       expect(testInfo.retry, `unstable on attempt ${testInfo.retry}`).toBeGreaterThan(0);\n      |                                                                       ^\n  131 |     });\n  132 |   });\n  133 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                            "column": 71,
+                            "line": 130
+                          },
+                          "message": "Error: unstable on attempt 0\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n\n  128 |   FLAKY_SCENARIOS.forEach(scenario => {\n  129 |     test(`FLAKY - ${scenario} @all-status-types`, async ({}, testInfo) => {\n> 130 |       expect(testInfo.retry, `unstable on attempt ${testInfo.retry}`).toBeGreaterThan(0);\n      |                                                                       ^\n  131 |     });\n  132 |   });\n  133 |\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:130:71"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:20:05.342Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-c1f0f-uble-click-all-status-types-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-c1f0f-uble-click-all-status-types-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-c1f0f-uble-click-all-status-types-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-c1f0f-uble-click-all-status-types-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                        "column": 71,
+                        "line": 130
+                      }
+                    },
+                    {
+                      "workerIndex": 15,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1560,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-08-14T07:20:08.568Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "flaky"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-a1319dbbff7cb3538107",
+              "file": "all-status-types.spec.ts",
+              "line": 129,
+              "column": 9
+            },
+            {
+              "title": "FLAKY - search suggestions resolve before the keystroke debounce @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 1670,
+                      "error": {
+                        "message": "Error: unstable on attempt 0\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m",
+                        "stack": "Error: unstable on attempt 0\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:130:71",
+                        "location": {
+                          "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                          "column": 71,
+                          "line": 130
+                        },
+                        "snippet": "  128 |   FLAKY_SCENARIOS.forEach(scenario => {\n  129 |     test(`FLAKY - ${scenario} @all-status-types`, async ({}, testInfo) => {\n> 130 |       expect(testInfo.retry, `unstable on attempt ${testInfo.retry}`).toBeGreaterThan(0);\n      |                                                                       ^\n  131 |     });\n  132 |   });\n  133 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                            "column": 71,
+                            "line": 130
+                          },
+                          "message": "Error: unstable on attempt 0\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n\n  128 |   FLAKY_SCENARIOS.forEach(scenario => {\n  129 |     test(`FLAKY - ${scenario} @all-status-types`, async ({}, testInfo) => {\n> 130 |       expect(testInfo.retry, `unstable on attempt ${testInfo.retry}`).toBeGreaterThan(0);\n      |                                                                       ^\n  131 |     });\n  132 |   });\n  133 |\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:130:71"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:20:05.331Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-6afff-e-debounce-all-status-types-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-6afff-e-debounce-all-status-types-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-6afff-e-debounce-all-status-types-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-6afff-e-debounce-all-status-types-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                        "column": 71,
+                        "line": 130
+                      }
+                    },
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 1815,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-08-14T07:20:08.506Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "flaky"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-0b0a8a83baee1e4ecef6",
+              "file": "all-status-types.spec.ts",
+              "line": 129,
+              "column": 9
+            },
+            {
+              "title": "FLAKY - checkout spinner clears once the address lookup returns @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 15,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 764,
+                      "error": {
+                        "message": "Error: unstable on attempt 0\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m",
+                        "stack": "Error: unstable on attempt 0\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:130:71",
+                        "location": {
+                          "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                          "column": 71,
+                          "line": 130
+                        },
+                        "snippet": "  128 |   FLAKY_SCENARIOS.forEach(scenario => {\n  129 |     test(`FLAKY - ${scenario} @all-status-types`, async ({}, testInfo) => {\n> 130 |       expect(testInfo.retry, `unstable on attempt ${testInfo.retry}`).toBeGreaterThan(0);\n      |                                                                       ^\n  131 |     });\n  132 |   });\n  133 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                            "column": 71,
+                            "line": 130
+                          },
+                          "message": "Error: unstable on attempt 0\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n\n  128 |   FLAKY_SCENARIOS.forEach(scenario => {\n  129 |     test(`FLAKY - ${scenario} @all-status-types`, async ({}, testInfo) => {\n> 130 |       expect(testInfo.retry, `unstable on attempt ${testInfo.retry}`).toBeGreaterThan(0);\n      |                                                                       ^\n  131 |     });\n  132 |   });\n  133 |\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:130:71"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:20:10.542Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-0e32a-up-returns-all-status-types-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-0e32a-up-returns-all-status-types-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-0e32a-up-returns-all-status-types-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-0e32a-up-returns-all-status-types-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                        "column": 71,
+                        "line": 130
+                      }
+                    },
+                    {
+                      "workerIndex": 18,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1128,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-08-14T07:20:12.696Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "flaky"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-c86232041dc686e8b6af",
+              "file": "all-status-types.spec.ts",
+              "line": 129,
+              "column": 9
+            },
+            {
+              "title": "SKIPPED - one-click reorder needs the loyalty feature flag @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "loyalty rollout is off in staging",
+                      "location": {
+                        "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                        "line": 137,
+                        "column": 12
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 743,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:20:12.061Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "loyalty rollout is off in staging",
+                          "location": {
+                            "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                            "line": 137,
+                            "column": 12
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-ebf80732b1cf8dc3e7f2",
+              "file": "all-status-types.spec.ts",
+              "line": 136,
+              "column": 9
+            },
+            {
+              "title": "SKIPPED - gift wrapping options are seasonal only @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "seasonal catalogue not loaded",
+                      "location": {
+                        "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                        "line": 137,
+                        "column": 12
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 3,
+                      "status": "skipped",
+                      "duration": 558,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:20:10.810Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "seasonal catalogue not loaded",
+                          "location": {
+                            "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                            "line": 137,
+                            "column": 12
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-c63ff039125c80d06977",
+              "file": "all-status-types.spec.ts",
+              "line": 136,
+              "column": 9
+            },
+            {
+              "title": "SKIPPED - store pickup depends on the inventory service @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "inventory service unavailable in staging",
+                      "location": {
+                        "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                        "line": 137,
+                        "column": 12
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 17,
+                      "parallelIndex": 2,
+                      "status": "skipped",
+                      "duration": 982,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:20:12.231Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "inventory service unavailable in staging",
+                          "location": {
+                            "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                            "line": 137,
+                            "column": 12
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-681d15c0a77abaf63c51",
+              "file": "all-status-types.spec.ts",
+              "line": 136,
+              "column": 9
+            },
+            {
+              "title": "INTERRUPTED - long running checkout journey 1 @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 3,
+                      "status": "interrupted",
+                      "duration": 17318,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:20:11.386Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-42ec5--journey-1-all-status-types-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-42ec5--journey-1-all-status-types-chromium/video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-42ec5--journey-1-all-status-types-chromium/trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-2566fdbfa05fa7d6fc6c",
+              "file": "all-status-types.spec.ts",
+              "line": 147,
+              "column": 9
+            },
+            {
+              "title": "INTERRUPTED - long running checkout journey 2 @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "parallelIndex": 0,
+                      "status": "interrupted",
+                      "duration": 15327,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:20:13.163Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-2acad--journey-2-all-status-types-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-2acad--journey-2-all-status-types-chromium/video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-2acad--journey-2-all-status-types-chromium/trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-47dd727fdaac64d9e98d",
+              "file": "all-status-types.spec.ts",
+              "line": 147,
+              "column": 9
+            },
+            {
+              "title": "INTERRUPTED - long running checkout journey 3 @all-status-types",
+              "ok": true,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 17,
+                      "parallelIndex": 2,
+                      "status": "interrupted",
+                      "duration": 14699,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:20:13.787Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-ae0da--journey-3-all-status-types-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-ae0da--journey-3-all-status-types-chromium/video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-ae0da--journey-3-all-status-types-chromium/trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-175b1f0bba36b9eead77",
+              "file": "all-status-types.spec.ts",
+              "line": 147,
+              "column": 9
+            },
+            {
+              "title": "FAILED - payment gateway timeout stops the run @all-status-types",
+              "ok": false,
+              "tags": [
+                "all-status-types",
+                "all-status-types"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 18,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 5711,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"max failures reached\"\u001b[39m\nReceived: \u001b[31m\"run stopper\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"max failures reached\"\u001b[39m\nReceived: \u001b[31m\"run stopper\"\u001b[39m\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:163:27",
+                        "location": {
+                          "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                          "column": 27,
+                          "line": 163
+                        },
+                        "snippet": "  161 |     await new Promise(resolve => setTimeout(resolve, 5_000));\n  162 |\n> 163 |     expect('run stopper').toBe('max failures reached');\n      |                           ^\n  164 |   });\n  165 | });\n  166 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                            "column": 27,
+                            "line": 163
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"max failures reached\"\u001b[39m\nReceived: \u001b[31m\"run stopper\"\u001b[39m\n\n  161 |     await new Promise(resolve => setTimeout(resolve, 5_000));\n  162 |\n> 163 |     expect('run stopper').toBe('max failures reached');\n      |                           ^\n  164 |   });\n  165 | });\n  166 |\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:163:27"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-14T07:20:14.452Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-184a0-ps-the-run-all-status-types-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-184a0-ps-the-run-all-status-types-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-184a0-ps-the-run-all-status-types-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-184a0-ps-the-run-all-status-types-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                        "column": 27,
+                        "line": 163
+                      }
+                    },
+                    {
+                      "workerIndex": 19,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 5856,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"max failures reached\"\u001b[39m\nReceived: \u001b[31m\"run stopper\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"max failures reached\"\u001b[39m\nReceived: \u001b[31m\"run stopper\"\u001b[39m\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:163:27",
+                        "location": {
+                          "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                          "column": 27,
+                          "line": 163
+                        },
+                        "snippet": "  161 |     await new Promise(resolve => setTimeout(resolve, 5_000));\n  162 |\n> 163 |     expect('run stopper').toBe('max failures reached');\n      |                           ^\n  164 |   });\n  165 | });\n  166 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                            "column": 27,
+                            "line": 163
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"max failures reached\"\u001b[39m\nReceived: \u001b[31m\"run stopper\"\u001b[39m\n\n  161 |     await new Promise(resolve => setTimeout(resolve, 5_000));\n  162 |\n> 163 |     expect('run stopper').toBe('max failures reached');\n      |                           ^\n  164 |   });\n  165 | });\n  166 |\n    at /Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts:163:27"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-08-14T07:20:20.928Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-184a0-ps-the-run-all-status-types-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-184a0-ps-the-run-all-status-types-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-184a0-ps-the-run-all-status-types-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/jay/Downloads/Plawright/E-commerce-Test/test-results/all-status-types-E-commerc-184a0-ps-the-run-all-status-types-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/jay/Downloads/Plawright/E-commerce-Test/tests/all-status-types.spec.ts",
+                        "column": 27,
+                        "line": 163
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "0d2bee188597719cfe39-8fb9dee9f0879aa58db1",
+              "file": "all-status-types.spec.ts",
+              "line": 160,
+              "column": 7
             }
-          ],
-          "id": "a1b2df80ffd2e8e27332-8fb0c1279e7ca1d72b2d",
-          "file": "addToCart.spec.ts",
-          "line": 27,
-          "column": 5
+          ]
         }
       ]
     }
   ],
-  "errors": [],
+  "errors": [
+    {
+      "message": "\u001b[31mTesting stopped early after 7 maximum allowed failures.\u001b[39m"
+    }
+  ],
   "stats": {
-    "startTime": "2026-08-13T09:39:20.168Z",
-    "duration": 92.09899999999993,
-    "expected": 0,
-    "skipped": 2,
-    "unexpected": 0,
-    "flaky": 0
+    "startTime": "2026-08-14T07:19:42.734Z",
+    "duration": 46027.043,
+    "expected": 40,
+    "skipped": 6,
+    "unexpected": 7,
+    "flaky": 3
   }
 }

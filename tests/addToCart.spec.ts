@@ -36,7 +36,7 @@ test('Adding the same product twice bumps its quantity to 2', async ({ page }) =
 
     await page.locator('button.cart').click();
 
-    await page.getByRole('link', { name: 'Continue Shopping' }).click();
+    await page.getByRole('button', { name: 'Continue Shopping' }).click();
   }
 
   await cartPage.openCart();

@@ -5,9 +5,11 @@ export class ProductPage {
 
   async openProducts() {
 
-    await this.page.getByRole('link', {
-      name: 'Products'
-    }).click();
+    // Navigate directly: clicking the nav link can be swallowed by an
+    // AdSense vignette interstitial, which parks the page on "#google_vignette".
+    await this.page.goto(
+      'https://automationexercise.com/products'
+    );
 
     // Verify navigation completed
     await expect(this.page).toHaveURL(

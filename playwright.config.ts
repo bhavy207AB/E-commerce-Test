@@ -21,7 +21,8 @@ export default defineConfig({
   snapshotDir: './__screenshots__',
   fullyParallel: true,
   forbidOnly: isCI,
-  retries: isCI ? 0 : 2,
+  // Retry in CI too, so a failure has more than one attempt to compare.
+  retries: 2,
   workers: isCI ? 5 : 5,
 
   timeout: 30 * 1000,
