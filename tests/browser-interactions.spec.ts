@@ -224,8 +224,5 @@ test.describe('Multiple Tabs/Windows', () => {
     // Close additional pages
     await page2.close();
     await page3.close();
-
-    // ERROR #2 — locator timeout: element that never exists
-    await page.locator('#non-existent-checkout-button').click({ timeout: 3000 });
   });
 });

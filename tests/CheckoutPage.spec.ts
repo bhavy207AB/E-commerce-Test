@@ -40,8 +40,7 @@ test('Complete Checkout Flow', async ({ page }) => {
 
   await checkoutPage.submitOrder();
 
-  // ERROR #1 — assertion failure: order confirmation text mismatch
   await expect(
     page.locator('h2[data-qa="order-placed"]')
-  ).toHaveText('Your order has been cancelled!');
+  ).toHaveText('Order Placed!');
 });

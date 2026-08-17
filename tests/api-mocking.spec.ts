@@ -16,8 +16,7 @@ test.describe('API Mocking Examples', () => {
 
     await page.goto('https://automationexercise.com/products');
 
-    // ERROR #4 — title assertion mismatch: real title is "Automation Exercise - All Products"
-    await expect(page).toHaveTitle('Mocked Products Page', { timeout: 3000 });
+    await expect(page).toHaveTitle('Automation Exercise - All Products', { timeout: 3000 });
   });
 
   test('Mock successful API with custom data', async ({ page }) => {

@@ -41,10 +41,9 @@ test('Adding the same product twice bumps its quantity to 2', async ({ page }) =
 
   await cartPage.openCart();
 
-  // ERROR #3 — wrong expected value: quantity should be 2, not 5
   await expect(
     page.locator('.cart_quantity button')
-  ).toHaveText('5');
+  ).toHaveText('2');
 
   await cartPage.verifyProduct('Blue Top');
 });
