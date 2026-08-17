@@ -1,0 +1,84 @@
+name: TestDino Tests (staging)
+
+# Staging twin of playwright.yml: same 5-way split suite, but reported to the
+# TestDino STAGING environment. Manual trigger only.
+on:
+  workflow_dispatch:
+
+# Never cancel a split group mid-flight: a cancelled leg would leave the group
+# with a missing split, so it only finalizes once the idle reaper fires.
+concurrency:
+  group: testdino-staging-${{ github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  playwright:
+    runs-on: ubuntu-latest
+    env:
+      TESTDINO_SERVER_URL: ${{ secrets.TESTDINO_STAGING_URL }}
+      # Prefer a dedicated staging key, fall back to TESTDINO_TOKEN so repos
+      # that only configured the one token still authenticate.
+      TESTDINO_TOKEN: ${{ secrets.TESTDINO_STAGING_TOKEN || secrets.TESTDINO_TOKEN }}
+      TESTDINO_CI_RUN_ID: staging-run-${{ github.run_id }}-${{ github.run_attempt }}
+      TESTDINO_TAGS: smoke,regression,staging
+      BASE_URL: https://storedemo.testdino.com/products
+
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4, 5]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Verify Staging Secrets
+        run: |
+          if [ -z "$TESTDINO_SERVER_URL" ]; then
+            echo "TESTDINO_STAGING_URL GitHub secret is required."
+            exit 1
+          fi
+          if [ -z "$TESTDINO_TOKEN" ]; then
+            echo "Neither TESTDINO_STAGING_TOKEN nor TESTDINO_TOKEN is set."
+            exit 1
+          fi
+
+      - name: Run TestDino Split ${{ matrix.shard }} of 5
+        env:
+          # Shared across every matrix leg of this run so TestDino aggregates
+          # all splits into one logical run. run_id is stable across the matrix;
+          # run_attempt keeps re-runs distinct.
+          SPLIT_ID: gh-staging-${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          # --server-url is passed explicitly to pin this run to staging:
+          # playwright.config.ts hardcodes a serverUrl, and config outranks
+          # TESTDINO_SERVER_URL in the reporter's CLI > testdino.config >
+          # playwright.config > env resolution order.
+          npx tdpw test \
+            --server-url "$TESTDINO_SERVER_URL" \
+            --split ${{ matrix.shard }}/5 \
+            --split-id "$SPLIT_ID" \
+            tests/CheckoutPage.spec.ts \
+            tests/addToCart.spec.ts \
+            tests/api-mocking.spec.ts \
+            tests/login.spec.ts \
+            tests/browser-interactions.spec.ts
+
+      - name: Upload Blob Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: blob-report-staging-${{ matrix.shard }}
+          path: blob-report
+          retention-days: 1

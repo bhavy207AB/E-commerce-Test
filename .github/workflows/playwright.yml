@@ -14,7 +14,7 @@ jobs:
     env:
       TESTDINO_SERVER_URL: https://reporter.testdino.com/
       TESTDINO_CI_RUN_ID: ci-run-${{ github.run_id }}-${{ github.run_attempt }}
-      TESTDINO_TAGS: smoke,regression,filter-verification
+      TESTDINO_TAGS: smoke,regression,filter-verification,bhavy
 
     strategy:
       fail-fast: false
