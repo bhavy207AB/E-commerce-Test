@@ -47,3 +47,10 @@ test('Adding the same product twice bumps its quantity to 2', async ({ page }) =
 
   await cartPage.verifyProduct('Blue Top');
 });
+
+// Intentional TypeError: reading a property off an undefined value.
+test('Cart summary formats the grand total', async () => {
+  const cart: { total?: { amount: number } } = {};
+
+  expect(cart.total.amount).toBe(0);
+});

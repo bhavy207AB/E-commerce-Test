@@ -62,10 +62,10 @@ jobs:
             --split ${{ matrix.shard }}/5 \
             --split-id "$SPLIT_ID" \
             tests/CheckoutPage.spec.ts \
+            tests/browser-interactions.spec.ts \
             tests/addToCart.spec.ts \
             tests/api-mocking.spec.ts \
-            tests/login.spec.ts \
-            tests/browser-interactions.spec.ts
+            tests/coverage-verification.spec.ts
 
       - name: Verify Blob Report
         if: always()

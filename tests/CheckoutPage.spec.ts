@@ -40,3 +40,13 @@ test('Complete Checkout Flow', async ({ page }) => {
 
   await checkoutPage.submitOrder();
 });
+
+import { expect } from '@testdino/playwright';
+
+// Intentional AssertionError: expected vs actual value mismatch.
+test('Order total matches cart subtotal', async () => {
+  const cartSubtotal = 500;
+  const orderTotal = 450;
+
+  expect(orderTotal).toBe(cartSubtotal);
+});

@@ -226,3 +226,13 @@ test.describe('Multiple Tabs/Windows', () => {
     await page3.close();
   });
 });
+
+test.describe('Intentional Failure', () => {
+
+  // Intentional TimeoutError: action targets an element that never appears.
+  test('Click promo banner that never renders', async ({ page }) => {
+    await page.goto('https://automationexercise.com');
+
+    await page.locator('#non-existent-promo-banner').click({ timeout: 3000 });
+  });
+});

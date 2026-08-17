@@ -140,4 +140,15 @@ test.describe('Network Response Validation', () => {
 
     await page.goto('https://automationexercise.com/products');
   });
+
+  // Intentional custom Error: simulated API contract violation.
+  test('Mocked products payload satisfies the contract', async ({ page }) => {
+    await page.route('**/api/**', route =>
+      route.fulfill({ status: 200, contentType: 'application/json', body: '{}' }),
+    );
+
+    await page.goto('https://automationexercise.com/products');
+
+    throw new Error('API contract violation: required field "products" missing from mocked response');
+  });
 });
