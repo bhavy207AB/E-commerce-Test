@@ -45,17 +45,27 @@ jobs:
             exit 1
           fi
 
-      - name: Run TestDino Shard ${{ matrix.shard }} of 5
+      - name: Run TestDino Split ${{ matrix.shard }} of 5
         env:
           TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
+          # Shared across every matrix leg of this run so TestDino aggregates
+          # all splits into one logical run. run_id is stable across the matrix;
+          # run_attempt keeps re-runs distinct.
+          SPLIT_ID: gh-${{ github.run_id }}-${{ github.run_attempt }}
         run: |
-          npx playwright test \
+          # --server-url is passed explicitly to pin this run to prod:
+          # playwright.config.ts hardcodes a serverUrl, and config outranks
+          # TESTDINO_SERVER_URL in the reporter's CLI > testdino.config >
+          # playwright.config > env resolution order.
+          npx tdpw test \
+            --server-url "$TESTDINO_SERVER_URL" \
+            --split ${{ matrix.shard }}/5 \
+            --split-id "$SPLIT_ID" \
             tests/CheckoutPage.spec.ts \
             tests/addToCart.spec.ts \
             tests/api-mocking.spec.ts \
             tests/login.spec.ts \
-            tests/browser-interactions.spec.ts \
-            --shard=${{ matrix.shard }}/5
+            tests/browser-interactions.spec.ts
 
       - name: Verify Blob Report
         if: always()
