@@ -1,4 +1,4 @@
-import { test } from '@testdino/playwright';
+import { test, expect } from '@testdino/playwright';
 import { LoginPage } from '../Pages/LoginPage';
 import { ProductPage } from '../Pages/ProductPage';
 import { CartPage } from '../Pages/CartPage';
@@ -39,4 +39,9 @@ test('Complete Checkout Flow', async ({ page }) => {
   await checkoutPage.enterPaymentDetails();
 
   await checkoutPage.submitOrder();
+
+  // ERROR #1 — assertion failure: order confirmation text mismatch
+  await expect(
+    page.locator('h2[data-qa="order-placed"]')
+  ).toHaveText('Your order has been cancelled!');
 });

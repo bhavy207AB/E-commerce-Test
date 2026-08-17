@@ -15,9 +15,9 @@ test.describe('API Mocking Examples', () => {
     });
 
     await page.goto('https://automationexercise.com/products');
-    
-    // Products section might show error or fallback UI
-    await expect(page).not.toHaveTitle('Error');
+
+    // ERROR #4 — title assertion mismatch: real title is "Automation Exercise - All Products"
+    await expect(page).toHaveTitle('Mocked Products Page', { timeout: 3000 });
   });
 
   test('Mock successful API with custom data', async ({ page }) => {
