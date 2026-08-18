@@ -11,9 +11,9 @@ on:
 jobs:
   # One STAGING run of the genuine product tests only. The specs that exist to
   # manufacture TestDino statuses or verify the reporter — all-status-types,
-  # additional-500-suites, status-mix, coverage-verification, the *-verification
-  # specs and testdino-trace-showcase — are deliberately not run here; their
-  # results describe the reporter, not the application.
+  # status-mix, coverage-verification, the *-verification specs and
+  # testdino-trace-showcase — are deliberately not run here; their results
+  # describe the reporter, not the application.
   #
   # Whatever these tests do is the result: pass, fail or flaky, the step does
   # not gate the job. The reporter has streamed every outcome by then.
@@ -55,6 +55,7 @@ jobs:
           TESTDINO_CI_RUN_ID: ci-product-${{ github.run_id }}-${{ github.run_attempt }}
         run: |
           npx playwright test \
+            tests/additional-500-suites.spec.ts \
             tests/addToCart.spec.ts \
             tests/CheckoutPage.spec.ts \
             tests/login.spec.ts \
