@@ -59,6 +59,9 @@ jobs:
             tests/browser-interactions.spec.ts \
             tests/CheckoutPage.spec.ts \
             tests/login.spec.ts \
+            tests/api-mocking.spec.ts \
+            tests/coverage-verification.spec.ts \
+            tests/tag-filter-verification.spec.ts \
             --project=chromium || echo "Non-zero exit - every result is already in TestDino."
 
       - name: Upload HTML Report
