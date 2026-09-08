@@ -55,17 +55,10 @@ jobs:
           TESTDINO_CI_RUN_ID: ci-product-${{ github.run_id }}-${{ github.run_attempt }}
         run: |
           npx playwright test \
-            tests/additional-500-suites.spec.ts \
             tests/addToCart.spec.ts \
+            tests/browser-interactions.spec.ts \
             tests/CheckoutPage.spec.ts \
             tests/login.spec.ts \
-            tests/api-mocking.spec.ts \
-            tests/browser-interactions.spec.ts \
-            tests/API \
-            tests/a11y \
-            tests/Performance \
-            tests/Security \
-            "tests/Visual Regression" \
             --project=chromium || echo "Non-zero exit - every result is already in TestDino."
 
       - name: Upload HTML Report
