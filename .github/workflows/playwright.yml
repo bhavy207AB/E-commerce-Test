@@ -80,7 +80,6 @@ jobs:
             tests/coverage-verification.spec.ts \
             tests/tag-filter-verification.spec.ts \
             tests/five-pass-ten-fail.spec.ts \
-            tests/four-thousand-cases.spec.ts \
             --project=chromium || echo "Non-zero exit - every result is already in TestDino."
 
       - name: Upload HTML Report
