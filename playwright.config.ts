@@ -23,7 +23,8 @@ export default defineConfig({
   forbidOnly: isCI,
   // Retry in CI too, so a failure has more than one attempt to compare.
   retries: 2,
-  workers: isCI ? 5 : 5,
+  // More workers = faster runs. Use all available cores in CI and locally.
+  workers: isCI ? '100%' : '100%',
 
   timeout: 30 * 1000,
   expect: {
