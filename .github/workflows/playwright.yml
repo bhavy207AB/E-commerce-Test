@@ -2,6 +2,23 @@ name: Playwright Tests
 
 on:
   workflow_dispatch:
+    inputs:
+      testdino_rerun_from:
+        description: 'TestDino source run to re-run from (test_run_...). Leave blank for a normal coverage dispatch.'
+        required: false
+        default: ''
+      testdino_rerun_scope:
+        description: 'Which tests to re-run: failed | flaky | failed-and-flaky'
+        required: false
+        default: 'failed'
+      testdino_rerun_test_ids:
+        description: 'Comma-separated Playwright test ids (overrides scope)'
+        required: false
+        default: ''
+      testdino_rerun_exclude_ids:
+        description: 'Comma-separated test ids to drop from the scope'
+        required: false
+        default: ''
   push:
     branches:
       - main
@@ -74,7 +91,7 @@ jobs:
           retention-days: 30
 
   coverage:
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' && inputs.testdino_rerun_from == ''
     runs-on: ubuntu-latest
     env:
       TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
@@ -123,3 +140,61 @@ jobs:
           name: testdino-coverage-report
           path: coverage-report
           retention-days: 14
+
+  # Re-runs only a finished run's failed/flaky tests. Dispatched by TestDino
+  # (get_rerun_selection / rerun_test) or manually with a testdino_rerun_from
+  # input. The tdpw CLI resolves the exact selection from the source run and
+  # reports the re-run linked to it. Runs against the same staging reporter and
+  # token as the staging-tests job, since the source run lives in that project.
+  rerun:
+    if: github.event_name == 'workflow_dispatch' && inputs.testdino_rerun_from != ''
+    runs-on: ubuntu-latest
+    env:
+      TESTDINO_SERVER_URL: https://stg-analytics.testdino.com/
+      TESTDINO_TOKEN: ${{ secrets.TESTDINO_STAGING_TOKEN }}
+      TESTDINO_TAGS: staging,regression
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify Staging Token
+        run: |
+          if [ -z "$TESTDINO_TOKEN" ]; then
+            echo "::error::TESTDINO_STAGING_TOKEN GitHub secret is required for the staging project."
+            exit 1
+          fi
+
+      - name: Re-run TestDino Selection
+        env:
+          TESTDINO_CI_RUN_ID: ci-rerun-${{ github.run_id }}-${{ github.run_attempt }}
+          RERUN_FROM: ${{ inputs.testdino_rerun_from }}
+          RERUN_SCOPE: ${{ inputs.testdino_rerun_scope }}
+          RERUN_TEST_IDS: ${{ inputs.testdino_rerun_test_ids }}
+          RERUN_EXCLUDE_IDS: ${{ inputs.testdino_rerun_exclude_ids }}
+        run: |
+          ARGS="--rerun ${RERUN_SCOPE:-failed} --from-run ${RERUN_FROM}"
+          if [ -n "${RERUN_TEST_IDS}" ]; then ARGS="$ARGS --test-ids ${RERUN_TEST_IDS}"; fi
+          if [ -n "${RERUN_EXCLUDE_IDS}" ]; then ARGS="$ARGS --exclude-ids ${RERUN_EXCLUDE_IDS}"; fi
+          echo "Running: npx tdpw test $ARGS --project=chromium"
+          npx tdpw test $ARGS --project=chromium || echo "Non-zero exit - every result is already in TestDino."
+
+      - name: Upload HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-html-report-rerun
+          path: playwright-report
+          retention-days: 30
