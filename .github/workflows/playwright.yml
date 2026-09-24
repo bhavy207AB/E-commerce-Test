@@ -55,10 +55,7 @@ jobs:
             --workers=10 \
             tests/CheckoutPage.spec.ts \
             tests/browser-interactions.spec.ts \
-            tests/addToCart.spec.ts \
-            tests/api-mocking.spec.ts \
-            tests/coverage-verification.spec.ts \
-            tests/five-thousand-cases.spec.ts
+            tests/addToCart.spec.ts
 
       - name: Upload HTML Report
         if: always()

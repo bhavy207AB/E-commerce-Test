@@ -1,0 +1,109 @@
+name: TestDino Re-run
+
+# Triggered by the "Re-run" button on a finished TestDino run (or by the
+# tdpw CLI / MCP tools). TestDino dispatches this workflow and fills the
+# testdino_rerun_* inputs below; tdpw then resolves the exact test cases to
+# execute from the source run instead of running the whole suite.
+#
+# The input NAMES are part of TestDino's contract - do not rename them.
+on:
+  workflow_dispatch:
+    inputs:
+      testdino_rerun_from:
+        description: Source TestDino run id to re-run from
+        required: true
+        type: string
+      testdino_rerun_scope:
+        description: Which cases to re-run
+        required: false
+        default: failed
+        type: string
+      testdino_rerun_test_ids:
+        description: Comma-separated test ids (overrides the scope)
+        required: false
+        type: string
+      testdino_rerun_exclude_ids:
+        description: Comma-separated test ids to drop from the scope
+        required: false
+        type: string
+      testdino_rerun_sha:
+        description: Commit to check out ("This commit" re-runs); defaults to the branch tip
+        required: false
+        type: string
+
+# A re-run of a re-run should not cancel the one already in flight.
+concurrency:
+  group: testdino-rerun-${{ github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  rerun:
+    runs-on: ubuntu-latest
+    env:
+      # playwright.config.ts hardcodes a serverUrl and config outranks
+      # TESTDINO_SERVER_URL in the reporter's CLI > testdino.config >
+      # playwright.config > env resolution order, so the value is passed
+      # to tdpw as --server-url below rather than relied on as an env var.
+      TESTDINO_SERVER_URL: ${{ secrets.TESTDINO_SERVER_URL || 'https://reporter.testdino.com/' }}
+      TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
+      TESTDINO_CI_RUN_ID: rerun-${{ github.run_id }}-${{ github.run_attempt }}
+      BASE_URL: https://storedemo.testdino.com/products
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          # "This commit" sends the original sha; "Latest on branch" sends
+          # nothing and we fall back to the ref the dispatch came from.
+          ref: ${{ inputs.testdino_rerun_sha || github.sha }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Verify TestDino Token
+        run: |
+          if [ -z "$TESTDINO_TOKEN" ]; then
+            echo "TESTDINO_TOKEN GitHub secret is required."
+            exit 1
+          fi
+
+      - name: Re-run TestDino Selection
+        env:
+          TD_RERUN_FROM: ${{ inputs.testdino_rerun_from }}
+          TD_RERUN_SCOPE: ${{ inputs.testdino_rerun_scope }}
+          TD_RERUN_TEST_IDS: ${{ inputs.testdino_rerun_test_ids }}
+          TD_RERUN_EXCLUDE_IDS: ${{ inputs.testdino_rerun_exclude_ids }}
+        shell: bash
+        run: |
+          if [ -z "$TD_RERUN_FROM" ]; then
+            echo "testdino_rerun_from is required - this workflow only re-runs an existing run."
+            exit 1
+          fi
+
+          # No test file list: tdpw resolves the cases to execute from the
+          # source run, so passing paths here would only narrow that selection.
+          args=(--rerun "${TD_RERUN_SCOPE:-failed}" --from-run "$TD_RERUN_FROM")
+          if [ -n "$TD_RERUN_TEST_IDS" ]; then
+            args+=(--test-ids "$TD_RERUN_TEST_IDS")
+          fi
+          if [ -n "$TD_RERUN_EXCLUDE_IDS" ]; then
+            args+=(--exclude-ids "$TD_RERUN_EXCLUDE_IDS")
+          fi
+
+          npx tdpw test --server-url "$TESTDINO_SERVER_URL" "${args[@]}"
+
+      - name: Upload HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-html-report-rerun
+          path: playwright-report
+          retention-days: 30
