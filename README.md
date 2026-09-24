@@ -33,3 +33,45 @@ npm install
 ```
 
 Restart Codex after installing so it reloads the project MCP configuration.
+
+## Re-running failed tests
+
+TestDino can re-execute only the failed or flaky cases from a finished run,
+either on the original commit or on the current branch tip. Requires
+`@testdino/playwright` >= 2.7.0 and Playwright >= 1.56 (both satisfied here).
+
+### From the dashboard
+
+The **Re-run** button sits next to *Debug with AI* on any finished run that has
+at least one failed or flaky case. It dispatches
+`.github/workflows/rerun.yml`, which declares the `testdino_rerun_*` inputs
+TestDino fills in. Two things must be configured once in TestDino:
+
+1. Project settings → Integrations → connect GitHub.
+2. Grant the TestDino GitHub App permission to start workflows.
+
+The repo also needs a `TESTDINO_TOKEN` secret (already used by the other
+workflows). `TESTDINO_SERVER_URL` is an optional secret that points re-runs at
+a non-production TestDino instance.
+
+### From the CLI
+
+No GitHub integration needed - copy `utils/.env.example` to `utils/.env`, add
+your token, then:
+
+```bash
+npx tdpw test --rerun failed --from-run <runId>
+```
+
+`--rerun` takes `failed`, `flaky`, or `failed-and-flaky`. Narrow the selection
+further with `--test-ids <ids>` (overrides the scope) or `--exclude-ids <ids>`.
+
+### From an AI agent
+
+The TestDino MCP server exposes `get_rerun_selection` to preview what would run
+and `rerun_test` to trigger it.
+
+### Caveat
+
+Cases whose title contains the `›` separator, or has leading/trailing
+whitespace, cannot be addressed reliably and get flagged for manual execution.
