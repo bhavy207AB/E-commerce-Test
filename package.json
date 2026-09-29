@@ -16,12 +16,13 @@
   "type": "commonjs",
   "devDependencies": {
     "@axe-core/playwright": "^4.11.3",
-    "@playwright/test": "^1.60.0",
+    "@playwright/test": "^1.63.0",
     "axe-playwright": "^2.2.2"
   },
   "dependencies": {
-    "@testdino/playwright": "^2.7.1",
+    "@testdino/playwright": "^2.7.3",
     "package": "^1.0.1",
+    "tdpw": "^1.0.38",
     "testdino-mcp": "^2.0.0"
   }
 }
