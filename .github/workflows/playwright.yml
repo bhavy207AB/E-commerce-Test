@@ -23,6 +23,10 @@ on:
         description: 'Extra tags to add to the re-run, on top of the source run tags. Passed to the CLI as --rerun-tags.'
         required: false
         default: ''
+      testdino_rerun_sha:
+        description: 'Commit to re-run on ("This commit" in TestDino). Blank = the branch tip.'
+        required: false
+        default: ''
   push:
     branches:
       - main
@@ -154,6 +158,10 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          # Pin the re-run to the dispatched commit so "This commit" in TestDino
+          # runs that exact SHA. Blank input falls back to the branch tip.
+          ref: ${{ inputs.testdino_rerun_sha || github.sha }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
