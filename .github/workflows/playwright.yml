@@ -19,6 +19,10 @@ on:
         description: 'Comma-separated test ids to drop from the scope'
         required: false
         default: ''
+      testdino_rerun_tags:
+        description: 'Extra tags to add to the re-run, on top of the source run tags. Passed to the CLI as --rerun-tags.'
+        required: false
+        default: ''
   push:
     branches:
       - main
@@ -184,10 +188,12 @@ jobs:
           RERUN_SCOPE: ${{ inputs.testdino_rerun_scope }}
           RERUN_TEST_IDS: ${{ inputs.testdino_rerun_test_ids }}
           RERUN_EXCLUDE_IDS: ${{ inputs.testdino_rerun_exclude_ids }}
+          RERUN_TAGS: ${{ inputs.testdino_rerun_tags }}
         run: |
           ARGS="--rerun ${RERUN_SCOPE:-failed} --from-run ${RERUN_FROM}"
           if [ -n "${RERUN_TEST_IDS}" ]; then ARGS="$ARGS --test-ids ${RERUN_TEST_IDS}"; fi
           if [ -n "${RERUN_EXCLUDE_IDS}" ]; then ARGS="$ARGS --exclude-ids ${RERUN_EXCLUDE_IDS}"; fi
+          if [ -n "${RERUN_TAGS}" ]; then ARGS="$ARGS --rerun-tags ${RERUN_TAGS}"; fi
           echo "Running: npx tdpw test $ARGS --project=chromium"
           npx tdpw test $ARGS --project=chromium || echo "Non-zero exit - every result is already in TestDino."
 
