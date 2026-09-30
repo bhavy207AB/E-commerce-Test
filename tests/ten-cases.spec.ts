@@ -43,3 +43,16 @@ test.describe('ten-cases batch 1', () => {
     });
   }
 });
+
+// Batch 2 (commit 3): cases 15-18 — 15-17 pass, 18 fails.
+test.describe('ten-cases batch 2', () => {
+  for (let i = 15; i <= 18; i++) {
+    test(`case ${i}`, async () => {
+      if (i <= 17) {
+        expect(i).toBe(i);
+      } else {
+        expect(i).toBe(i + 1);
+      }
+    });
+  }
+});
