@@ -1,4 +1,5 @@
 name: Playwright Tests
+run-name: ${{ inputs.testdino_rerun_from != '' && format('TestDino re-run @ {0}', inputs.testdino_rerun_sha || 'branch tip') || '' }}
 
 on:
   workflow_dispatch:
