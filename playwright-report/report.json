@@ -10,18 +10,14 @@
     "grep": {},
     "grepInvert": null,
     "maxFailures": 0,
-    "metadata": {
-      "actualWorkers": 5
-    },
+    "metadata": {},
     "preserveOutput": "always",
     "projects": [
       {
         "outputDir": "/Users/sahilpatel/Desktop/Bhavyy/E-commerce-Test/test-results",
         "repeatEach": 1,
-        "retries": 0,
-        "metadata": {
-          "actualWorkers": 5
-        },
+        "retries": 2,
+        "metadata": {},
         "id": "chromium",
         "name": "chromium",
         "testDir": "/Users/sahilpatel/Desktop/Bhavyy/E-commerce-Test/tests",
@@ -38,8 +34,8 @@
         "/Users/sahilpatel/Desktop/Bhavyy/E-commerce-Test/node_modules/@testdino/playwright/dist/index.js",
         {
           "serverUrl": "https://stg-analytics.testdino.com/",
-          "token": "td_api_020631a8db0316249bca0ccd0a6b80741578018d5bdfc3008b2d44d5dead6f2e",
-          "ciRunId": "local-run-2026-09-22",
+          "token": "td_api_91f08770463cab4ae267801918ca9a7e9d0d3df1d44e03fc1de5756da5b68377",
+          "ciRunId": "local-run-2026-09-30",
           "debug": false,
           "artifacts": true,
           "tags": [
@@ -74,799 +70,227 @@
       "max": 5,
       "threshold": 300000
     },
-    "shard": {
-      "current": 1,
-      "total": 25
-    },
+    "shard": null,
     "tags": [],
     "updateSnapshots": "missing",
     "updateSourceMethod": "patch",
     "version": "1.60.0",
-    "workers": 5,
+    "workers": 8,
     "webServer": null
   },
   "suites": [
     {
-      "title": "additional-500-suites.spec.ts",
-      "file": "additional-500-suites.spec.ts",
+      "title": "ten-cases.spec.ts",
+      "file": "ten-cases.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Authentication suite",
-          "file": "additional-500-suites.spec.ts",
-          "line": 22,
-          "column": 8,
-          "specs": [],
-          "suites": [
+          "title": "ten-cases",
+          "file": "ten-cases.spec.ts",
+          "line": 14,
+          "column": 6,
+          "specs": [
             {
-              "title": "Passed cases",
-              "file": "additional-500-suites.spec.ts",
-              "line": 23,
-              "column": 10,
-              "specs": [
+              "title": "case 1 (pass)",
+              "ok": true,
+              "tags": [],
+              "tests": [
                 {
-                  "title": "PASSED - test case 501",
-                  "ok": true,
-                  "tags": [
-                    "smoke"
-                  ],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "chromium",
-                      "projectName": "chromium",
-                      "results": [
-                        {
-                          "workerIndex": 0,
-                          "parallelIndex": 0,
-                          "status": "passed",
-                          "duration": 641,
-                          "errors": [],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2026-09-22T09:13:54.774Z",
-                          "annotations": [],
-                          "attachments": []
-                        }
-                      ],
-                      "status": "expected"
-                    }
-                  ],
-                  "id": "17a91f9189344b18f449-34fa77fa83623ad24bcf",
-                  "file": "additional-500-suites.spec.ts",
-                  "line": 27,
-                  "column": 13
-                },
-                {
-                  "title": "PASSED - test case 502",
-                  "ok": true,
-                  "tags": [
-                    "smoke",
-                    "regression"
-                  ],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "chromium",
-                      "projectName": "chromium",
-                      "results": [
-                        {
-                          "workerIndex": 1,
-                          "parallelIndex": 1,
-                          "status": "passed",
-                          "duration": 654,
-                          "errors": [],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2026-09-22T09:13:54.782Z",
-                          "annotations": [],
-                          "attachments": []
-                        }
-                      ],
-                      "status": "expected"
-                    }
-                  ],
-                  "id": "17a91f9189344b18f449-1a9545d0f483735f4955",
-                  "file": "additional-500-suites.spec.ts",
-                  "line": 27,
-                  "column": 13
-                },
-                {
-                  "title": "PASSED - test case 503",
-                  "ok": true,
-                  "tags": [
-                    "smoke",
-                    "regression",
-                    "sanity"
-                  ],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "chromium",
-                      "projectName": "chromium",
-                      "results": [
-                        {
-                          "workerIndex": 2,
-                          "parallelIndex": 2,
-                          "status": "passed",
-                          "duration": 655,
-                          "errors": [],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2026-09-22T09:13:54.775Z",
-                          "annotations": [],
-                          "attachments": []
-                        }
-                      ],
-                      "status": "expected"
-                    }
-                  ],
-                  "id": "17a91f9189344b18f449-479e8db83aff27f2ce06",
-                  "file": "additional-500-suites.spec.ts",
-                  "line": 27,
-                  "column": 13
-                },
-                {
-                  "title": "PASSED - test case 504",
-                  "ok": true,
-                  "tags": [
-                    "smoke",
-                    "regression",
-                    "sanity",
-                    "E2E"
-                  ],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "chromium",
-                      "projectName": "chromium",
-                      "results": [
-                        {
-                          "workerIndex": 3,
-                          "parallelIndex": 3,
-                          "status": "passed",
-                          "duration": 650,
-                          "errors": [],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2026-09-22T09:13:54.781Z",
-                          "annotations": [],
-                          "attachments": []
-                        }
-                      ],
-                      "status": "expected"
-                    }
-                  ],
-                  "id": "17a91f9189344b18f449-f46cbda5513b01fffa20",
-                  "file": "additional-500-suites.spec.ts",
-                  "line": 27,
-                  "column": 13
-                },
-                {
-                  "title": "PASSED - test case 505",
-                  "ok": true,
-                  "tags": [
-                    "smoke",
-                    "regression",
-                    "sanity",
-                    "E2E",
-                    "visual"
-                  ],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "chromium",
-                      "projectName": "chromium",
-                      "results": [
-                        {
-                          "workerIndex": 4,
-                          "parallelIndex": 4,
-                          "status": "passed",
-                          "duration": 654,
-                          "errors": [],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2026-09-22T09:13:54.774Z",
-                          "annotations": [],
-                          "attachments": []
-                        }
-                      ],
-                      "status": "expected"
-                    }
-                  ],
-                  "id": "17a91f9189344b18f449-d874466d224ee7d37c42",
-                  "file": "additional-500-suites.spec.ts",
-                  "line": 27,
-                  "column": 13
-                },
-                {
-                  "title": "PASSED - test case 506",
-                  "ok": true,
-                  "tags": [
-                    "smoke"
-                  ],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "chromium",
-                      "projectName": "chromium",
-                      "results": [
-                        {
-                          "workerIndex": 3,
-                          "parallelIndex": 3,
-                          "status": "passed",
-                          "duration": 237,
-                          "errors": [],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2026-09-22T09:13:56.092Z",
-                          "annotations": [],
-                          "attachments": []
-                        }
-                      ],
-                      "status": "expected"
-                    }
-                  ],
-                  "id": "17a91f9189344b18f449-325a7d52e1c6be54cd33",
-                  "file": "additional-500-suites.spec.ts",
-                  "line": 27,
-                  "column": 13
-                },
-                {
-                  "title": "PASSED - test case 507",
-                  "ok": true,
-                  "tags": [
-                    "smoke",
-                    "regression"
-                  ],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "chromium",
-                      "projectName": "chromium",
-                      "results": [
-                        {
-                          "workerIndex": 4,
-                          "parallelIndex": 4,
-                          "status": "passed",
-                          "duration": 289,
-                          "errors": [],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2026-09-22T09:13:56.094Z",
-                          "annotations": [],
-                          "attachments": []
-                        }
-                      ],
-                      "status": "expected"
-                    }
-                  ],
-                  "id": "17a91f9189344b18f449-93db86b51a48a763a853",
-                  "file": "additional-500-suites.spec.ts",
-                  "line": 27,
-                  "column": 13
-                },
-                {
-                  "title": "PASSED - test case 508",
-                  "ok": true,
-                  "tags": [
-                    "smoke",
-                    "regression",
-                    "sanity"
-                  ],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "chromium",
-                      "projectName": "chromium",
-                      "results": [
-                        {
-                          "workerIndex": 0,
-                          "parallelIndex": 0,
-                          "status": "passed",
-                          "duration": 270,
-                          "errors": [],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2026-09-22T09:13:56.095Z",
-                          "annotations": [],
-                          "attachments": []
-                        }
-                      ],
-                      "status": "expected"
-                    }
-                  ],
-                  "id": "17a91f9189344b18f449-45c32aea446d64d23d62",
-                  "file": "additional-500-suites.spec.ts",
-                  "line": 27,
-                  "column": 13
-                },
-                {
-                  "title": "PASSED - test case 509",
-                  "ok": true,
-                  "tags": [
-                    "smoke",
-                    "regression",
-                    "sanity",
-                    "E2E"
-                  ],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "chromium",
-                      "projectName": "chromium",
-                      "results": [
-                        {
-                          "workerIndex": 1,
-                          "parallelIndex": 1,
-                          "status": "passed",
-                          "duration": 266,
-                          "errors": [],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2026-09-22T09:13:56.093Z",
-                          "annotations": [],
-                          "attachments": []
-                        }
-                      ],
-                      "status": "expected"
-                    }
-                  ],
-                  "id": "17a91f9189344b18f449-61f8db2e006ec9aceaa1",
-                  "file": "additional-500-suites.spec.ts",
-                  "line": 27,
-                  "column": 13
-                },
-                {
-                  "title": "PASSED - test case 510",
-                  "ok": true,
-                  "tags": [
-                    "smoke",
-                    "regression",
-                    "sanity",
-                    "E2E",
-                    "visual"
-                  ],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "chromium",
-                      "projectName": "chromium",
-                      "results": [
-                        {
-                          "workerIndex": 2,
-                          "parallelIndex": 2,
-                          "status": "passed",
-                          "duration": 259,
-                          "errors": [],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2026-09-22T09:13:56.094Z",
-                          "annotations": [],
-                          "attachments": []
-                        }
-                      ],
-                      "status": "expected"
-                    }
-                  ],
-                  "id": "17a91f9189344b18f449-f08a2583409eaa6451b2",
-                  "file": "additional-500-suites.spec.ts",
-                  "line": 27,
-                  "column": 13
-                },
-                {
-                  "title": "PASSED - test case 511",
-                  "ok": true,
-                  "tags": [
-                    "smoke"
-                  ],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "chromium",
-                      "projectName": "chromium",
-                      "results": [
-                        {
-                          "workerIndex": 2,
-                          "parallelIndex": 2,
-                          "status": "passed",
-                          "duration": 180,
-                          "errors": [],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2026-09-22T09:13:56.366Z",
-                          "annotations": [],
-                          "attachments": []
-                        }
-                      ],
-                      "status": "expected"
-                    }
-                  ],
-                  "id": "17a91f9189344b18f449-2ff68eb32ed5c631c6c5",
-                  "file": "additional-500-suites.spec.ts",
-                  "line": 27,
-                  "column": 13
-                },
-                {
-                  "title": "PASSED - test case 512",
-                  "ok": true,
-                  "tags": [
-                    "smoke",
-                    "regression"
-                  ],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "chromium",
-                      "projectName": "chromium",
-                      "results": [
-                        {
-                          "workerIndex": 3,
-                          "parallelIndex": 3,
-                          "status": "passed",
-                          "duration": 174,
-                          "errors": [],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2026-09-22T09:13:56.368Z",
-                          "annotations": [],
-                          "attachments": []
-                        }
-                      ],
-                      "status": "expected"
-                    }
-                  ],
-                  "id": "17a91f9189344b18f449-550fd6a7397a81a298bc",
-                  "file": "additional-500-suites.spec.ts",
-                  "line": 27,
-                  "column": 13
-                },
-                {
-                  "title": "PASSED - test case 513",
-                  "ok": true,
-                  "tags": [
-                    "smoke",
-                    "regression",
-                    "sanity"
-                  ],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "chromium",
-                      "projectName": "chromium",
-                      "results": [
-                        {
-                          "workerIndex": 1,
-                          "parallelIndex": 1,
-                          "status": "passed",
-                          "duration": 167,
-                          "errors": [],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2026-09-22T09:13:56.370Z",
-                          "annotations": [],
-                          "attachments": []
-                        }
-                      ],
-                      "status": "expected"
-                    }
-                  ],
-                  "id": "17a91f9189344b18f449-54c80f58fa2b4046abf0",
-                  "file": "additional-500-suites.spec.ts",
-                  "line": 27,
-                  "column": 13
-                },
-                {
-                  "title": "PASSED - test case 514",
-                  "ok": true,
-                  "tags": [
-                    "smoke",
-                    "regression",
-                    "sanity",
-                    "E2E"
-                  ],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "chromium",
-                      "projectName": "chromium",
-                      "results": [
-                        {
-                          "workerIndex": 0,
-                          "parallelIndex": 0,
-                          "status": "passed",
-                          "duration": 196,
-                          "errors": [],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2026-09-22T09:13:56.388Z",
-                          "annotations": [],
-                          "attachments": []
-                        }
-                      ],
-                      "status": "expected"
-                    }
-                  ],
-                  "id": "17a91f9189344b18f449-57c0c875e2787ce6572b",
-                  "file": "additional-500-suites.spec.ts",
-                  "line": 27,
-                  "column": 13
-                },
-                {
-                  "title": "PASSED - test case 515",
-                  "ok": true,
-                  "tags": [
-                    "smoke",
-                    "regression",
-                    "sanity",
-                    "E2E",
-                    "visual"
-                  ],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "chromium",
-                      "projectName": "chromium",
-                      "results": [
-                        {
-                          "workerIndex": 4,
-                          "parallelIndex": 4,
-                          "status": "passed",
-                          "duration": 185,
-                          "errors": [],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2026-09-22T09:13:56.404Z",
-                          "annotations": [],
-                          "attachments": []
-                        }
-                      ],
-                      "status": "expected"
-                    }
-                  ],
-                  "id": "17a91f9189344b18f449-1cc4583faf2fc05e0d5a",
-                  "file": "additional-500-suites.spec.ts",
-                  "line": 27,
-                  "column": 13
-                },
-                {
-                  "title": "PASSED - test case 516",
-                  "ok": true,
-                  "tags": [
-                    "smoke"
-                  ],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "chromium",
-                      "projectName": "chromium",
-                      "results": [
-                        {
-                          "workerIndex": 1,
-                          "parallelIndex": 1,
-                          "status": "passed",
-                          "duration": 151,
-                          "errors": [],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2026-09-22T09:13:56.552Z",
-                          "annotations": [],
-                          "attachments": []
-                        }
-                      ],
-                      "status": "expected"
-                    }
-                  ],
-                  "id": "17a91f9189344b18f449-bc133e52ca35cc0b0418",
-                  "file": "additional-500-suites.spec.ts",
-                  "line": 27,
-                  "column": 13
-                },
-                {
-                  "title": "PASSED - test case 517",
-                  "ok": true,
-                  "tags": [
-                    "smoke",
-                    "regression"
-                  ],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "chromium",
-                      "projectName": "chromium",
-                      "results": [
-                        {
-                          "workerIndex": 3,
-                          "parallelIndex": 3,
-                          "status": "passed",
-                          "duration": 169,
-                          "errors": [],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2026-09-22T09:13:56.552Z",
-                          "annotations": [],
-                          "attachments": []
-                        }
-                      ],
-                      "status": "expected"
-                    }
-                  ],
-                  "id": "17a91f9189344b18f449-4b2fd617ba500ed95dab",
-                  "file": "additional-500-suites.spec.ts",
-                  "line": 27,
-                  "column": 13
-                },
-                {
-                  "title": "PASSED - test case 518",
-                  "ok": true,
-                  "tags": [
-                    "smoke",
-                    "regression",
-                    "sanity"
-                  ],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "chromium",
-                      "projectName": "chromium",
-                      "results": [
-                        {
-                          "workerIndex": 2,
-                          "parallelIndex": 2,
-                          "status": "passed",
-                          "duration": 208,
-                          "errors": [],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2026-09-22T09:13:56.556Z",
-                          "annotations": [],
-                          "attachments": []
-                        }
-                      ],
-                      "status": "expected"
-                    }
-                  ],
-                  "id": "17a91f9189344b18f449-1589d577ed2c83a9db88",
-                  "file": "additional-500-suites.spec.ts",
-                  "line": 27,
-                  "column": 13
-                },
-                {
-                  "title": "PASSED - test case 519",
-                  "ok": true,
-                  "tags": [
-                    "smoke",
-                    "regression",
-                    "sanity",
-                    "E2E"
-                  ],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "chromium",
-                      "projectName": "chromium",
-                      "results": [
-                        {
-                          "workerIndex": 0,
-                          "parallelIndex": 0,
-                          "status": "passed",
-                          "duration": 178,
-                          "errors": [],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2026-09-22T09:13:56.598Z",
-                          "annotations": [],
-                          "attachments": []
-                        }
-                      ],
-                      "status": "expected"
-                    }
-                  ],
-                  "id": "17a91f9189344b18f449-594a111c19026adbe60e",
-                  "file": "additional-500-suites.spec.ts",
-                  "line": 27,
-                  "column": 13
-                },
-                {
-                  "title": "PASSED - test case 520",
-                  "ok": true,
-                  "tags": [
-                    "smoke",
-                    "regression",
-                    "sanity",
-                    "E2E",
-                    "visual"
-                  ],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "chromium",
-                      "projectName": "chromium",
-                      "results": [
-                        {
-                          "workerIndex": 4,
-                          "parallelIndex": 4,
-                          "status": "passed",
-                          "duration": 164,
-                          "errors": [],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2026-09-22T09:13:56.607Z",
-                          "annotations": [],
-                          "attachments": []
-                        }
-                      ],
-                      "status": "expected"
-                    }
-                  ],
-                  "id": "17a91f9189344b18f449-88038188130c66e499d6",
-                  "file": "additional-500-suites.spec.ts",
-                  "line": 27,
-                  "column": 13
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
-              ]
+              ],
+              "id": "cf3c9469f4f5a4171dd4-f92b03f79d89165afe16",
+              "file": "ten-cases.spec.ts",
+              "line": 17,
+              "column": 9
+            },
+            {
+              "title": "case 2 (pass)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "cf3c9469f4f5a4171dd4-9bcca6826747b083084d",
+              "file": "ten-cases.spec.ts",
+              "line": 17,
+              "column": 9
+            },
+            {
+              "title": "case 3 (pass)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "cf3c9469f4f5a4171dd4-fe36a2d544d554f5a503",
+              "file": "ten-cases.spec.ts",
+              "line": 17,
+              "column": 9
+            },
+            {
+              "title": "case 4 (pass)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "cf3c9469f4f5a4171dd4-de1e020027e23aea0d4d",
+              "file": "ten-cases.spec.ts",
+              "line": 17,
+              "column": 9
+            },
+            {
+              "title": "case 5 (fail)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "cf3c9469f4f5a4171dd4-8cd298aebe192c6b35b2",
+              "file": "ten-cases.spec.ts",
+              "line": 24,
+              "column": 9
+            },
+            {
+              "title": "case 6 (fail)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "cf3c9469f4f5a4171dd4-e9d224aff9d048409736",
+              "file": "ten-cases.spec.ts",
+              "line": 24,
+              "column": 9
+            },
+            {
+              "title": "case 7 (fail)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "cf3c9469f4f5a4171dd4-00a58660fad6f8ae702e",
+              "file": "ten-cases.spec.ts",
+              "line": 24,
+              "column": 9
+            },
+            {
+              "title": "case 8 (fail)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "cf3c9469f4f5a4171dd4-fd437d676b79f0f2502f",
+              "file": "ten-cases.spec.ts",
+              "line": 24,
+              "column": 9
+            },
+            {
+              "title": "case 9 (fail)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "cf3c9469f4f5a4171dd4-87a485528fc4a9b1bad4",
+              "file": "ten-cases.spec.ts",
+              "line": 24,
+              "column": 9
+            },
+            {
+              "title": "case 10 (fail)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "cf3c9469f4f5a4171dd4-2d142c42275effb49e79",
+              "file": "ten-cases.spec.ts",
+              "line": 24,
+              "column": 9
             }
           ]
         }
@@ -875,10 +299,10 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-09-22T09:13:54.012Z",
-    "duration": 2805.65,
-    "expected": 20,
-    "skipped": 0,
+    "startTime": "2026-09-30T09:59:06.940Z",
+    "duration": 92.90100000000007,
+    "expected": 0,
+    "skipped": 10,
     "unexpected": 0,
     "flaky": 0
   }
