@@ -35,7 +35,7 @@
         {
           "serverUrl": "https://stg-analytics.testdino.com/",
           "token": "td_api_91f08770463cab4ae267801918ca9a7e9d0d3df1d44e03fc1de5756da5b68377",
-          "ciRunId": "local-run-2026-09-30",
+          "ciRunId": "local-run-2026-10-02",
           "debug": false,
           "artifacts": true,
           "tags": [
@@ -299,8 +299,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-09-30T09:59:06.940Z",
-    "duration": 92.90100000000007,
+    "startTime": "2026-10-02T10:49:41.024Z",
+    "duration": 33.434000000000026,
     "expected": 0,
     "skipped": 10,
     "unexpected": 0,
