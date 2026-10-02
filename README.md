@@ -10,7 +10,9 @@ npm test
 ```
 
 Tests run in CI via the Playwright Tests workflow on every push to `main` and
-`STAGGING`.
+`STAGGING`. On staging the product suite is fanned out across two TestDino
+splits (base cases vs. the `batch` cases) that aggregate into a single logical
+run.
 
 The test entry point accepts Playwright's `--workers` option and also
 normalizes the `--max-workers` spelling used by some hosted runners. For
