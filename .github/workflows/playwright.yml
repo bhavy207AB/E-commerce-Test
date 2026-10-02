@@ -80,9 +80,10 @@ jobs:
         env:
           TESTDINO_CI_RUN_ID: ci-product-${{ github.run_id }}-${{ github.run_attempt }}
         run: |
-          npx playwright test \
+          npx tdpw test -- \
             tests/ten-cases.spec.ts \
-            --project=chromium
+            --project=chromium \
+            --reporter=html,@testdino/playwright
 
       - name: Upload HTML Report
         if: always()
