@@ -12,8 +12,15 @@ import { expect, test } from '@testdino/playwright';
 //   npx playwright test tests/ten-cases.spec.ts --project=chromium
 
 test.describe('ten-cases', () => {
+  // Case 1: updated assertion, still passing.
+  test('case 1 (pass)', async () => {
+    const i = 1;
+    expect(i).toBe(i);
+    expect(i).toBeGreaterThan(0);
+  });
+
   // Originally-passing cases (unchanged).
-  for (let i = 1; i <= 4; i++) {
+  for (let i = 2; i <= 4; i++) {
     test(`case ${i} (pass)`, async () => {
       expect(i).toBe(i);
     });
