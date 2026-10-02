@@ -91,7 +91,6 @@ jobs:
             tests/ten-cases.spec.ts \
             --project=chromium \
             --workers=1 \
-            --shard=${{ matrix.split }}/2 \
             --reporter=html,@testdino/playwright
 
       - name: Upload HTML Report
