@@ -11,8 +11,8 @@ npm test
 
 Tests run in CI via the Playwright Tests workflow on every push to `main` and
 `STAGGING`. On staging the product suite runs through the TestDino CLI across
-two shards, each using two Playwright workers, grouped into a single logical
-run.
+two splits (base vs. batch cases), each using two Playwright workers, grouped
+into a single logical run.
 
 The test entry point accepts Playwright's `--workers` option and also
 normalizes the `--max-workers` spelling used by some hosted runners. For
