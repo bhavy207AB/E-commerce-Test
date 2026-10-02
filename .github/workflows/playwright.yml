@@ -49,7 +49,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        split: [1, 2]
+        # Proper split: each slot runs a distinct, non-overlapping subset of
+        # ten-cases by grep so no test is double-counted across splits.
+        #   slot 1 → base 'ten-cases' block (cases 1-10, 10 tests)
+        #   slot 2 → 'ten-cases batch *' blocks (cases 11-22, 12 tests)
+        include:
+          - split: 1
+            filter: --grep-invert batch
+          - split: 2
+            filter: --grep batch
     env:
       # Staging, not prod: playwright.config.ts falls back to the prod reporter
       # when TESTDINO_SERVER_URL is unset, so this must be explicit.
@@ -91,6 +99,7 @@ jobs:
             tests/ten-cases.spec.ts \
             --project=chromium \
             --workers=1 \
+            ${{ matrix.filter }} \
             --reporter=html,@testdino/playwright
 
       - name: Upload HTML Report
