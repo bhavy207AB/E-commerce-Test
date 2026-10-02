@@ -49,7 +49,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shard: [1, 2]
+        # Proper split: each slot runs a distinct, non-overlapping subset of
+        # ten-cases by grep so no test is double-counted across splits.
+        #   slot 1 → base 'ten-cases' block (cases 1-10)
+        #   slot 2 → 'ten-cases batch *' blocks (cases 11-22)
+        include:
+          - split: 1
+            filter: --grep-invert batch
+          - split: 2
+            filter: --grep batch
     env:
       # Staging, not prod: playwright.config.ts falls back to the prod reporter
       # when TESTDINO_SERVER_URL is unset, so this must be explicit.
@@ -84,18 +92,21 @@ jobs:
         env:
           TESTDINO_CI_RUN_ID: ci-product-${{ github.run_id }}-${{ github.run_attempt }}
         run: |
-          npx tdpw test -- \
+          npx tdpw test \
+            --split ${{ matrix.split }}/2 \
+            --split-id ${{ github.run_id }}-${{ github.run_attempt }} \
+            -- \
             tests/ten-cases.spec.ts \
             --project=chromium \
             --workers=2 \
-            --shard=${{ matrix.shard }}/2 \
+            ${{ matrix.filter }} \
             --reporter=html,@testdino/playwright
 
       - name: Upload HTML Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-html-report-shard-${{ matrix.shard }}
+          name: playwright-html-report-split-${{ matrix.split }}
           path: playwright-report
           retention-days: 30
 
