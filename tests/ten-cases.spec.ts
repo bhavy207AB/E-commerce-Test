@@ -19,13 +19,13 @@ test.describe('ten-cases', () => {
     });
   }
 
-  // Originally-failing cases 5-10 now all pass. Titles unchanged.
+  // Originally-failing cases: 5-9 now pass, case 10 fails again. Titles unchanged.
   for (let i = 5; i <= 10; i++) {
     test(`case ${i} (fail)`, async () => {
-      if (i <= 10) {
+      if (i <= 9) {
         expect(i).toBe(i); // now passes
       } else {
-        expect(i).toBe(i + 1); // still fails
+        expect(i).toBe(i + 1); // fails
       }
     });
   }
