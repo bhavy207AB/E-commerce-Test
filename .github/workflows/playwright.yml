@@ -46,6 +46,10 @@ jobs:
   staging-tests:
     if: github.event_name != 'workflow_dispatch'
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2]
     env:
       # Staging, not prod: playwright.config.ts falls back to the prod reporter
       # when TESTDINO_SERVER_URL is unset, so this must be explicit.
@@ -83,13 +87,14 @@ jobs:
           npx tdpw test -- \
             tests/ten-cases.spec.ts \
             --project=chromium \
+            --shard=${{ matrix.shard }}/2 \
             --reporter=html,@testdino/playwright
 
       - name: Upload HTML Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-html-report
+          name: playwright-html-report-shard-${{ matrix.shard }}
           path: playwright-report
           retention-days: 30
 
