@@ -9,6 +9,9 @@ Run the suite with:
 npm test
 ```
 
+Tests run in CI via the Playwright Tests workflow on every push to `main` and
+`STAGGING`.
+
 The test entry point accepts Playwright's `--workers` option and also
 normalizes the `--max-workers` spelling used by some hosted runners. For
 example, both of these commands run with two Playwright workers:
