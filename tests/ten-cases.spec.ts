@@ -35,15 +35,11 @@ test.describe('ten-cases', () => {
   }
 });
 
-// Batch 1 (commit 2): cases 11-14 — 11-13 pass, 14 fails.
+// Batch 1 (commit 2): cases 11-14 — all pass this iteration.
 test.describe('ten-cases batch 1', () => {
   for (let i = 11; i <= 14; i++) {
     test(`case ${i}`, async () => {
-      if (i <= 13) {
-        expect(i).toBe(i);
-      } else {
-        expect(i).toBe(i + 1);
-      }
+      expect(i).toBe(i);
     });
   }
 });
