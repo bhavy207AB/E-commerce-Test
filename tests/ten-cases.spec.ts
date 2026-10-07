@@ -4,10 +4,10 @@ import { expect, test } from '@testdino/playwright';
 // Titles are stable so a re-run selects the same tests by id; only the
 // pass/fail body changes between iterations of the scenario.
 //
-// Now: cases 1-4 pass as before, and 3 of the previously-failing 6
-// (cases 5-7) now pass, leaving cases 8-10 failing → 7 passed / 3 failed.
-// The "(fail)" suffix marks the original classification and is kept
-// unchanged so the re-run matches these tests instead of skipping them.
+// Now: cases 1-10 all pass — the base 'ten-cases' block has no failing
+// case this iteration. The "(fail)" suffix on cases 5-10 marks the
+// original classification and is kept unchanged so the re-run matches
+// these tests instead of skipping them.
 //
 //   npx playwright test tests/ten-cases.spec.ts --project=chromium
 
@@ -26,14 +26,11 @@ test.describe('ten-cases', () => {
     });
   }
 
-  // Originally-failing cases: 5-9 now pass, case 10 fails again. Titles unchanged.
+  // Originally-failing cases: all now pass. Titles unchanged so a re-run
+  // still matches these tests by id.
   for (let i = 5; i <= 10; i++) {
     test(`case ${i} (fail)`, async () => {
-      if (i <= 9) {
-        expect(i).toBe(i); // now passes
-      } else {
-        expect(i).toBe(i + 1); // fails
-      }
+      expect(i).toBe(i);
     });
   }
 });
