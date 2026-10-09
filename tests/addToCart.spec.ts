@@ -51,5 +51,5 @@ test('Adding the same product twice bumps its quantity to 2', async ({ page }) =
 test('Cart summary formats the grand total', async () => {
   const cart: { total?: { amount: number } } = { total: { amount: 0 } };
 
-  expect(cart.total?.amount).toBe(0);
+  expect(cart.total?.amount).toBe(100);
 });
