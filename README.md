@@ -1,6 +1,9 @@
 [![Test Health](https://stg-user.testdino.com/api/v1/badge/project_961d2dd71e1c21b844676ddf.svg)](https://stg-frontend.testdino.com/org_63bfc5f9ad53d2487b4f8a47/projects/project_961d2dd71e1c21b844676ddf) [![Flaky Tests](https://stg-user.testdino.com/api/v1/badge/project_961d2dd71e1c21b844676ddf.svg?type=flaky)](https://stg-frontend.testdino.com/org_63bfc5f9ad53d2487b4f8a47/projects/project_961d2dd71e1c21b844676ddf) [![Test Result](https://stg-user.testdino.com/api/v1/badge/project_961d2dd71e1c21b844676ddf.svg?type=tests)](https://stg-frontend.testdino.com/org_63bfc5f9ad53d2487b4f8a47/projects/project_961d2dd71e1c21b844676ddf)
 # E-commerce-Test
 
+End-to-end Playwright test suite for an e-commerce site, with TestDino reporting
+and re-run support.
+
 ## Running tests
 
 Run the suite with:
@@ -38,7 +41,9 @@ Restart Codex after installing so it reloads the project MCP configuration.
 
 TestDino can re-execute only the failed or flaky cases from a finished run,
 either on the original commit or on the current branch tip. Requires
-`@testdino/playwright` >= 2.7.0 and Playwright >= 1.56 (both satisfied here).
+`@testdino/playwright` >= 2.7.8 and Playwright >= 1.56 (both satisfied here).
+Older reporter versions fall back to re-running the whole CI job instead of
+only the failed tests.
 
 ### From the dashboard
 
@@ -56,7 +61,7 @@ a non-production TestDino instance.
 
 ### From the CLI
 
-No GitHub integration needed - copy `utils/.env.example` to `utils/.env`, add
+No GitHub integration needed. Copy `utils/.env.example` to `utils/.env`, add
 your token, then:
 
 ```bash
