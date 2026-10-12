@@ -14,7 +14,7 @@ npm test
 
 The test entry point accepts Playwright's `--workers` option and also
 normalizes the `--max-workers` spelling used by some hosted runners. For
-example, both of these commands run with two Playwright workers:
+example, both of these commands run the suite with two Playwright workers:
 
 ```bash
 npm test -- --workers=2
