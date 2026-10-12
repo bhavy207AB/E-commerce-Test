@@ -35,7 +35,8 @@ After cloning or updating dependencies, run:
 npm install
 ```
 
-Restart Codex after installing so it reloads the project MCP configuration.
+Restart Codex after installing so it reloads the project MCP configuration
+and picks up any newly added TestDino tools.
 
 ## Re-running failed tests
 
