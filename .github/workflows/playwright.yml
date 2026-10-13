@@ -47,8 +47,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # 8 shards of the 8000-case spec. tdpw --split coordinates every shard
-        # into a single TestDino run via the shared --split-id.
+        # 8 shards of the 8000-case spec. Tests are NOT split across shards —
+        # every shard runs the full spec and all of them report into one
+        # shared TestDino run via the common --split-id.
         shard: [1, 2, 3, 4, 5, 6, 7, 8]
     env:
       # Staging, not prod: playwright.config.ts falls back to the prod reporter
@@ -85,12 +86,11 @@ jobs:
           TESTDINO_CI_RUN_ID: ci-product-${{ github.run_id }}-${{ github.run_attempt }}
         run: |
           npx tdpw test \
-            --split ${{ matrix.shard }}/8 \
             --split-id ${{ github.run_id }}-${{ github.run_attempt }} \
             -- \
             tests/eight-thousand-cases.spec.ts \
             --project=chromium \
-            --workers=100 \
+            --workers=10 \
             --reporter=html,@testdino/playwright
 
       - name: Upload HTML Report
