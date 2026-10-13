@@ -13,7 +13,7 @@ on:
       machines:
         description: "Number of machines to spread the swarm across"
         required: false
-        default: "4"
+        default: "1"
 
 # Never cancel a swarm leg mid-flight: a cancelled machine disconnects from the
 # swarm and the run only finalizes once the reaper fires.
