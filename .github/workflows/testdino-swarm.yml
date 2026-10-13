@@ -32,6 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       id: ${{ steps.start.outputs.id }}
+      matrix: ${{ steps.matrix.outputs.list }}
     env:
       TESTDINO_SERVER_URL: https://reporter.testdino.com/
       TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
@@ -66,11 +67,19 @@ jobs:
           # CLI > testdino.config > playwright.config > env resolution order.
           npx tdpw swarm \
             --server-url "$TESTDINO_SERVER_URL" \
-            --machines "${{ github.event.inputs.machines || 4 }}" \
+            --machines "${{ github.event.inputs.machines || 1 }}" \
             --grep "@swarm" \
             --project chromium \
             --out swarm.json
           echo "id=$(jq -r .swarmId swarm.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Build machine matrix
+        id: matrix
+        run: |
+          # Produce [1..N] so the join matrix spawns exactly N machines,
+          # matching --machines on the start command above.
+          N="${{ github.event.inputs.machines || 1 }}"
+          echo "list=$(jq -nc --argjson n "$N" '[range(1; $n + 1)]')" >> "$GITHUB_OUTPUT"
 
       - name: Upload swarm descriptor
         if: always()
@@ -91,7 +100,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        machine: [1, 2, 3, 4]
+        # Derived from the machines input so a 1-machine run spawns 1 leg.
+        machine: ${{ fromJSON(needs.start.outputs.matrix) }}
     env:
       TESTDINO_SERVER_URL: https://reporter.testdino.com/
       TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
