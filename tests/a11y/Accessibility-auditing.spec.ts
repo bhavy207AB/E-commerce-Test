@@ -1,4 +1,4 @@
-import { test, expect } from '@testdino/playwright';
+import { test, expect } from '@playwright/test';
 
 
 test('Login email field is keyboard accessible', async ({ page }) => {

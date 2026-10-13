@@ -1,4 +1,4 @@
-import { test } from '@testdino/playwright';
+import { test } from '@playwright/test';
 import { LoginPage } from '../Pages/LoginPage';
 import { ProductPage } from '../Pages/ProductPage';
 import { CartPage } from '../Pages/CartPage';
@@ -41,7 +41,7 @@ test('Complete Checkout Flow', async ({ page }) => {
   await checkoutPage.submitOrder();
 });
 
-import { expect } from '@testdino/playwright';
+import { expect } from '@playwright/test';
 
 // Intentional AssertionError: expected vs actual value mismatch.
 test('Order total matches cart subtotal', async () => {

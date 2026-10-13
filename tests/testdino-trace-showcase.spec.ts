@@ -1,4 +1,4 @@
-import { test, expect } from '@testdino/playwright';
+import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 
 const STORE_URL = 'https://trace-demo.testdino.local/store';

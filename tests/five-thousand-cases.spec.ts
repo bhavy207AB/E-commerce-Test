@@ -1,4 +1,4 @@
-import { expect, test } from '@testdino/playwright';
+import { expect, test } from '@playwright/test';
 
 // A deterministic 5000-case spec: a fixed mix of passed and failed cases in one run.
 // The pass/fail outcome of each case is decided purely by its index, so the result
