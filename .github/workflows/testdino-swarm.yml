@@ -36,6 +36,9 @@ jobs:
       TESTDINO_SERVER_URL: https://reporter.testdino.com/
       TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
       TESTDINO_CI_RUN_ID: swarm-run-${{ github.run_id }}-${{ github.run_attempt }}
+      # Scope swarm discovery to the clean swarm specs (the broader suite has
+      # specs that fail to compile, which would abort swarm's test listing).
+      PW_TEST_DIR: ./tests/Swarm
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -93,6 +96,8 @@ jobs:
       TESTDINO_SERVER_URL: https://reporter.testdino.com/
       TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
       TESTDINO_MACHINE_ID: m${{ matrix.machine }}
+      # Must match the start job so joining machines resolve the same specs.
+      PW_TEST_DIR: ./tests/Swarm
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4

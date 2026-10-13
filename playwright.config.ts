@@ -2,7 +2,9 @@
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 
-dotenv.config({ path: 'utils/.env' });
+// quiet: true suppresses dotenv v17's "injected env" banner. Swarm mode parses
+// `playwright test --list` stdout as JSON, and the banner would corrupt it.
+dotenv.config({ path: 'utils/.env', quiet: true });
 
 const isCI = !!process.env.CI;
 const runTags = (process.env.TESTDINO_TAGS || '')
@@ -17,7 +19,11 @@ const ciRunId = process.env.TESTDINO_CI_RUN_ID || (isCI
   : `local-run-${new Date().toISOString().split('T')[0]}`);
 
 export default defineConfig({
-  testDir: './tests',
+  // Overridable so swarm mode can scope test discovery to a clean subtree.
+  // Swarm compiles every file under testDir to list tests, and the broader
+  // suite contains specs that fail to compile; PW_TEST_DIR=./tests/Swarm keeps
+  // the swarm run bounded to the swarm scenario specs.
+  testDir: process.env.PW_TEST_DIR || './tests',
   snapshotDir: './__screenshots__',
   fullyParallel: true,
   forbidOnly: isCI,
