@@ -35,29 +35,15 @@ on:
   pull_request:
 
 jobs:
-  # One STAGING run of the genuine product tests only. The specs that exist to
-  # manufacture TestDino statuses or verify the reporter — all-status-types,
-  # status-mix, coverage-verification, the *-verification specs and
-  # testdino-trace-showcase — are deliberately not run here; their results
-  # describe the reporter, not the application.
+  # One STAGING run of the 8000-case spec only. Every other spec in the repo is
+  # deliberately not run here — this job exists solely to run
+  # tests/eight-thousand-cases.spec.ts and stream its outcome to TestDino.
   #
   # Whatever these tests do is the result: pass, fail or flaky, the step does
   # not gate the job. The reporter has streamed every outcome by then.
   staging-tests:
     if: github.event_name != 'workflow_dispatch'
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        # Proper split: each slot runs a distinct, non-overlapping subset of
-        # ten-cases by grep so no test is double-counted across splits.
-        #   slot 1 → base 'ten-cases' block (cases 1-10)
-        #   slot 2 → 'ten-cases batch *' blocks (cases 11-22)
-        include:
-          - split: 1
-            filter: --grep-invert batch
-          - split: 2
-            filter: --grep batch
     env:
       # Staging, not prod: playwright.config.ts falls back to the prod reporter
       # when TESTDINO_SERVER_URL is unset, so this must be explicit.
@@ -93,20 +79,17 @@ jobs:
           TESTDINO_CI_RUN_ID: ci-product-${{ github.run_id }}-${{ github.run_attempt }}
         run: |
           npx tdpw test \
-            --split ${{ matrix.split }}/2 \
-            --split-id ${{ github.run_id }}-${{ github.run_attempt }} \
             -- \
-            tests/ten-cases.spec.ts \
+            tests/eight-thousand-cases.spec.ts \
             --project=chromium \
-            --workers=2 \
-            ${{ matrix.filter }} \
+            --workers=10 \
             --reporter=html,@testdino/playwright
 
       - name: Upload HTML Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-html-report-split-${{ matrix.split }}
+          name: playwright-html-report
           path: playwright-report
           retention-days: 30
 
