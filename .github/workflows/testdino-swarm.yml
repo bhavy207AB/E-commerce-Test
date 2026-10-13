@@ -1,0 +1,130 @@
+name: TestDino Swarm Mode
+
+# Swarm mode distributes ONE Playwright suite across multiple CI machines at
+# runtime: each machine pulls the next spec file as it frees up, so fast
+# machines do more work and slow machines do less. All machines report into a
+# single merged TestDino run (look for the "SWARM" label under Active Test Runs).
+#
+# Requires @testdino/playwright >= 2.10.0 and a Team/Enterprise TestDino plan.
+# Manual trigger only so a swarm is never kicked off accidentally.
+on:
+  workflow_dispatch:
+    inputs:
+      machines:
+        description: "Number of machines to spread the swarm across"
+        required: false
+        default: "4"
+
+# Never cancel a swarm leg mid-flight: a cancelled machine disconnects from the
+# swarm and the run only finalizes once the reaper fires.
+concurrency:
+  group: testdino-swarm-${{ github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # 1) Start the swarm ONCE. This registers the suite with TestDino and emits a
+  #    swarmId that every machine leg joins. --grep "@swarm" bounds the run to
+  #    the dedicated swarm scenario specs (the repo also contains 5000-case
+  #    files we do not want to pull into this run).
+  # ---------------------------------------------------------------------------
+  start:
+    runs-on: ubuntu-latest
+    outputs:
+      id: ${{ steps.start.outputs.id }}
+    env:
+      TESTDINO_SERVER_URL: https://reporter.testdino.com/
+      TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
+      TESTDINO_CI_RUN_ID: swarm-run-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Verify TestDino Token
+        run: |
+          if [ -z "$TESTDINO_TOKEN" ]; then
+            echo "TESTDINO_TOKEN GitHub secret is required."
+            exit 1
+          fi
+
+      - name: Start swarm
+        id: start
+        run: |
+          # --server-url is passed explicitly: playwright.config.ts hardcodes a
+          # serverUrl, and config outranks TESTDINO_SERVER_URL in the reporter's
+          # CLI > testdino.config > playwright.config > env resolution order.
+          npx tdpw swarm \
+            --server-url "$TESTDINO_SERVER_URL" \
+            --machines "${{ github.event.inputs.machines || 4 }}" \
+            --grep "@swarm" \
+            --project chromium \
+            --out swarm.json
+          echo "id=$(jq -r .swarmId swarm.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Upload swarm descriptor
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: swarm-descriptor
+          path: swarm.json
+          retention-days: 1
+
+  # ---------------------------------------------------------------------------
+  # 2) Join the swarm from N machines. Each leg takes the next free spec file.
+  #    fail-fast: false so one failing machine never cancels the others.
+  #    NOTE: do NOT pass --machines here; joining legs use --id only.
+  # ---------------------------------------------------------------------------
+  test:
+    needs: start
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        machine: [1, 2, 3, 4]
+    env:
+      TESTDINO_SERVER_URL: https://reporter.testdino.com/
+      TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
+      TESTDINO_MACHINE_ID: m${{ matrix.machine }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify swarm id
+        run: |
+          if [ -z "${{ needs.start.outputs.id }}" ]; then
+            echo "Empty swarm id from the start job."
+            exit 1
+          fi
+
+      - name: Join swarm (machine ${{ matrix.machine }})
+        run: |
+          npx tdpw swarm \
+            --server-url "$TESTDINO_SERVER_URL" \
+            --id "${{ needs.start.outputs.id }}"
+
+      - name: Upload Blob Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: blob-report-swarm-m${{ matrix.machine }}
+          path: blob-report
+          retention-days: 1
