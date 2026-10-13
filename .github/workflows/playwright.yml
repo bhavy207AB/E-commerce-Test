@@ -35,9 +35,9 @@ on:
   pull_request:
 
 jobs:
-  # One STAGING run of the 8000-case spec only. Every other spec in the repo is
+  # One STAGING run of the 1000-case spec only. Every other spec in the repo is
   # deliberately not run here — this job exists solely to run
-  # tests/eight-thousand-cases.spec.ts and stream its outcome to TestDino.
+  # tests/one-thousand-cases.spec.ts and stream its outcome to TestDino.
   #
   # Whatever these tests do is the result: pass, fail or flaky, the step does
   # not gate the job. The reporter has streamed every outcome by then.
@@ -47,7 +47,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # 8 shards of the 8000-case spec. Tests are NOT split across shards —
+        # 8 shards of the 1000-case spec. Tests are NOT split across shards —
         # every shard runs the full spec and all of them report into one
         # shared TestDino run via the common TESTDINO_CI_RUN_ID (identical
         # github.run_id/run_attempt across the whole matrix).
@@ -88,7 +88,7 @@ jobs:
         run: |
           npx tdpw test \
             -- \
-            tests/eight-thousand-cases.spec.ts \
+            tests/one-thousand-cases.spec.ts \
             --project=chromium \
             --workers=10 \
             --reporter=html,@testdino/playwright
