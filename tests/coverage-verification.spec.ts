@@ -1,4 +1,4 @@
-import { expect, test } from '@testdino/playwright';
+import { expect, test } from '@playwright/test';
 
 test.skip(
   process.env.VERIFY_COVERAGE !== 'true',

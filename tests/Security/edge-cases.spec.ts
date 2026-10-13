@@ -1,4 +1,4 @@
-import { test, expect } from '@testdino/playwright';
+import { test, expect } from '@playwright/test';
 
 // XSS payload in search
 test('search field sanitizes XSS input', async ({ page }) => {

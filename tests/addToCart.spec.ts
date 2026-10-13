@@ -1,4 +1,4 @@
-import { test, expect } from '@testdino/playwright';
+import { test, expect } from '@playwright/test';
 
 import { ProductPage } from '../Pages/ProductPage';
 import { CartPage } from '../Pages/CartPage';

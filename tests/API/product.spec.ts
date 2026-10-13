@@ -1,4 +1,4 @@
-import { test } from '@testdino/playwright';
+import { test } from '@playwright/test';
 
 test('Print products', async ({ request }) => {
 

@@ -1,4 +1,4 @@
-import { test, expect } from '@testdino/playwright';
+import { test, expect } from '@playwright/test';
 
 test('homepage LCP is under 2.5s', async ({ page }) => {
   await page.goto('https://automationexercise.com');
