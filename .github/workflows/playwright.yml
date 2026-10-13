@@ -44,6 +44,12 @@ jobs:
   staging-tests:
     if: github.event_name != 'workflow_dispatch'
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # 8 shards of the 8000-case spec. tdpw --split coordinates every shard
+        # into a single TestDino run via the shared --split-id.
+        shard: [1, 2, 3, 4, 5, 6, 7, 8]
     env:
       # Staging, not prod: playwright.config.ts falls back to the prod reporter
       # when TESTDINO_SERVER_URL is unset, so this must be explicit.
@@ -79,17 +85,19 @@ jobs:
           TESTDINO_CI_RUN_ID: ci-product-${{ github.run_id }}-${{ github.run_attempt }}
         run: |
           npx tdpw test \
+            --split ${{ matrix.shard }}/8 \
+            --split-id ${{ github.run_id }}-${{ github.run_attempt }} \
             -- \
             tests/eight-thousand-cases.spec.ts \
             --project=chromium \
-            --workers=10 \
+            --workers=100 \
             --reporter=html,@testdino/playwright
 
       - name: Upload HTML Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-html-report
+          name: playwright-html-report-shard-${{ matrix.shard }}
           path: playwright-report
           retention-days: 30
 
