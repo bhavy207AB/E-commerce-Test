@@ -1,10 +1,14 @@
 name: TestReRun Parity
 
 # Runs ONLY tests/rerun-parity.spec.ts and reports to the production TestDino
-# instance. The spec fails on odd run attempts and passes on even ones:
-# re-running the SAME run increments github.run_attempt, so the identical
-# commit goes FAIL -> PASS -> FAIL -> PASS. Use "Re-run all jobs" to advance
-# the attempt counter (a fresh dispatch resets it to attempt 1).
+# instance. The spec holds 12 cases: 8 always pass, 4 pass only on even run
+# attempts. Re-running the SAME run increments github.run_attempt, so the
+# identical commit goes:
+#   attempt 1 (odd):  8 passed, 4 failed -> FAILS
+#   attempt 2 (even): 12 passed          -> PASSES (green)
+#   attempt 3 -> FAILS, attempt 4 -> GREEN
+# Use "Re-run all jobs" to advance the attempt counter (a fresh dispatch
+# resets it to attempt 1).
 on:
   workflow_dispatch:
   push:
