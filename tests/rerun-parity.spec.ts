@@ -1,4 +1,4 @@
-import { test, expect } from '@testdino/playwright';
+import { test, expect } from '@playwright/test';
 
 // 12 cases run from this single spec, with no code changes between runs.
 //
