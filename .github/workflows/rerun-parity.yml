@@ -1,0 +1,63 @@
+name: TestReRun Parity
+
+# Runs ONLY tests/rerun-parity.spec.ts and reports to the production TestDino
+# instance. The spec fails on odd run attempts and passes on even ones:
+# re-running the SAME run increments github.run_attempt, so the identical
+# commit goes FAIL -> PASS -> FAIL -> PASS. Use "Re-run all jobs" to advance
+# the attempt counter (a fresh dispatch resets it to attempt 1).
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - TestReRun
+
+jobs:
+  rerun-parity:
+    runs-on: ubuntu-latest
+    env:
+      TESTDINO_SERVER_URL: https://reporter.testdino.com/
+      TESTDINO_CI_RUN_ID: ci-run-${{ github.run_id }}-${{ github.run_attempt }}
+      TESTDINO_TAGS: rerun-parity
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify TestDino Token
+        env:
+          TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
+        run: |
+          if [ -z "$TESTDINO_TOKEN" ]; then
+            echo "TESTDINO_TOKEN GitHub secret is required."
+            exit 1
+          fi
+
+      - name: Run Parity Spec
+        env:
+          TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
+        # Call the TestDino CLI by its explicit path: this branch still carries
+        # a legacy `tdpw` package whose bin would otherwise shadow the one from
+        # @testdino/playwright on `npx tdpw`.
+        run: |
+          node node_modules/@testdino/playwright/bin/tdpw.js test \
+            --server-url "$TESTDINO_SERVER_URL" \
+            tests/rerun-parity.spec.ts
+
+      - name: Upload HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-html-report-rerun-parity
+          path: playwright-report
+          retention-days: 30
