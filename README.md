@@ -14,6 +14,9 @@ Tests run in CI via the Playwright Tests workflow on every push to `main` and
 two splits (base vs. batch cases), each using two Playwright workers, grouped
 into a single logical run.
 
+The `Hundred Cases` workflow (`ci/hundred-cases` branch) runs only
+`tests/hundred-cases.spec.ts` and streams its result to TestDino staging.
+
 The test entry point accepts Playwright's `--workers` option and also
 normalizes the `--max-workers` spelling used by some hosted runners. For
 example, both of these commands run with two Playwright workers:
