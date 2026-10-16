@@ -1,0 +1,54 @@
+name: TDV2-918 SplitShard
+
+# Faithful repro of TDV2-918: 2 splits x 2 shards (4 jobs) sharing one split-id
+# and ci-run-id. Exactly one cell (split 2 / shard 2) fails in globalSetup before
+# Playwright starts, so it never emits run:begin — mimicking the job that died.
+# Reports to the staging project behind TESTDINO_STAGING_TOKEN.
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - ci/tdv2-918
+
+jobs:
+  splitshard:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        split: ['1', '2']
+        shard: ['1', '2']
+    env:
+      TESTDINO_SERVER_URL: https://stg-analytics.testdino.com/
+      TESTDINO_TOKEN: ${{ secrets.TESTDINO_STAGING_TOKEN }}
+      # Fail only the split 2 / shard 2 cell, before Playwright starts.
+      FAIL_GLOBAL_SETUP: ${{ (matrix.split == '2' && matrix.shard == '2') && '1' || '' }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run split ${{ matrix.split }} / shard ${{ matrix.shard }}
+        env:
+          SPLIT_ID: gh-${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          npx tdpw test \
+            --config=playwright-918.config.ts \
+            --split ${{ matrix.split }}/2 \
+            --split-id "$SPLIT_ID" \
+            --ci-run-id "$SPLIT_ID" \
+            -- \
+            --shard=${{ matrix.shard }}/2 \
+            --project=chromium
