@@ -35,9 +35,8 @@ on:
   pull_request:
 
 jobs:
-  # One STAGING run of the 1000-case spec only. Every other spec in the repo is
-  # deliberately not run here — this job exists solely to run
-  # tests/one-thousand-cases.spec.ts and stream its outcome to TestDino.
+  # Runs only the five specs listed below and streams their outcomes to
+  # TestDino. Every other spec in the repo is deliberately not run here.
   #
   # Whatever these tests do is the result: pass, fail or flaky, the step does
   # not gate the job. The reporter has streamed every outcome by then.
@@ -80,7 +79,11 @@ jobs:
         run: |
           npx tdpw test \
             -- \
-            tests/one-thousand-cases.spec.ts \
+            tests/CheckoutPage.spec.ts \
+            tests/browser-interactions.spec.ts \
+            tests/addToCart.spec.ts \
+            tests/tag-filter-verification.spec.ts \
+            tests/status-mix-verification.spec.ts \
             --project=chromium \
             --workers=10 \
             --reporter=html,@testdino/playwright
