@@ -1,0 +1,74 @@
+name: TDV2-1041 Run Tags & Trigger
+
+# Verification harness for TDV2-1041 ("Show run tags on active runs and who
+# started each run"). Each GitHub trigger type produces one real TestDino run
+# in the PROD project, so the dashboard shows a real trigger label/author:
+#   * pull_request      -> "PR · <actor>"
+#   * push              -> "Push · <actor>"
+#   * workflow_dispatch -> "Manual · <actor>"
+#   * "Re-run jobs"     -> "Re-run #<attempt> · <actor>" (run_attempt >= 2)
+#
+# Unlike the local run, these labels come from the real GITHUB_* context, not
+# simulated env. Runs upload to the PROD reporter with the project API key held
+# in the TDV2_1041_TOKEN secret.
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - 'tdv2-1041-**'
+
+jobs:
+  run-tags:
+    runs-on: ubuntu-latest
+    env:
+      # PROD reporter + PROD project key. Reuses the repo's existing
+      # TESTDINO_TOKEN secret, which targets the PROD project.
+      TESTDINO_SERVER_URL: https://reporter.testdino.com/
+      TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
+      TESTDINO_TAGS: smoke,nightly
+      # Keep the same run id across re-run attempts so a "Re-run jobs" is
+      # reported as a re-run of the same logical run (attempt is in the label).
+      TESTDINO_CI_RUN_ID: tdv2-1041-${{ github.event_name }}-${{ github.run_id }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify PROD token
+        run: |
+          if [ -z "$TESTDINO_TOKEN" ]; then
+            echo "::error::TESTDINO_TOKEN GitHub secret is required (PROD project API key)."
+            exit 1
+          fi
+
+      - name: Report trigger context
+        run: |
+          echo "event=$GITHUB_EVENT_NAME actor=$GITHUB_ACTOR triggering_actor=$GITHUB_TRIGGERING_ACTOR attempt=$GITHUB_RUN_ATTEMPT"
+
+      - name: Run TDV2-1041 trigger probe
+        id: tdpw
+        run: |
+          set -o pipefail
+          npx tdpw test -- tests/tdv2-1041-trigger.spec.ts --project=chromium 2>&1 | tee tdpw.out || true
+          URL=$(grep -ioE "https://app\.testdino\.com/[a-z0-9/_-]+test-runs/test_run_[a-z0-9]+" tdpw.out | head -1)
+          {
+            echo "## TDV2-1041 TestDino run"
+            echo ""
+            echo "- Event: \`$GITHUB_EVENT_NAME\`  ·  Actor: \`$GITHUB_ACTOR\`  ·  Triggering actor: \`$GITHUB_TRIGGERING_ACTOR\`  ·  Attempt: \`$GITHUB_RUN_ATTEMPT\`"
+            echo "- Run: ${URL:-not resolved (check job log)}"
+          } >> "$GITHUB_STEP_SUMMARY"
+          echo "run_url=$URL" >> "$GITHUB_OUTPUT"
+          echo "TestDino run: ${URL:-not resolved}"
