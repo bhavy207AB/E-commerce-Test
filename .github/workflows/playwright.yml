@@ -35,7 +35,7 @@ on:
   pull_request:
 
 jobs:
-  # Runs only the four specs listed below and streams their outcomes to
+  # Runs only the storedemo 25-case spec and streams its outcomes to
   # TestDino. Every other spec in the repo is deliberately not run here.
   #
   # Whatever these tests do is the result: pass, fail or flaky, the step does
@@ -79,10 +79,7 @@ jobs:
         run: |
           npx tdpw test \
             -- \
-            tests/addToCart.spec.ts \
-            tests/browser-interactions.spec.ts \
-            tests/CheckoutPage.spec.ts \
-            tests/ten-cases.spec.ts \
+            tests/storedemo-25-cases.spec.ts \
             --project=chromium \
             --workers=10 \
             --reporter=html,@testdino/playwright
