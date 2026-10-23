@@ -2,6 +2,11 @@ name: Playwright Tests
 
 on:
   workflow_dispatch:
+    inputs:
+      testdino_selection:
+        description: 'Set by TestDino "Run automated tests" (test_selection_...). Leave empty to run the full suite.'
+        required: false
+        default: ''
   push:
     branches:
       - main
@@ -116,7 +121,7 @@ jobs:
           retention-days: 30
 
   coverage:
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' && inputs.testdino_selection == ''
     runs-on: ubuntu-latest
     env:
       TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
@@ -165,3 +170,58 @@ jobs:
           name: testdino-coverage-report
           path: coverage-report
           retention-days: 14
+
+  # Runs the automated tests of a stored TestDino selection, dispatched by
+  # TestDino's "Run automated tests" (Test Case Management). An empty selection
+  # input runs the full suite. Reports to the staging project where the
+  # selection and its linked manual cases live. Requires TestDino CLI >= 2.11.0.
+  selection:
+    if: github.event_name == 'workflow_dispatch' && inputs.testdino_selection != ''
+    runs-on: ubuntu-latest
+    env:
+      TESTDINO_SERVER_URL: https://stg-analytics.testdino.com/
+      TESTDINO_TOKEN: ${{ secrets.TESTDINO_STAGING_TOKEN }}
+      TESTDINO_TAGS: staging,selection
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify Staging Token
+        run: |
+          if [ -z "$TESTDINO_TOKEN" ]; then
+            echo "::error::TESTDINO_STAGING_TOKEN GitHub secret is required for the staging project."
+            exit 1
+          fi
+
+      - name: Run tests
+        env:
+          TESTDINO_CI_RUN_ID: ci-selection-${{ github.run_id }}-${{ github.run_attempt }}
+          TD_SELECTION: ${{ inputs.testdino_selection }}
+        shell: bash
+        run: |
+          args=()
+          if [ -n "$TD_SELECTION" ]; then
+            args+=(--selection "$TD_SELECTION")
+          fi
+          npx tdpw test "${args[@]}" --project=chromium || echo "Non-zero exit - every result is already in TestDino."
+
+      - name: Upload HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-html-report-selection
+          path: playwright-report
+          retention-days: 30
