@@ -35,8 +35,9 @@ on:
   pull_request:
 
 jobs:
-  # Runs only the storedemo 25-case spec and streams its outcomes to
-  # TestDino. Every other spec in the repo is deliberately not run here.
+  # Runs only the five storedemo specs listed below and streams their outcomes
+  # to TestDino. Every other spec in the repo is deliberately not run here, and
+  # these specs are CI-only (they self-skip unless CI=true).
   #
   # Whatever these tests do is the result: pass, fail or flaky, the step does
   # not gate the job. The reporter has streamed every outcome by then.
@@ -79,7 +80,11 @@ jobs:
         run: |
           npx tdpw test \
             -- \
-            tests/storedemo-25-cases.spec.ts \
+            tests/home-page.spec.ts \
+            tests/products-listing.spec.ts \
+            tests/product-catalogue.spec.ts \
+            tests/product-search.spec.ts \
+            tests/shopping-cart.spec.ts \
             --project=chromium \
             --workers=10 \
             --reporter=html,@testdino/playwright
