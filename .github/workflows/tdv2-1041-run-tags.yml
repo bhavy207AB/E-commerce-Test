@@ -62,7 +62,7 @@ jobs:
         id: tdpw
         run: |
           set -o pipefail
-          npx tdpw test -- tests/tdv2-1041-trigger.spec.ts tests/tdv2-1041-long-failure-list-arabic.spec.ts --project=chromium 2>&1 | tee tdpw.out || true
+          npx tdpw test -- tests/tdv2-1041-trigger.spec.ts tests/tdv2-1041-short-failure-list.spec.ts --project=chromium 2>&1 | tee tdpw.out || true
           URL=$(grep -ioE "https://app\.testdino\.com/[a-z0-9/_-]+test-runs/test_run_[a-z0-9]+" tdpw.out | head -1)
           {
             echo "## TDV2-1041 TestDino run"
