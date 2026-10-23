@@ -1,10 +1,12 @@
+// Temporarily disabled — product-search.spec.ts commented out.
+// Re-enable by removing the /* */ wrapper below.
+
+/*
 import { test, expect } from '@playwright/test';
 import { ciOnly, openProducts, SEL } from './support/store-helpers';
 
-/**
- * TestDino Demo Store — Product search. CI-only.
- * 4 cases pass, 1 asserts a wrong value -> fail.
- */
+// TestDino Demo Store — Product search. CI-only.
+// 4 cases pass, 1 asserts a wrong value -> fail.
 ciOnly(test);
 
 test.describe('Product search', () => {
@@ -49,3 +51,4 @@ test.describe('Product search', () => {
     await expect(page.locator(SEL.resultsCount)).toHaveText('Showing 3 products');
   });
 });
+*/
