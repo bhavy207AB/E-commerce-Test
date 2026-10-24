@@ -23,6 +23,10 @@ npm test -- --workers=2
 npm test -- --max-workers=2
 ```
 
+The dedicated **Products Smoke** workflow runs the 10-case
+`tests/products-smoke.spec.ts` suite on pushes to `STAGGING` and reports to the
+staging TestDino project.
+
 ## TestDino MCP
 
 The project installs the latest compatible TestDino MCP release from npm and
