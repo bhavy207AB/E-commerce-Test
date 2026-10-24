@@ -1,0 +1,67 @@
+name: Products Smoke
+
+# Dedicated run for tests/products-smoke.spec.ts only — the 10-case products
+# listing smoke suite against https://storedemo.testdino.com. No other spec in
+# the repo runs here. Reports to the staging TestDino project.
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - STAGGING
+    paths:
+      - tests/products-smoke.spec.ts
+      - .github/workflows/products-smoke.yml
+
+jobs:
+  products-smoke:
+    runs-on: ubuntu-latest
+    env:
+      # Staging reporter + token, matching the other staging jobs. Must be
+      # explicit: playwright.config.ts falls back to the prod reporter when
+      # TESTDINO_SERVER_URL is unset.
+      TESTDINO_SERVER_URL: https://stg-analytics.testdino.com/
+      TESTDINO_TOKEN: ${{ secrets.TESTDINO_STAGING_TOKEN }}
+      TESTDINO_TAGS: staging,smoke
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify Staging Token
+        run: |
+          if [ -z "$TESTDINO_TOKEN" ]; then
+            echo "::error::TESTDINO_STAGING_TOKEN GitHub secret is required for the staging project."
+            exit 1
+          fi
+
+      - name: Run Products Smoke Spec
+        env:
+          TESTDINO_CI_RUN_ID: ci-products-smoke-${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          npx tdpw test \
+            -- \
+            tests/products-smoke.spec.ts \
+            --project=chromium \
+            --workers=10 \
+            --reporter=html,@testdino/playwright
+
+      - name: Upload HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: products-smoke-report
+          path: playwright-report
+          retention-days: 30
