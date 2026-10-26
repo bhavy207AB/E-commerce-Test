@@ -91,7 +91,7 @@ jobs:
             tests/shopping-cart.spec.ts \
             --project=chromium \
             --workers=10 \
-            --reporter=html,@testdino/playwright || echo "Non-zero exit - every result is already in TestDino."
+            --reporter=html,@testdino/playwright
 
       - name: Upload HTML Report
         if: always()
