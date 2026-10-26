@@ -206,7 +206,7 @@ jobs:
           if [ -n "${RERUN_EXCLUDE_IDS}" ]; then ARGS="$ARGS --exclude-ids ${RERUN_EXCLUDE_IDS}"; fi
           if [ -n "${RERUN_TAGS}" ]; then ARGS="$ARGS --rerun-tags ${RERUN_TAGS}"; fi
           echo "Running: npx tdpw test $ARGS --project=chromium"
-          npx tdpw test $ARGS --project=chromium || echo "Non-zero exit - every result is already in TestDino."
+          npx tdpw test $ARGS --project=chromium
 
       - name: Upload HTML Report
         if: always()
@@ -261,7 +261,7 @@ jobs:
           if [ -n "$TD_SELECTION" ]; then
             args+=(--selection "$TD_SELECTION")
           fi
-          npx tdpw test "${args[@]}" --project=chromium || echo "Non-zero exit - every result is already in TestDino."
+          npx tdpw test "${args[@]}" --project=chromium
 
       - name: Upload HTML Report
         if: always()
