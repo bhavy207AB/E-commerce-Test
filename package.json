@@ -23,7 +23,6 @@
     "axe-playwright": "^2.2.2"
   },
   "dependencies": {
-    "package": "^1.0.1",
     "testdino-mcp": "^2.0.0"
   }
 }
