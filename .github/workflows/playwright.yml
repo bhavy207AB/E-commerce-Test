@@ -85,6 +85,7 @@ jobs:
             tests/api-mocking.spec.ts \
             tests/login.spec.ts \
             tests/browser-interactions.spec.ts \
+            tests/tcm-smoke.spec.ts \
             --shard=${{ matrix.shard }}/5
 
       - name: Verify Blob Report
