@@ -104,13 +104,16 @@ jobs:
   # Runs the 3 CI-only TCM specs (tests/tcm-auto-*.spec.ts) on push so their
   # 15 tests register in TestDino and can be linked to manual test cases for
   # the "Run automated tests" feature (TDV2-1046). They self-skip locally.
+  #
+  # Reports to PRODUCTION TestDino: TESTDINO_SERVER_URL is left unset so
+  # playwright.config.ts falls back to the prod reporter, and it uses the prod
+  # TESTDINO_TOKEN secret (same one the coverage job uses).
   tcm-auto-register:
     if: github.event_name != 'workflow_dispatch'
     runs-on: ubuntu-latest
     env:
-      TESTDINO_SERVER_URL: https://stg-analytics.testdino.com/
-      TESTDINO_TOKEN: ${{ secrets.TESTDINO_STAGING_TOKEN }}
-      TESTDINO_TAGS: staging,tcm-auto
+      TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
+      TESTDINO_TAGS: prod,tcm-auto
 
     steps:
       - name: Checkout Repository
@@ -128,10 +131,10 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps chromium
 
-      - name: Verify Staging Token
+      - name: Verify Prod Token
         run: |
           if [ -z "$TESTDINO_TOKEN" ]; then
-            echo "::error::TESTDINO_STAGING_TOKEN GitHub secret is required for the staging project."
+            echo "::error::TESTDINO_TOKEN GitHub secret is required for the prod project."
             exit 1
           fi
 
