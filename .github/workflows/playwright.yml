@@ -101,6 +101,61 @@ jobs:
           path: playwright-report
           retention-days: 30
 
+  # Runs the 3 CI-only TCM specs (tests/tcm-auto-*.spec.ts) on push so their
+  # 15 tests register in TestDino and can be linked to manual test cases for
+  # the "Run automated tests" feature (TDV2-1046). They self-skip locally.
+  tcm-auto-register:
+    if: github.event_name != 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    env:
+      TESTDINO_SERVER_URL: https://stg-analytics.testdino.com/
+      TESTDINO_TOKEN: ${{ secrets.TESTDINO_STAGING_TOKEN }}
+      TESTDINO_TAGS: staging,tcm-auto
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify Staging Token
+        run: |
+          if [ -z "$TESTDINO_TOKEN" ]; then
+            echo "::error::TESTDINO_STAGING_TOKEN GitHub secret is required for the staging project."
+            exit 1
+          fi
+
+      - name: Run TCM Auto Specs
+        env:
+          TESTDINO_CI_RUN_ID: ci-tcm-auto-${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          npx tdpw test \
+            -- \
+            tests/tcm-auto-login.spec.ts \
+            tests/tcm-auto-cart.spec.ts \
+            tests/tcm-auto-checkout.spec.ts \
+            --project=chromium \
+            --workers=6 \
+            --reporter=html,@testdino/playwright
+
+      - name: Upload HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-html-report-tcm-auto
+          path: playwright-report
+          retention-days: 30
+
   coverage:
     if: github.event_name == 'workflow_dispatch' && inputs.testdino_rerun_from == '' && inputs.testdino_selection == ''
     runs-on: ubuntu-latest
