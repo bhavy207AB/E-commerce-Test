@@ -8,6 +8,6 @@ test.describe('TCM Auto Checkout', () => {
   test('TCM Auto Checkout - case 1', async () => { expect(1 + 1).toBe(2); });
   test('TCM Auto Checkout - case 2', async () => { expect('abc'.toUpperCase()).toBe('ABC'); });
   test('TCM Auto Checkout - case 3', async () => { expect([1, 2, 3]).toHaveLength(3); });
-  test('TCM Auto Checkout - case 4', async () => { expect({ a: 1 }).toMatchObject({ a: 1 }); });
-  test('TCM Auto Checkout - case 5', async () => { expect(Math.max(2, 9, 4)).toBe(9); });
+  test('TCM Auto Checkout - case 4', async () => { expect({ a: 1 }).toMatchObject({ a: 2 }); });
+  test('TCM Auto Checkout - case 5', async () => { expect(Math.max(2, 9, 4)).toBe(99); });
 });
