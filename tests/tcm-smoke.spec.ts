@@ -15,7 +15,7 @@ test.describe('TCM Smoke', () => {
   test('TCM Smoke - case 7', async () => { expect('hello world').toContain('world'); });
   test('TCM Smoke - case 8', async () => { expect(Boolean('x')).toBe(true); });
   test('TCM Smoke - case 9', async () => { expect([1, 2, 3].includes(2)).toBe(true); });
-  test('TCM Smoke - case 10', async () => { expect(Math.min(5, 2, 8)).toBe(2); });
+  test('TCM Smoke - case 10', async () => { expect(Math.min(5, 2, 8)).toBe(0); });
 
   // --- failing (cases 11-15) ---
   test('TCM Smoke - case 11', async () => { expect(2 + 2).toBe(5); });
