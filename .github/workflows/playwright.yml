@@ -86,7 +86,6 @@ jobs:
             tests/api-mocking.spec.ts \
             tests/login.spec.ts \
             tests/browser-interactions.spec.ts \
-            tests/tcm-smoke.spec.ts \
             --shard=${{ matrix.shard }}/5
 
       - name: Verify Blob Report
@@ -144,6 +143,60 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-html-report
+          path: playwright-report
+          retention-days: 30
+
+  # Runs the single tcm-smoke spec (5 cases) in isolation and reports it to the
+  # production TestDino project so the 5 automated tests register there and can
+  # be linked 1:1 to manual TCM cases. Kept separate from the sharded playwright
+  # job because that job's specs import test/expect from @testdino/playwright
+  # (reporter-only) and fail collection; tcm-smoke imports @playwright/test and
+  # runs clean on its own.
+  tcm-smoke:
+    if: github.event_name != 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    env:
+      TESTDINO_SERVER_URL: https://reporter.testdino.com/
+      TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
+      TESTDINO_TAGS: prod,tcm-smoke
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify Prod Token
+        run: |
+          if [ -z "$TESTDINO_TOKEN" ]; then
+            echo "::error::TESTDINO_TOKEN GitHub secret is required for the production project."
+            exit 1
+          fi
+
+      - name: Run TCM Smoke Spec
+        env:
+          TESTDINO_CI_RUN_ID: ci-tcm-smoke-${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          npx tdpw test \
+            tests/tcm-smoke.spec.ts \
+            --project=chromium \
+            --reporter=@testdino/playwright
+
+      - name: Upload HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-html-report-tcm-smoke
           path: playwright-report
           retention-days: 30
 
