@@ -276,15 +276,15 @@ jobs:
 
   # Runs the automated tests of a stored TestDino selection, dispatched by
   # TestDino's "Run automated tests" (Test Case Management). An empty selection
-  # input runs the full suite. Reports to the same staging project the selection
-  # and its linked manual cases live in. Requires TestDino CLI >= 2.11.0.
+  # input runs the full suite. Reports to PRODUCTION TestDino (TESTDINO_SERVER_URL
+  # left unset -> prod reporter, prod TESTDINO_TOKEN secret), the same project the
+  # selection and its linked manual cases live in. Requires TestDino CLI >= 2.11.0.
   selection:
     if: github.event_name == 'workflow_dispatch' && inputs.testdino_rerun_from == '' && inputs.testdino_selection != ''
     runs-on: ubuntu-latest
     env:
-      TESTDINO_SERVER_URL: https://stg-analytics.testdino.com/
-      TESTDINO_TOKEN: ${{ secrets.TESTDINO_STAGING_TOKEN }}
-      TESTDINO_TAGS: staging,selection
+      TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
+      TESTDINO_TAGS: prod,selection
 
     steps:
       - name: Checkout Repository
@@ -302,10 +302,10 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps chromium
 
-      - name: Verify Staging Token
+      - name: Verify Prod Token
         run: |
           if [ -z "$TESTDINO_TOKEN" ]; then
-            echo "::error::TESTDINO_STAGING_TOKEN GitHub secret is required for the staging project."
+            echo "::error::TESTDINO_TOKEN GitHub secret is required for the prod project."
             exit 1
           fi
 
