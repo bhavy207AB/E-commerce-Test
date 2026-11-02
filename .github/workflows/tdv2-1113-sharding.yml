@@ -1,0 +1,87 @@
+name: TDV2-1113 Sharding (staging)
+
+# Reproduces TDV2-1113: a Playwright run executed with --shard is not created in
+# TestDino, while the same run without --shard is. Runs three scenarios against
+# the staging E2E project (stg-analytics) and reports each; verification is done
+# afterwards via MCP list_testruns / get_run_details. Push-triggered so it fires
+# without a mergeable PR. Uses plain `npx playwright test` + the @testdino reporter,
+# matching the ticket's repro command exactly.
+on:
+  push:
+    branches:
+      - tdv2-1113-shard-repro
+  workflow_dispatch:
+
+env:
+  TESTDINO_SERVER_URL: https://stg-analytics.testdino.com/
+  TESTDINO_TOKEN: ${{ secrets.TESTDINO_STAGING_TOKEN }}
+
+jobs:
+  # Control: no --shard. Expected to appear on Test Runs (Total 12).
+  unsharded:
+    runs-on: ubuntu-latest
+    env:
+      TESTDINO_TAGS: staging,tdv2-1113-unsharded
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Run unsharded
+        env:
+          TESTDINO_CI_RUN_ID: ci-1113-unsharded-${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          npx playwright test tests/tdv2-1113-group-1.spec.ts tests/tdv2-1113-group-2.spec.ts tests/tdv2-1113-group-3.spec.ts tests/tdv2-1113-group-4.spec.ts \
+            --project=chromium \
+            --reporter=@testdino/playwright
+
+  # Repro: a single shard (1/2), no shared CI_RUN_ID — ticket case 1.
+  # Expected (bug): this run does NOT appear on Test Runs.
+  sharded-single:
+    runs-on: ubuntu-latest
+    env:
+      TESTDINO_TAGS: staging,tdv2-1113-shard1of2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Run shard 1/2
+        run: |
+          npx playwright test tests/tdv2-1113-group-1.spec.ts tests/tdv2-1113-group-2.spec.ts tests/tdv2-1113-group-3.spec.ts tests/tdv2-1113-group-4.spec.ts \
+            --project=chromium \
+            --shard=1/2 \
+            --reporter=@testdino/playwright
+
+  # Merge: 3 shards in parallel sharing one TESTDINO_CI_RUN_ID.
+  # Expected (fixed): one SHARDED run with Total 12 (TDV2-1087 linkage).
+  sharded-merge:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3]
+    env:
+      TESTDINO_TAGS: staging,tdv2-1113-merge
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Run shard ${{ matrix.shard }}/3 (shared CI_RUN_ID)
+        env:
+          TESTDINO_CI_RUN_ID: ci-1113-merge-${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          npx playwright test tests/tdv2-1113-group-1.spec.ts tests/tdv2-1113-group-2.spec.ts tests/tdv2-1113-group-3.spec.ts tests/tdv2-1113-group-4.spec.ts \
+            --project=chromium \
+            --shard=${{ matrix.shard }}/3 \
+            --reporter=@testdino/playwright
