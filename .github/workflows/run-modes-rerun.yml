@@ -1,0 +1,36 @@
+name: Run Modes Rerun (staging + prod)
+
+# Phase 2 of the run-modes check: re-run the failed tests of the source runs
+# created by run-modes.yml, on both environments, to see whether a rerun run is
+# created and marked is_rerun. Source run ids are pinned below.
+on:
+  push:
+    branches:
+      - run-modes-rerun
+  workflow_dispatch:
+
+jobs:
+  rerun:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - env: staging
+            source: test_run_b513bde7a3f449f810dbb7ef
+          - env: prod
+            source: test_run_09340392275debdeb79b6190
+    runs-on: ubuntu-latest
+    env:
+      TESTDINO_SERVER_URL: ${{ matrix.env == 'prod' && 'https://reporter.testdino.com/' || 'https://stg-analytics.testdino.com/' }}
+      TESTDINO_TOKEN: ${{ matrix.env == 'prod' && secrets.TESTDINO_TOKEN || secrets.TESTDINO_STAGING_TOKEN }}
+      TESTDINO_TAGS: runmodes,rerun,${{ matrix.env }}
+      TESTDINO_CI_RUN_ID: runmodes-rerun-${{ matrix.env }}-${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Rerun failed from ${{ matrix.source }} (${{ matrix.env }})
+        run: |
+          npx tdpw test --rerun failed --from-run ${{ matrix.source }} --project=chromium || true
