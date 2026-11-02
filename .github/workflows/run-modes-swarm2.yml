@@ -1,0 +1,39 @@
+name: Run Modes Swarm (TESTDINO_SWARM_ID) staging + prod
+
+# Attempt a true swarm: two machines each run their own half of the specs and
+# share a TESTDINO_SWARM_ID (plus the same TESTDINO_CI_RUN_ID), to see whether
+# the reporter merges them into one is_swarm run. Both environments.
+on:
+  push:
+    branches:
+      - run-modes-swarm2
+  workflow_dispatch:
+
+jobs:
+  swarm:
+    strategy:
+      fail-fast: false
+      matrix:
+        env: [staging, prod]
+        machine: [1, 2]
+        include:
+          - machine: 1
+            specs: "tests/tdv2-1113-group-1.spec.ts tests/tdv2-1113-group-2.spec.ts"
+          - machine: 2
+            specs: "tests/tdv2-1113-group-3.spec.ts tests/tdv2-1113-group-4.spec.ts"
+    runs-on: ubuntu-latest
+    env:
+      TESTDINO_SERVER_URL: ${{ matrix.env == 'prod' && 'https://reporter.testdino.com/' || 'https://stg-analytics.testdino.com/' }}
+      TESTDINO_TOKEN: ${{ matrix.env == 'prod' && secrets.TESTDINO_TOKEN || secrets.TESTDINO_STAGING_TOKEN }}
+      TESTDINO_TAGS: runmodes,swarm2,${{ matrix.env }}
+      TESTDINO_CI_RUN_ID: runmodes-swarm2-${{ matrix.env }}-${{ github.run_id }}
+      TESTDINO_SWARM_ID: runmodes-swarm2-${{ matrix.env }}-${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Swarm machine ${{ matrix.machine }} (${{ matrix.env }})
+        run: |
+          npx tdpw test -- ${{ matrix.specs }} --project=chromium
