@@ -1,0 +1,71 @@
+name: TDV2-1113 Retest — sharded via tdpw + plain (staging + prod)
+
+# Retest per developer guidance:
+#  1. Sharded via tdpw with a shared --ci-run-id on every shard.
+#  2. Sharded via plain `npx playwright test` with ciRunId supplied through the
+#     playwright.config reporter options (TESTDINO_CI_RUN_ID env, NOT a --reporter
+#     CLI override — the override was the original mistake that dropped ciRunId).
+# Both expect ONE merged SHARDED run per env, Total 12 (sum of shards 6 + 6).
+on:
+  push:
+    branches:
+      - tdv2-1113-retest
+  workflow_dispatch:
+
+jobs:
+  # Test 1 — tdpw launcher sets the CI run id for every shard.
+  sharded-tdpw:
+    strategy:
+      fail-fast: false
+      matrix:
+        env: [staging, prod]
+        shard: [1, 2]
+    runs-on: ubuntu-latest
+    env:
+      TESTDINO_SERVER_URL: ${{ matrix.env == 'prod' && 'https://reporter.testdino.com/' || 'https://stg-analytics.testdino.com/' }}
+      TESTDINO_TOKEN: ${{ matrix.env == 'prod' && secrets.TESTDINO_TOKEN || secrets.TESTDINO_STAGING_TOKEN }}
+      TESTDINO_TAGS: retest,sharded-tdpw,${{ matrix.env }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Sharded ${{ matrix.shard }}/2 via tdpw (${{ matrix.env }})
+        run: |
+          npx tdpw test \
+            --ci-run-id retest-sharded-tdpw-${{ matrix.env }}-${{ github.run_id }} \
+            -- \
+            tests/tdv2-1113-group-1.spec.ts tests/tdv2-1113-group-2.spec.ts \
+            tests/tdv2-1113-group-3.spec.ts tests/tdv2-1113-group-4.spec.ts \
+            --project=chromium \
+            --shard=${{ matrix.shard }}/2
+
+  # Test 2 — plain Playwright; ciRunId comes from the config reporter (reads
+  # TESTDINO_CI_RUN_ID). NO --reporter override, so the config's @testdino
+  # reporter (with ciRunId) is used.
+  sharded-plain:
+    strategy:
+      fail-fast: false
+      matrix:
+        env: [staging, prod]
+        shard: [1, 2]
+    runs-on: ubuntu-latest
+    env:
+      TESTDINO_SERVER_URL: ${{ matrix.env == 'prod' && 'https://reporter.testdino.com/' || 'https://stg-analytics.testdino.com/' }}
+      TESTDINO_TOKEN: ${{ matrix.env == 'prod' && secrets.TESTDINO_TOKEN || secrets.TESTDINO_STAGING_TOKEN }}
+      TESTDINO_TAGS: retest,sharded-plain,${{ matrix.env }}
+      TESTDINO_CI_RUN_ID: retest-sharded-plain-${{ matrix.env }}-${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Sharded ${{ matrix.shard }}/2 via plain Playwright (${{ matrix.env }})
+        run: |
+          npx playwright test \
+            tests/tdv2-1113-group-1.spec.ts tests/tdv2-1113-group-2.spec.ts \
+            tests/tdv2-1113-group-3.spec.ts tests/tdv2-1113-group-4.spec.ts \
+            --project=chromium \
+            --shard=${{ matrix.shard }}/2
