@@ -1,0 +1,41 @@
+name: Run Modes Split (proper) staging + prod
+
+# Proper manual split: each split runs its OWN half of the specs (split 1 ->
+# groups 1&2, split 2 -> groups 3&4), sharing one --split-id so they merge into
+# one is_split run with Total 12 and no anomaly. Both environments.
+on:
+  push:
+    branches:
+      - run-modes-split2
+  workflow_dispatch:
+
+jobs:
+  split:
+    strategy:
+      fail-fast: false
+      matrix:
+        env: [staging, prod]
+        split: [1, 2]
+        include:
+          - split: 1
+            specs: "tests/tdv2-1113-group-1.spec.ts tests/tdv2-1113-group-2.spec.ts"
+          - split: 2
+            specs: "tests/tdv2-1113-group-3.spec.ts tests/tdv2-1113-group-4.spec.ts"
+    runs-on: ubuntu-latest
+    env:
+      TESTDINO_SERVER_URL: ${{ matrix.env == 'prod' && 'https://reporter.testdino.com/' || 'https://stg-analytics.testdino.com/' }}
+      TESTDINO_TOKEN: ${{ matrix.env == 'prod' && secrets.TESTDINO_TOKEN || secrets.TESTDINO_STAGING_TOKEN }}
+      TESTDINO_TAGS: runmodes,split2,${{ matrix.env }}
+      TESTDINO_CI_RUN_ID: runmodes-split2-${{ matrix.env }}-${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Split ${{ matrix.split }}/2 (${{ matrix.env }}) — half the specs
+        run: |
+          npx tdpw test \
+            --split ${{ matrix.split }}/2 \
+            --split-id runmodes-split2-${{ matrix.env }}-${{ github.run_id }} \
+            -- ${{ matrix.specs }} --project=chromium
