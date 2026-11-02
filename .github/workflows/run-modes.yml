@@ -1,0 +1,110 @@
+name: Run Modes Check (staging + prod)
+
+# Exercises every TestDino run mode on BOTH staging and prod to see which are
+# created: normal, split (tdpw --split), swarm (multiple machines, shared
+# ci-run-id), and a failing source for the rerun check. Sharded is covered by
+# the tdv2-1113 workflows. Verified afterwards via MCP. Push-triggered.
+on:
+  push:
+    branches:
+      - run-modes-check
+  workflow_dispatch:
+
+jobs:
+  normal:
+    strategy:
+      fail-fast: false
+      matrix:
+        env: [staging, prod]
+    runs-on: ubuntu-latest
+    env:
+      TESTDINO_SERVER_URL: ${{ matrix.env == 'prod' && 'https://reporter.testdino.com/' || 'https://stg-analytics.testdino.com/' }}
+      TESTDINO_TOKEN: ${{ matrix.env == 'prod' && secrets.TESTDINO_TOKEN || secrets.TESTDINO_STAGING_TOKEN }}
+      TESTDINO_TAGS: runmodes,normal,${{ matrix.env }}
+      TESTDINO_CI_RUN_ID: runmodes-normal-${{ matrix.env }}-${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Normal run (${{ matrix.env }})
+        run: |
+          npx tdpw test -- \
+            tests/tdv2-1113-group-1.spec.ts tests/tdv2-1113-group-2.spec.ts \
+            tests/tdv2-1113-group-3.spec.ts tests/tdv2-1113-group-4.spec.ts \
+            --project=chromium
+
+  split:
+    strategy:
+      fail-fast: false
+      matrix:
+        env: [staging, prod]
+        split: [1, 2]
+    runs-on: ubuntu-latest
+    env:
+      TESTDINO_SERVER_URL: ${{ matrix.env == 'prod' && 'https://reporter.testdino.com/' || 'https://stg-analytics.testdino.com/' }}
+      TESTDINO_TOKEN: ${{ matrix.env == 'prod' && secrets.TESTDINO_TOKEN || secrets.TESTDINO_STAGING_TOKEN }}
+      TESTDINO_TAGS: runmodes,split,${{ matrix.env }}
+      TESTDINO_CI_RUN_ID: runmodes-split-${{ matrix.env }}-${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Split ${{ matrix.split }}/2 (${{ matrix.env }})
+        run: |
+          npx tdpw test \
+            --split ${{ matrix.split }}/2 \
+            --split-id runmodes-split-${{ matrix.env }}-${{ github.run_id }} \
+            -- \
+            tests/tdv2-1113-group-1.spec.ts tests/tdv2-1113-group-2.spec.ts \
+            tests/tdv2-1113-group-3.spec.ts tests/tdv2-1113-group-4.spec.ts \
+            --project=chromium
+
+  swarm:
+    strategy:
+      fail-fast: false
+      matrix:
+        env: [staging, prod]
+        machine:
+          - "tests/tdv2-1113-group-1.spec.ts tests/tdv2-1113-group-2.spec.ts"
+          - "tests/tdv2-1113-group-3.spec.ts tests/tdv2-1113-group-4.spec.ts"
+    runs-on: ubuntu-latest
+    env:
+      TESTDINO_SERVER_URL: ${{ matrix.env == 'prod' && 'https://reporter.testdino.com/' || 'https://stg-analytics.testdino.com/' }}
+      TESTDINO_TOKEN: ${{ matrix.env == 'prod' && secrets.TESTDINO_TOKEN || secrets.TESTDINO_STAGING_TOKEN }}
+      TESTDINO_TAGS: runmodes,swarm,${{ matrix.env }}
+      TESTDINO_CI_RUN_ID: runmodes-swarm-${{ matrix.env }}-${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Swarm machine (${{ matrix.env }})
+        run: |
+          npx tdpw test -- ${{ matrix.machine }} --project=chromium
+
+  # Failing source run (normal mode) so the rerun check has a run with failures.
+  rerun-source:
+    strategy:
+      fail-fast: false
+      matrix:
+        env: [staging, prod]
+    runs-on: ubuntu-latest
+    env:
+      TESTDINO_SERVER_URL: ${{ matrix.env == 'prod' && 'https://reporter.testdino.com/' || 'https://stg-analytics.testdino.com/' }}
+      TESTDINO_TOKEN: ${{ matrix.env == 'prod' && secrets.TESTDINO_TOKEN || secrets.TESTDINO_STAGING_TOKEN }}
+      TESTDINO_TAGS: runmodes,rerun-source,${{ matrix.env }}
+      TESTDINO_CI_RUN_ID: runmodes-source-${{ matrix.env }}-${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Rerun source run (${{ matrix.env }})
+        run: |
+          npx tdpw test -- tests/tdv2-modes-source.spec.ts --project=chromium || true
