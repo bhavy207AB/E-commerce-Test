@@ -1,0 +1,60 @@
+name: TDV2-1110 Describe Grouping (staging)
+
+# Runs the untitled/named/nested describe repro specs and reports them to the
+# STAGING TestDino project (E2E) so the Detailed Analysis grouping can be checked
+# after the TDV2-1110 ingestion fix (#1484) is deployed to staging. Push-triggered
+# so it fires without needing a mergeable PR.
+on:
+  push:
+    branches:
+      - tdv2-1110-describe-grouping
+  workflow_dispatch:
+
+jobs:
+  describe-grouping:
+    runs-on: ubuntu-latest
+    env:
+      TESTDINO_SERVER_URL: https://stg-analytics.testdino.com/
+      TESTDINO_TOKEN: ${{ secrets.TESTDINO_STAGING_TOKEN }}
+      TESTDINO_TAGS: staging,tdv2-1110
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify Staging Token
+        run: |
+          if [ -z "$TESTDINO_TOKEN" ]; then
+            echo "::error::TESTDINO_STAGING_TOKEN GitHub secret is required for the staging project."
+            exit 1
+          fi
+
+      - name: Run Describe-Grouping Repro Specs
+        env:
+          TESTDINO_CI_RUN_ID: ci-tdv2-1110-${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          npx tdpw test \
+            tests/tdv2-1110-a.spec.ts \
+            tests/tdv2-1110-b.spec.ts \
+            --project=chromium \
+            --reporter=@testdino/playwright
+
+      - name: Upload HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-html-report-tdv2-1110
+          path: playwright-report
+          retention-days: 30
