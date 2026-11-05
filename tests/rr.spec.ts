@@ -1,19 +1,19 @@
 import { expect, test } from '@testdino/playwright';
 
-// RR run 3 of 4 — 5 passed, 2 skipped.
+// RR run 4 of 4 — 4 passed, 4 failed.
 
-test.describe('RR run 3 — 5 passed / 2 skipped @RR', () => {
-  // 5 passed
-  for (let i = 1; i <= 5; i++) {
+test.describe('RR run 4 — 4 passed / 4 failed @RR', () => {
+  // 4 passed
+  for (let i = 1; i <= 4; i++) {
     test(`passed case ${i}`, async () => {
       expect(i).toBe(i);
     });
   }
 
-  // 2 skipped
-  for (let i = 1; i <= 2; i++) {
-    test.skip(`skipped case ${i}`, async () => {
-      expect(true).toBe(true);
+  // 4 failed
+  for (let i = 1; i <= 4; i++) {
+    test(`failed case ${i}`, async () => {
+      expect(i).toBe(i + 1);
     });
   }
 });
