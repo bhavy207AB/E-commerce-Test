@@ -1,20 +1,13 @@
 import { test, expect } from '@playwright/test';
 
-// RR run 1 of 4 — 5 passed, 3 failed, 2 flaky, 1 skipped.
+// RR run 2 of 4 — 5 passed, 2 flaky, 1 skipped.
 // Flaky = fails on attempt 0, passes on retry (playwright.config.ts sets retries: 2).
 
-test.describe('RR run 1 — 5 passed / 3 failed / 2 flaky / 1 skipped @RR', () => {
+test.describe('RR run 2 — 5 passed / 2 flaky / 1 skipped @RR', () => {
   // 5 passed
   for (let i = 1; i <= 5; i++) {
     test(`passed case ${i}`, async () => {
       expect(i).toBe(i);
-    });
-  }
-
-  // 3 failed
-  for (let i = 1; i <= 3; i++) {
-    test(`failed case ${i}`, async () => {
-      expect(i).toBe(i + 1);
     });
   }
 
