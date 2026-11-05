@@ -1,0 +1,35 @@
+name: RR — status-mix runs on prod
+
+# One run per push to the RR branch. Each commit rewrites tests/rr.spec.ts with a
+# different status mix, so four pushes produce four separate TestDino prod runs:
+#   1. 5 passed, 3 failed, 2 flaky, 1 skipped
+#   2. 5 passed, 2 flaky, 1 skipped
+#   3. 5 passed, 2 skipped
+#   4. 4 passed, 4 failed
+# Flaky needs retries > 0; playwright.config.ts sets retries: 2.
+on:
+  push:
+    branches:
+      - RR
+  workflow_dispatch:
+
+jobs:
+  rr:
+    runs-on: ubuntu-latest
+    env:
+      # Prod reporter + token. playwright.config.ts falls back to the prod
+      # reporter when TESTDINO_SERVER_URL is unset, but set it explicitly.
+      TESTDINO_SERVER_URL: https://reporter.testdino.com/
+      TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
+      TESTDINO_TAGS: RR
+      # Unique per commit so each push is its own run.
+      TESTDINO_CI_RUN_ID: rr-${{ github.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Run RR status-mix scenario
+        continue-on-error: true
+        run: npx playwright test tests/rr.spec.ts --project=chromium
