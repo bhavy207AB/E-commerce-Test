@@ -22,7 +22,7 @@ jobs:
       TESTDINO_CI_RUN_ID: rr-${{ github.sha }}
       # Extra Playwright CLI flags for the current scenario (e.g. --max-failures,
       # --retries=0). Empty for the default scenarios.
-      RR_ARGS: ""
+      RR_ARGS: "--retries=0"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
