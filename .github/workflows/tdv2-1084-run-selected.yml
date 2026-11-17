@@ -14,10 +14,11 @@ name: TDV2-1084 Run Selected Tests (staging · E2E)
 # (and its Skip / Fail handling of tests missing on that branch) is exercised
 # against the real spec files on that branch.
 #
-# Note: the "New on GitHub" whole-file group (ticket decision #9) needs
-# @testdino/playwright >= 2.11.6, which is not published yet (latest is 2.11.5),
-# so that group stays hidden until a run reports a 2.11.6+ CLI. That is the
-# ticket's intended behaviour, not a setup gap. Everything else works on 2.11.1+.
+# "New on GitHub" whole-file entries (ticket decisions #9/#11) need
+# @testdino/playwright >= 2.11.6, which is not published to npm yet (latest is
+# 2.11.5). The 2.11.6 build is vendored in the repo as
+# testdino-playwright-2.11.6.tgz and installed over the npm one below, so the
+# dispatched run can resolve file entries and report a 2.11.6 CLI.
 on:
   workflow_dispatch:
     inputs:
@@ -49,6 +50,11 @@ jobs:
 
       - name: Install Dependencies
         run: npm ci
+
+      - name: Use TestDino CLI 2.11.6 (vendored; unpublished)
+        run: |
+          npm install ./testdino-playwright-2.11.6.tgz --no-save
+          npx tdpw --version
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps chromium
