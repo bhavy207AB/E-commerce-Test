@@ -15,7 +15,7 @@ on:
 
 jobs:
   products-smoke:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       # Staging reporter + token, matching the other staging jobs. Must be
       # explicit: playwright.config.ts falls back to the prod reporter when

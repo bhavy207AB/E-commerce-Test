@@ -11,7 +11,7 @@ on:
 
 jobs:
   rr:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       # Prod reporter + token. playwright.config.ts falls back to the prod
       # reporter when TESTDINO_SERVER_URL is unset, but set it explicitly.

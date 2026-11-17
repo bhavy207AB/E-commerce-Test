@@ -47,7 +47,7 @@ jobs:
   # not gate the job. The reporter has streamed every outcome by then.
   staging-tests:
     if: github.event_name != 'workflow_dispatch'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       # Staging, not prod: playwright.config.ts falls back to the prod reporter
       # when TESTDINO_SERVER_URL is unset, so this must be explicit.
@@ -110,7 +110,7 @@ jobs:
   # TESTDINO_TOKEN secret (same one the coverage job uses).
   tcm-auto-register:
     if: github.event_name != 'workflow_dispatch'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
       TESTDINO_TAGS: prod,tcm-auto
@@ -161,7 +161,7 @@ jobs:
 
   coverage:
     if: github.event_name == 'workflow_dispatch' && inputs.testdino_rerun_from == '' && inputs.testdino_selection == ''
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
       BASE_URL: ${{ secrets.COVERAGE_BASE_URL }}
@@ -218,7 +218,7 @@ jobs:
   # reported to the prod project by tcm-auto-register / selection.
   rerun:
     if: github.event_name == 'workflow_dispatch' && inputs.testdino_rerun_from != ''
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
       TESTDINO_TAGS: prod,regression
@@ -281,7 +281,7 @@ jobs:
   # selection and its linked manual cases live in. Requires TestDino CLI >= 2.11.0.
   selection:
     if: github.event_name == 'workflow_dispatch' && inputs.testdino_rerun_from == '' && inputs.testdino_selection != ''
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
       TESTDINO_TAGS: prod,selection
