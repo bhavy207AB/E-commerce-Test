@@ -1,0 +1,95 @@
+name: TDV2-1084 Run Selected Tests (staging · E2E)
+
+# Dispatched by TestDino's "Run tests" button on the Test Runs page (TDV2-1084).
+# TestDino sends the stored selection (test_selection_...) as the
+# `testdino_selection` input; the tdpw CLI resolves the exact tests from it and
+# runs only those, then streams the results back as a new run.
+#
+# This workflow reports to the STAGING E2E project
+# (project_6dc69fca3840a86a9901b14b in "Bhavy Organization"): the reporter
+# serverUrl is the staging analytics endpoint and the token is the E2E project's
+# ingestion token, stored as the TESTDINO_E2E_STG_TOKEN GitHub secret.
+#
+# It checks out whatever branch TestDino dispatches on, so step 2's branch choice
+# (and its Skip / Fail handling of tests missing on that branch) is exercised
+# against the real spec files on that branch.
+#
+# "New on GitHub" whole-file entries (ticket decisions #9/#11) need
+# @testdino/playwright >= 2.11.6, which is not published to npm yet (latest is
+# 2.11.5). The 2.11.6 build is vendored in the repo as
+# testdino-playwright-2.11.6.tgz and installed over the npm one below, so the
+# dispatched run can resolve file entries and report a 2.11.6 CLI.
+on:
+  workflow_dispatch:
+    inputs:
+      testdino_selection:
+        description: 'Set by TestDino "Run tests" (test_selection_...). Leave empty to run the full suite.'
+        required: false
+        default: ''
+
+jobs:
+  run-selected:
+    if: github.event_name == 'workflow_dispatch'
+    # Pinned: ubuntu-latest migrated to Ubuntu 26.04, which @playwright/test
+    # 1.60.0 can't install --with-deps for ("Playwright does not support
+    # chromium on ubuntu26.04-x64"). 24.04 is supported.
+    runs-on: ubuntu-24.04
+    env:
+      # Staging E2E project. playwright.config.ts falls back to the prod reporter
+      # when TESTDINO_SERVER_URL is unset, so both are set explicitly here.
+      TESTDINO_SERVER_URL: https://stg-analytics.testdino.com/
+      TESTDINO_TOKEN: ${{ secrets.TESTDINO_E2E_STG_TOKEN }}
+      TESTDINO_TAGS: staging,tdv2-1084,selection
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Use TestDino CLI 2.11.6 (vendored; unpublished)
+        run: |
+          npm install ./testdino-playwright-2.11.6.tgz --no-save
+          npx tdpw --version
+
+      - name: Install Playwright Browsers
+        # All three engines so a selection whose "Run in" picks Firefox/WebKit
+        # (decision #7) can actually run them via playwright.tdv2-1084.config.ts.
+        run: npx playwright install --with-deps chromium firefox webkit
+
+      - name: Verify Staging E2E Token
+        run: |
+          if [ -z "$TESTDINO_TOKEN" ]; then
+            echo "::error::TESTDINO_E2E_STG_TOKEN GitHub secret is required for the staging E2E project."
+            exit 1
+          fi
+
+      - name: Run selected tests
+        env:
+          TESTDINO_CI_RUN_ID: ci-selection-${{ github.run_id }}-${{ github.run_attempt }}
+          TD_SELECTION: ${{ inputs.testdino_selection }}
+        shell: bash
+        run: |
+          args=()
+          if [ -n "$TD_SELECTION" ]; then
+            args+=(--selection "$TD_SELECTION")
+          fi
+          # No --project: the selection's "Run in" choice decides which of the
+          # config's chromium/firefox/webkit projects run.
+          echo "Running: npx tdpw test ${args[*]} --config playwright.tdv2-1084.config.ts"
+          npx tdpw test "${args[@]}" --config playwright.tdv2-1084.config.ts
+
+      - name: Upload HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-html-report-tdv2-1084
+          path: playwright-report
+          retention-days: 30
