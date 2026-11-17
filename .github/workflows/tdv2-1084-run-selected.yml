@@ -30,7 +30,10 @@ on:
 jobs:
   run-selected:
     if: github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
+    # Pinned: ubuntu-latest migrated to Ubuntu 26.04, which @playwright/test
+    # 1.60.0 can't install --with-deps for ("Playwright does not support
+    # chromium on ubuntu26.04-x64"). 24.04 is supported.
+    runs-on: ubuntu-24.04
     env:
       # Staging E2E project. playwright.config.ts falls back to the prod reporter
       # when TESTDINO_SERVER_URL is unset, so both are set explicitly here.
