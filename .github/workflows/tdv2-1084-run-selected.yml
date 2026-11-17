@@ -57,7 +57,9 @@ jobs:
           npx tdpw --version
 
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps chromium
+        # All three engines so a selection whose "Run in" picks Firefox/WebKit
+        # (decision #7) can actually run them via playwright.tdv2-1084.config.ts.
+        run: npx playwright install --with-deps chromium firefox webkit
 
       - name: Verify Staging E2E Token
         run: |
@@ -76,8 +78,10 @@ jobs:
           if [ -n "$TD_SELECTION" ]; then
             args+=(--selection "$TD_SELECTION")
           fi
-          echo "Running: npx tdpw test ${args[*]} --project=chromium"
-          npx tdpw test "${args[@]}" --project=chromium
+          # No --project: the selection's "Run in" choice decides which of the
+          # config's chromium/firefox/webkit projects run.
+          echo "Running: npx tdpw test ${args[*]} --config playwright.tdv2-1084.config.ts"
+          npx tdpw test "${args[@]}" --config playwright.tdv2-1084.config.ts
 
       - name: Upload HTML Report
         if: always()
