@@ -19,7 +19,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.11.3",
     "@playwright/test": "^1.60.0",
-    "@testdino/playwright": "file:testdino-playwright-2.11.6.tgz",
+    "@testdino/playwright": "file:testdino-playwright-2.11.7-tdv2-1013-0074534.tgz",
     "axe-playwright": "^2.2.2"
   },
   "dependencies": {
